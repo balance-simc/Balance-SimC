@@ -77,6 +77,9 @@ actions.st+=/run_action_list,name=fallthru
 ### AoE action list called on 2+ targets since starfall and starfire is always better there
 #### Use starfall if it is within pandemic(30% of base duration)
 actions.aoe=starfall,if=buff.starfall.refreshable&(!runeforge.lycaras_fleeting_glimpse.equipped|time%%45>buff.starfall.remains+2)
+#### Calculates whether a starsurge use will cause starfall to fall off, and use starsurge to keep dreambinder stack up
+actions.aoe+=/variable,name=starfall_wont_fall_off,value=astral_power>80-(10*buff.timeworn_dreambinder.stack)-(buff.starfall.remains*3%spell_haste)-(dot.fury_of_elune.remains*5)&buff.starfall.up
+actions.aoe+=/starsurge,if=(buff.timeworn_dreambinder.remains<gcd.max+0.1|buff.timeworn_dreambinder.remains<action.starfire.execute_time+0.1&(eclipse.in_lunar|eclipse.solar_next|eclipse.any_next))&variable.starfall_wont_fall_off&buff.timeworn_dreambinder.up
 #### Refresh sunfire unless ca/inc has less than 10secs remaining and you won't overcap asp
 actions.aoe+=/sunfire,target_if=refreshable&target.time_to_die>14-spell_targets+remains,if=ap_check&eclipse.in_any
 #### Use swarm until 9 targets on cd
@@ -105,8 +108,6 @@ actions.aoe+=/starfall,if=buff.oneths_perception.up&(buff.starfall.refreshable|a
 #### Dump asp before convoke with starfall and then starsurge
 actions.aoe+=/starfall,if=covenant.night_fae&variable.convoke_condition&cooldown.convoke_the_spirits.remains<gcd.max*ceil(astral_power%50)&buff.starfall.refreshable
 actions.aoe+=/starsurge,if=covenant.night_fae&variable.convoke_condition&cooldown.convoke_the_spirits.remains<gcd.max*ceil(astral_power%30)&buff.starfall.up
-#### Calculates whether a starsurge use will cause starfall to fall off
-actions.aoe+=/variable,name=starfall_wont_fall_off,value=astral_power>80-(buff.starfall.remains*3%spell_haste)-(dot.fury_of_elune.remains*5)&buff.starfall.up
 #### Use starsurge with an oneth proc or you'd overcap asp with your next cast. Also dumps asp at the end of the venthyr buff if starfall wouldnt fall off on 4 or less targets
 actions.aoe+=/starsurge,if=buff.oneths_clear_vision.up|!starfire.ap_check|(buff.ca_inc.remains<5&buff.ca_inc.up|(buff.ravenous_frenzy.remains<gcd.max*ceil(astral_power%30)&buff.ravenous_frenzy.up))&variable.starfall_wont_fall_off&spell_targets.starfall<3
 #### Use moons during lunar unless overcapping (maybe needs changes with astral moons)
