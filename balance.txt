@@ -7,7 +7,7 @@ actions.precombat+=/snapshot_stats
 actions.precombat+=/moonkin_form
 actions.precombat+=/wrath
 actions.precombat+=/wrath
-actions.precombat+=/starsurge,if=spell_targets.starfall<4
+actions.precombat+=/starfire
 actions.precombat+=/variable,name=convoke_desync,value=floor((interpolated_fight_remains-20)%120)>floor((interpolated_fight_remains-25-(10*talent.incarnation.enabled)-(4*conduit.precise_alignment.enabled))%180)
 
 ### Decide action list based on situation
