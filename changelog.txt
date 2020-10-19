@@ -1,3 +1,7 @@
+Oct 18:
+    * APL updated to better handle Dreamcatcher in AoE
+    * APL updated to Wrath Wrath Starfire in precombat
+
 Oct 16:
     * Changes from the October 15th build 9.0.2.36206 are included.
         * Balance of All Things crit buff nerfed to 10% per stack
