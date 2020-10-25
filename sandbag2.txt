@@ -37,10 +37,6 @@ tabard=,id=31405
 
 soulbind=deep_allegiance:15/evolved_swarm:15/conflux_of_elements:15/endless_thirst:15/fury_of_the_skies:15
 
-potion=spectral_intellect
-flask=spectral_flask_of_power
-food=feast_of_gluttonous_hedonism
-
 chart_show_relative_difference=1
 report_details=0
 max_time=300
