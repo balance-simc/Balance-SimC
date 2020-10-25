@@ -1,5 +1,9 @@
 ## Shadowland Balance Druid APL <a href="https://github.com/balance-simc/Balance-SimC/commits/master/balance.txt" target="_top">(changelog)</a>
 
+### TODO:
+#### - With certain legendaries like Oneth's and BoAT the APL can be further optimized for higher Starsurge usage
+#### - When to dot can be further optimized, specifically for short duration encounters and in regards to the time to die
+
 ### Precast 2 wrath and a surge if below 4 targets
 actions.precombat=flask
 actions.precombat+=/food
@@ -27,8 +31,9 @@ actions+=/variable,name=prev_starsurge,value=prev.starsurge
 actions+=/run_action_list,name=prepatch_st
 
 ### Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
-#### Refresh dots unless ca/inc has less than 5 secs remaining, the venthyr buff or the kyrian buff is about to fall off to make sure all asp is spend in each
+#### Use adaptive swarm when there is no active swarm, as late as possible on swarm with 2 or fewer stacks or on a 3+ swarm so that the new swarm arrives just after that swarm expires
 actions.st=adaptive_swarm,target_if=!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>5)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3&dot.adaptive_swarm_damage.ticking
+#### Refresh dots unless ca/inc has less than 5 secs remaining, the venthyr buff or the kyrian buff is about to fall off and any eclipse is about to expire
 actions.st+=/variable,name=dot_requirements,value=(buff.ca_inc.remains>5&(buff.ravenous_frenzy.remains>5|!buff.ravenous_frenzy.up)|!buff.ca_inc.up|astral_power<30)&(!buff.kindred_empowerment_energize.up|astral_power<30)&(buff.eclipse_solar.remains>gcd.max|buff.eclipse_lunar.remains>gcd.max)
 actions.st+=/moonfire,target_if=refreshable&target.time_to_die>12,if=ap_check&variable.dot_requirements
 actions.st+=/sunfire,target_if=refreshable&target.time_to_die>12,if=ap_check&variable.dot_requirements
