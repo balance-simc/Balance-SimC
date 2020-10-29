@@ -15,7 +15,8 @@ report_url = 'https://mimiron.raidbots.com/simbot/report/'
 
 profile = apl = sets = mplus = ""
 
-covs = []
+covs = ['kyrian', 'necrolord', 'night_fae', 'venthyr']
+soul = {''}
 legs = {}
 
 with open('leg_x_cov.txt', 'r') as fp:

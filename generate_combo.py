@@ -5,11 +5,9 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('apikey', type=str, help='raidbots apikey')
 parser.add_argument('-t', '--targets', type=int, nargs='?', default=1, const=1, help='set desired sim targets')
-parser.add_argument('--spread', type=bool, nargs='?', default=False, help='add a target 15yd away')
 args = parser.parse_args()
 apikey = args.apikey
 targets = str(args.targets)
-spread_add = args.spread
 
 post_url = 'https://mimiron.raidbots.com/sim'
 get_url = 'https://mimiron.raidbots.com/api/job/'
@@ -17,28 +15,13 @@ report_url = 'https://mimiron.raidbots.com/simbot/report/'
 
 profile = sets = mplus = move = spread = ""
 
-covs = []
-legs = {}
-
-with open('leg_x_cov.txt', 'r') as fp:
-    while line_ := fp.readline():
-        if line_[0] == '#':
-            continue
-        split_ = line_.split('=')
-        if split_[0] == 'covenant':
-            covs.append(split_[1].strip('\"\n'))
-            continue
-        if line_ == '\n':
-            line_1 = fp.readline()
-            if line_1[0] == '#':
-                continue
-            key_ = line_1.split(',')[0].split('-')[-1]
-            line_2 = fp.readline()
-            if line_2[0] == '#':
-                continue
-            value_ = line_2.split('=')[-1]
-            legs[key_] = int(value_)
-            continue
+legendaries = {'oneth':'7087', 'pulsar':'7088', 'dream':'7108', 'lycaras':'7110', 'boat':'7107', 'circle':'7085', 'draught':'7086', 'eonar':'7100'}
+covenants = ['kyrian', 'necrolord', 'night_fae', 'venthyr']
+soulbinds = {
+    'pelagos': {'cov':'kyrian', 'str':'combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past'},
+    'kleia': {'cov':'kyrian', 'str':'fury_of_the_skies:7/'}
+    
+    'kyrian', 'kleia':'kyrian', 'mikanikos':'kyrian', 'marileth':'necrolord', 'emeni':'necrolord', 'heirmir':'necrolord', 'niya':'night_fae', 'dreamweaver':'night_fae', 'korayn':'night_fae', 'nadjia':'venthyr', 'theotar':'venthyr', 'draven':'venthyr'}
 
 with open('sandbag.txt', 'r') as fp:
     profile = fp.read()
@@ -57,26 +40,27 @@ with open('spread.txt', 'r') as fp:
 
 buffer = {}
 
+if args.targets == 0:
+    target_str = 'target_error=0.2\n' + mplus
+else:
+    target_str = 'target_error=0.1\ndesired_targets=' + targets
+
+for soul, cov in soulbinds.items():
+    for leg, bonus in legendaries.items():
+        name = soul + '-' + leg
+        simc = profile + '\ncovenant=' + cov + '\nsoulbind='
+
 for cov in covs:
     for leg, bonus in legs.items():
         name = cov + ' - ' + leg
 
-        if spread_add == True:
-            target_str = 'target_error=0.1\ndesired_targets=1\n' + spread
-        elif args.targets == 0:
-            target_str = 'target_error=0.2\n' + mplus + '\n' + move
-        elif args.targets < 0:
-            target_str = 'target_error=0.1\ndesired_targets=' + targets.strip('-') + '\n' + move
-        else:
-            target_str = 'target_error=0.1\ndesired_targets=' + targets
-
-        simc = profile + '\ntalents=0000000\ncovenant=' + cov + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + sets
+        simc = profile + '\ntalents=0000000\ncovenant=' + cov + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + apl + sets
 
         while True:
             time.sleep(5) 
 
             try:
-                post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'advancedInput': simc})
                 reply = post.json()
                 simID = reply['simId']
                 sim_url = report_url + simID
@@ -110,13 +94,7 @@ for cov in covs:
 
 sorted_buf = sorted(buffer.items(), key=lambda x: x[1], reverse=True)
 
-output = 'by_combo_'
-if spread_add == True:
-    output += 'S'
-else:
-    output += targets
-
-betabot = open(output + '.html', 'w')
+betabot = open('by_combo_' + targets + '.html', 'w')
 betabot.write('<html><style>body {margin-left:0; margin-right:0} a {color:#FF7D0A; text-decoration:none; font-family:monospace; font-size:large;}</style><body>\n')
 
 for buf in sorted_buf:

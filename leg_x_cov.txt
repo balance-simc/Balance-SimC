@@ -69,3 +69,12 @@ copy=venthyr-draught,venthyr
 tabard=,id=31405,bonus_id=7086
 copy=necrolord-draught,necrolord
 tabard=,id=31405,bonus_id=7086
+
+copy=kyrian-eonar,kyrian
+tabard=,id=31405,bonus_id=7100
+copy=nightfae-eonar,nightfae
+tabard=,id=31405,bonus_id=7100
+copy=venthyr-eonar,venthyr
+tabard=,id=31405,bonus_id=7100
+copy=necrolord-eonar,necrolord
+tabard=,id=31405,bonus_id=7100

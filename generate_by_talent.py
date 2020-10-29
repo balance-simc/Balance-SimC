@@ -43,7 +43,7 @@ for line in sets:
         time.sleep(5)
 
         try:
-            post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'advancedInput': simc})
+            post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
             reply = post.json()
             simID = reply['simId']
             sim_url = report_url + simID
