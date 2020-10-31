@@ -1,25 +1,5 @@
-1. What's new?
-    * Changes from the October 15th build 9.0.2.36206 are included.
-        * Balance of All Things crit buff nerfed to 10% per stack
-        * Oneth's Clear Vision proc rate buffed to 20%/40% chance for free Starfall/Starsurge, respectively
-        * Timeworn Dreambinder cost reduction nerfed to 10%, added damage buff of 10% per stack
-        * Draught of Deep Focus effect buffed to 40%
-        * Fury of the Skies conduit nerfed to 1/3 value
-        * Adaptive Swarm damage adjustment nerfed to +9%, debuff effect buffed to 30%
-        * Kindred Spirits pool transfer rate nerfed to 20%, pool consumption rate nerfed to 15%
-        * Ravenous Frenzy haste buff nerfed to 1% per stack, duration buffed to 20s
-    * APL updated to better utilize Adaptive Swarm & Timeworn Dreambinder
-    * Add Draught of Deep Focus to combinations
-
-    * Changes from the October 7th build 9.0.2.36165 are included.
-        * Adaptive Swarm damage increased by 22%
-    * Changes from the October 7th hotfix to PTR build 9.0.1.36131 are included.
-        * Shooting Stars proc rate increased to 15% and grants 3 AP per proc
-        * Soul of the Forest AP bonus to Wrath increased to 50%, AoE damage bonus to Starfire increased to 150%
-        * Starlord grants 4% haste per stack and lasts 15 seconds
-        * Balance Druid spec-wide aura changed from -18% to -8%
-    * Kyrian accounts for 15% of pool being lost to damage taken
-    * Precise Alignment conduit removed from base profiles
+1. What's new? <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+    * Changes from the October 28th build 9.0.2.36401 are included.
 
 1. What is the base character used in the sims?
     * The base profile can be found in [sandbag.txt](sandbag.txt).
