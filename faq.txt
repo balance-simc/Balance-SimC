@@ -39,7 +39,7 @@
     * SimC assumes that you are bonding with someone who does the exact same damage as you, and that 15% of the pool is lost from taking damage. The additional damage done by you AND your partner are attributed to you.
 
 1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
-    * Currently there are no known bugs for Balance.
+    * The mastery value will snapshot whenever you enter a new Eclipse. This is represented in sims but does not have any effect without any mastery procs or use effects.
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
