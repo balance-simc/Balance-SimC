@@ -20,7 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - run: |
-          rm *.json
+          rm -f *.json
           python generate_combo.py ${{ matrix.args }} ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
