@@ -1,11 +1,13 @@
 1. What's new? <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
     * Changes from the October 28th build 9.0.2.36401 are included.
 
-1. What is the base character used in the sims?
-    * The base profile can be found in [sandbag.txt](sandbag.txt).
+1. What is the base profile used in the sims?
+    * The base character can be found in [sandbag.txt](sandbag.txt).
     * All items are from Mythic Castle Nathria.
     * Full 6 mastery gems are socketted and all available enchants are applied.
     * No gear has extra ilevel for being legendary.
+    * All raid buffs and consumables are used.
+    * 'target_error' is set to 0.1%
 
 1. What about conduits?
     * All sims include the covenant specific conduits and Fury of the Skies at rank 7.
