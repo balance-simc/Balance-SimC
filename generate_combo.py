@@ -1,104 +1,216 @@
 import requests
 import time
 import argparse
+import json
+
+post_url = 'https://www.raidbots.com/sim'
+get_url = 'https://www.raidbots.com/api/job/'
+report_url = 'https://www.raidbots.com/simbot/report/'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('apikey', type=str, help='raidbots apikey')
 parser.add_argument('-t', '--targets', type=int, nargs='?', default=1, const=1, help='set desired sim targets')
+parser.add_argument('-d', '--dungeon', default=False, action='store_true')
+parser.add_argument('-m', '--move', default=False, action='store_true')
+parser.add_argument('-s', '--spread', default=False, action='store_true')
 args = parser.parse_args()
-apikey = args.apikey
-targets = str(args.targets)
+targets = str(max(1, args.targets))
 
-post_url = 'https://mimiron.raidbots.com/sim'
-get_url = 'https://mimiron.raidbots.com/api/job/'
-report_url = 'https://mimiron.raidbots.com/simbot/report/'
-
-profile = sets = mplus = move = spread = ""
-
-legendaries = {'oneth':'7087', 'pulsar':'7088', 'dream':'7108', 'lycaras':'7110', 'boat':'7107', 'circle':'7085', 'draught':'7086', 'eonar':'7100'}
-covenants = ['kyrian', 'necrolord', 'night_fae', 'venthyr']
-soulbinds = {
-    'pelagos': {'cov':'kyrian', 'str':'combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past'},
-    'kleia': {'cov':'kyrian', 'str':'fury_of_the_skies:7/'}
-    
-    'kyrian', 'kleia':'kyrian', 'mikanikos':'kyrian', 'marileth':'necrolord', 'emeni':'necrolord', 'heirmir':'necrolord', 'niya':'night_fae', 'dreamweaver':'night_fae', 'korayn':'night_fae', 'nadjia':'venthyr', 'theotar':'venthyr', 'draven':'venthyr'}
-
+profile = mplus = move = spread = ""
 with open('sandbag.txt', 'r') as fp:
     profile = fp.read()
-
-with open('talent_profiles.txt', 'r') as fp:
-    sets = fp.read()
-
-with open('mplus.txt', 'r') as fp:
-    mplus = fp.read()
-
+with open('dungeon.txt', 'r') as fp:
+    dungeon = fp.read()
 with open('move.txt', 'r') as fp:
     move = fp.read()
-
 with open('spread.txt', 'r') as fp:
     spread = fp.read()
 
-buffer = {}
+talents = [
+    ['NB ', 'WOE', 'FON'],
+    ['SOTF', 'SL  ', 'INC '],
+    ['SD', 'TM', 'SF'],
+    ['SOL', 'FOE', 'NM ']
+]
+legendaries = {
+    'oneth':'7087',
+    'pulsar':'7088',
+    'dream':'7108',
+    'lycaras':'7110',
+    'boat':'7107',
+    'circle':'7085',
+    'draught':'7086',
+    'eonar':'7100'
+}
+conduits = [
+    'umbral_intensity:7',
+    'precise_alignment:7',
+    'stellar_inspiration:7'
+]
+cov_conduit = {
+    'kyrian':'deep_allegiance:7',
+    'necrolord':'evolved_swarm:7',
+    'night_fae':'conflux_of_elements:7',
+    'venthyr':'endless_thirst:7'
+}
+covenants = {
+    'kyrian':{
+        'pelagos':{
+            'base':'combat_meditation/let_go_of_the_past',
+            'trait':[]
+        },
+        'kleia':{
+            'base':'',
+            'trait':['pointed_courage']
+        },
+        'mikanikos':{
+            'base':'brons_call_to_action',
+            'trait':['hammer_of_genesis']
+        }
+    },
+    'necrolord':{
+        'marileth':{
+            'base':'',
+            'trait':['plagueys_preemptive_strike']
+        },
+        'emeni':{
+            'base':'lead_by_example',
+            'trait':['gnashing_chompers']
+        },
+        'heirmir':{
+            'base':'',
+            'trait':['heirmirs_arsenal_marrowed_gemstone']
+        }
+    },
+    'night_fae':{
+        'niya':{
+            'base':'grove_invigoration',
+            'trait':['niyas_tools_burrs']
+        },
+        'dreamweaver':{
+            'base':'field_of_blossoms',
+            'trait':['social_butterfly']
+        },
+        'korayn':{
+            'base':'wild_hunt_tactics',
+            'trait':['first_strike']
+        }
+    },
+    'venthyr':{
+        'nadjia':{
+            'base':'thrill_seeker',
+            'trait':['exacting_preparation', 'dauntless_duelist']
+        },
+        'theotar':{
+            'base':'soothing_shade',
+            'trait':['refined_palate', 'wasteland_propriety']
+        },
+        'draven':{
+            'base':'',
+            'trait':['built_for_war']
+        }
+    }
+}
 
-if args.targets == 0:
-    target_str = 'target_error=0.2\n' + mplus
+#error_str = 'target_error=0.1'
+error_str = ''
+
+if args.dungeon:
+    error_str = 'target_error=0.2'
+    target_str = dungeon
+elif args.spread:
+    target_str = spread
 else:
-    target_str = 'target_error=0.1\ndesired_targets=' + targets
+    target_str = 'desired_targets=' + targets
 
-for soul, cov in soulbinds.items():
-    for leg, bonus in legendaries.items():
-        name = soul + '-' + leg
-        simc = profile + '\ncovenant=' + cov + '\nsoulbind='
+if args.move:
+    target_str += '\n' + move
 
-for cov in covs:
-    for leg, bonus in legs.items():
-        name = cov + ' - ' + leg
+sets_list = []
+for leg, bonus in legendaries.items():
+    legendary_str = 'tabard=,id=31405,bonus_id=' + bonus
 
-        simc = profile + '\ntalents=0000000\ncovenant=' + cov + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + apl + sets
+    for cov, soulbinds in covenants.items():
+        covenant_str = 'covenant=' + cov
 
-        while True:
-            time.sleep(5) 
+        for soul, traits in soulbinds.items():
+            soulbind_list = []
+            if traits['base']:
+                soulbind_list.append(traits['base'])
 
-            try:
-                post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'advancedInput': simc})
-                reply = post.json()
-                simID = reply['simId']
-                sim_url = report_url + simID
-                print(sim_url)
-                break
-            except:
-                continue
+            this_conduits = conduits.copy()
+            this_conduits.append(cov_conduit[cov])
+            for trait in traits['trait']:
+                this_conduits.append(trait)
 
-        while True:
-            time.sleep(5)
+            for cond in this_conduits:
+                this_soulbind_list = soulbind_list.copy()
+                this_soulbind_list.append(cond)
+                soulbind_str = 'soulbind+=' + '/'.join(this_soulbind_list)
 
-            try:
-                get = requests.get(get_url + simID)
-                status = get.json()
-                if (status['job']['state'] == 'complete'):
-                    data = requests.get(sim_url + '/data.json')
-                    results = data.json()
-                    break
-                continue
-            except:
-                continue
+                name = '-'.join([cov, soul, cond, leg])
+                sets_list.append('profileset.' + name + '=' + legendary_str)
+                sets_list.append('profileset.' + name + '+=' + covenant_str)
+                sets_list.append('profileset.' + name + '+=' + soulbind_str)
+sets_str = '\n'.join(sets_list)
 
-        dps_list = {}
-        for actor in results['sim']['profilesets']['results']:
-            dps_list[actor['name']] = actor['mean']
+buffer = []
 
-        dps_max = max(dps_list, key=dps_list.get)
-        name2 = cov.rjust(9,'$') + '-' + leg.ljust(7,'$')
-        html = '<div><a href=\"chart.html?simid=' + simID + '\" target=\"simframe\">' + name2.replace('$', '&nbsp;') + '|' + str(dps_max).replace('_', '&nbsp;') + ' ' + f'{dps_list[dps_max]:.2f}' + '</a></div>\n'
-        buffer[html] = dps_list[dps_max]
+for t15, talent15 in enumerate(talents[0], 1):
+    for t40, talent40 in enumerate(talents[1], 1):
+        for t45, talent45 in enumerate(talents[2], 1):
+            for t50, talent50 in enumerate(talents[3], 1):
+                talent = str(t15) + '000' + str(t40) + str(t45) + str(t50)
+                talent_str = 'talents=' + str(t15) + '000' + str(t40) + str(t45) + str(t50)
+                name_str = 'name=' + talent
 
-sorted_buf = sorted(buffer.items(), key=lambda x: x[1], reverse=True)
+                simc = '\n'.join([profile, talent_str, name_str, error_str, target_str, sets_str])
 
-betabot = open('by_combo_' + targets + '.html', 'w')
-betabot.write('<html><style>body {margin-left:0; margin-right:0} a {color:#FF7D0A; text-decoration:none; font-family:monospace; font-size:large;}</style><body>\n')
+                while True:
+                    time.sleep(3)
+                    try:
+                        post = requests.post(post_url, json={'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                        reply = post.json()
+                        simID = reply['simId']
+                        sim_url = report_url + simID
+                        print(sim_url)
+                        break
+                    except:
+                        continue
 
-for buf in sorted_buf:
-    betabot.write(buf[0])
+                while True:
+                    time.sleep(3)
+                    try:
+                        get = requests.get(get_url + simID)
+                        status = get.json()
+                        if status['job']['state'] == 'complete':
+                            data = requests.get(sim_url + '/data.json')
+                            results = data.json()
+                            if results['simbot']['hasFullJson']:
+                                data = requests.get(sim_url + '/data.full.json')
+                                results = data.json()
+                            break
+                        continue
+                    except:
+                        continue
 
-betabot.write('</body></html>\n')
-betabot.close()
+                tal_key = results['sim']['players'][0]['name']
+
+                for actor in results['sim']['profilesets']['results']:
+                    cov_key, soul_key, cond_key, leg_key = actor['name'].split('-')
+                    dps_key = actor['mean']
+
+                    buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond':cond_key, 'tal':tal_key, 'dps':dps_key})
+
+json_name = 'combo_'
+if dungeon:
+    json_name += 'D'
+elif spread:
+    json_name += 'S'
+else:
+    json_name += targets
+    if move:
+        json_name += 'M'
+
+with open(json_name + '.json', 'w') as fp:
+    fp.write(json.dumps(buffer).replace('},', '},\n'))

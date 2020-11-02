@@ -1,15 +1,15 @@
-profileset."NB_/____/__/___"=talents=1000000
-profileset."WOE/____/__/___"=talents=2000000
-profileset."FON/____/__/___"=talents=3000000
-profileset."___/SOTF/__/___"=talents=0000100
-profileset."___/SL__/__/___"=talents=0000200
-profileset."___/INC_/__/___"=talents=0000300
-profileset."___/____/SD/___"=talents=0000010
-profileset."___/____/TM/___"=talents=0000020
-profileset."___/____/SF/___"=talents=0000030
-profileset."___/____/__/SOL"=talents=0000001
-profileset."___/____/__/FOE"=talents=0000002
-profileset."___/____/__/NM_"=talents=0000003
+#profileset."NB_/____/__/___"=talents=1000000
+#profileset."WOE/____/__/___"=talents=2000000
+#profileset."FON/____/__/___"=talents=3000000
+#profileset."___/SOTF/__/___"=talents=0000100
+#profileset."___/SL__/__/___"=talents=0000200
+#profileset."___/INC_/__/___"=talents=0000300
+#profileset."___/____/SD/___"=talents=0000010
+#profileset."___/____/TM/___"=talents=0000020
+#profileset."___/____/SF/___"=talents=0000030
+#profileset."___/____/__/SOL"=talents=0000001
+#profileset."___/____/__/FOE"=talents=0000002
+#profileset."___/____/__/NM_"=talents=0000003
 
 profileset."NB_/SOTF/SD/SOL"=talents=1000111
 profileset."NB_/SOTF/SD/FOE"=talents=1000112

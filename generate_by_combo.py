@@ -46,7 +46,7 @@ with open('sandbag.txt', 'r') as fp:
 with open('talent_profiles.txt', 'r') as fp:
     sets = fp.read()
 
-with open('mplus.txt', 'r') as fp:
+with open('dungeon.txt', 'r') as fp:
     mplus = fp.read()
 
 with open('move.txt', 'r') as fp:

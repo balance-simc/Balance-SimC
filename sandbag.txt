@@ -35,7 +35,7 @@ main_hand=torch_of_fiery_atonement,id=182418,ilevel=233,enchant=celestial_guidan
 
 tabard=,id=31405
 
-soulbind=deep_allegiance:7/evolved_swarm:7/conflux_of_elements:7/endless_thirst:7/fury_of_the_skies:7
+soulbind=fury_of_the_skies:7
 
 chart_show_relative_difference=1
 report_details=0
