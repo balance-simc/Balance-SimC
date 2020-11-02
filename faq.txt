@@ -9,12 +9,9 @@
     * All raid buffs and consumables are used.
     * 'target_error' is set to 0.1%
 
-1. What about conduits?
+1. What about soulbinds and conduits?
     * All sims include the covenant specific conduits and Fury of the Skies at rank 7.
-    * Stellar Inspiration at current tuning contribute less than 1% and is not worth simming.
-
-1. What about soulbinds?
-    * As the value of different soulbind paths depend on the relative value of traits versus the conduit sockets, soulbinds will be included once it is known what rank of conduits will be available during the first tier.
+    * Soulbinds and other conduits are 'coming soon'.
 
 1. What is the '1T Move' selection in the target dropdown?
     * This is a ***LARGELY UNOPTIMIZED APPROXIMATION*** of a light movement encounter. The simc raid_events can be found in [move.txt](move.txt). It consists of:
