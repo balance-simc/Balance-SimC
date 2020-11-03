@@ -14,7 +14,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 1 ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -t 1 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
@@ -46,7 +46,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 3 ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -t 3 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
@@ -62,7 +62,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 4 ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -t 4 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
@@ -78,7 +78,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 5 ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -t 5 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
@@ -94,7 +94,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -D -M ${{ secrets.RAIDBOTSAPI }}
+      - run: python generate_combo.py -d -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
@@ -110,7 +110,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 1 -M ${{ secrets.RAIDBOTSAPI }}
+      - run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
@@ -126,7 +126,7 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -S ${{ secrets.RAIDBOTSAPI }}
+      - run: python generate_combo.py -s ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
