@@ -205,13 +205,13 @@ for t15, talent15 in enumerate(talents[0], 1):
 
 json_name = 'combo_'
 if args.dungeon:
-    json_name += 'D'
+    json_name += 'd'
 elif args.spread:
-    json_name += 'S'
+    json_name += 's'
 else:
     json_name += targets
     if args.move:
-        json_name += 'M'
+        json_name += 'm'
 
 with open(json_name + '.json', 'w') as fp:
     fp.write(json.dumps(buffer).replace('},', '},\n'))
