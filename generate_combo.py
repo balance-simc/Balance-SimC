@@ -114,7 +114,6 @@ covenants = {
 }
 
 #error_str = 'target_error=0.1'
-error_str = 'iterations=5'
 
 if args.dungeon:
     error_str = 'target_error=0.2'

@@ -34,3 +34,112 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
+
+  three_target:
+    needs: [ two_target ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -t 3 ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  four_target:
+    needs: [ three_target ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -t 4 ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  five_target:
+    needs: [ four_target ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -t 5 ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  dungeon:
+    needs: [ five_target ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -D -M ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  one_target_move:
+    needs: [ dungeon ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -t 1 -M ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  spread:
+    needs: [ one_target_move ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -S ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  commit:
+    needs: [ spread ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+      - run: |
+          git config user.name Balance-SimC
+          git config user.email Balance-SimC@github.com
+          git add .
+          git commit -m "update JSON"
+          git push
