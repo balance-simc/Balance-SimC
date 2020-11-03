@@ -113,8 +113,7 @@ covenants = {
     }
 }
 
-#error_str = 'target_error=0.1'
-error_str = ''
+error_str = 'target_error=0.1'
 
 if args.dungeon:
     error_str = 'target_error=0.2'
@@ -126,6 +125,9 @@ else:
 
 if args.move:
     target_str += '\n' + move
+
+# empty so it defaults to smart sim for testing
+error_str = ''
 
 sets_list = []
 for leg, bonus in legendaries.items():
