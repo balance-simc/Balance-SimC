@@ -26,12 +26,7 @@ with open('move.txt', 'r') as fp:
 with open('spread.txt', 'r') as fp:
     spread = fp.read()
 
-talents = [
-    ['NB ', 'WOE', 'FON'],
-    ['SOTF', 'SL  ', 'INC '],
-    ['SD', 'TM', 'SF'],
-    ['SOL', 'FOE', 'NM ']
-]
+talents = [ ['NB ', 'WOE', 'FON'], ['SOTF', 'SL  ', 'INC '], ['SD', 'TM', 'SF'], ['SOL', 'FOE', 'NM '] ]
 legendaries = {
     'oneth':'7087',
     'pulsar':'7088',
@@ -43,6 +38,7 @@ legendaries = {
     'eonar':'7100'
 }
 conduits = [
+    #'fury_of_the_skies:7',
     'umbral_intensity:7',
     'precise_alignment:7',
     'stellar_inspiration:7'
@@ -203,13 +199,13 @@ for t15, talent15 in enumerate(talents[0], 1):
                     buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond':cond_key, 'tal':tal_key, 'dps':dps_key})
 
 json_name = 'combo_'
-if dungeon:
+if args.dungeon:
     json_name += 'D'
-elif spread:
+elif args.spread:
     json_name += 'S'
 else:
     json_name += targets
-    if move:
+    if args.move:
         json_name += 'M'
 
 with open(json_name + '.json', 'w') as fp:
