@@ -17,7 +17,7 @@ jobs:
       #- run: python generate_combo.py -t 1 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_1.json
 
   two_target:
     needs: [ one_target ]
@@ -30,10 +30,10 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 2 ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -t 2 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_2.json
 
   three_target:
     needs: [ two_target ]
@@ -49,7 +49,7 @@ jobs:
       #- run: python generate_combo.py -t 3 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_3.json
 
   four_target:
     needs: [ three_target ]
@@ -65,7 +65,7 @@ jobs:
       #- run: python generate_combo.py -t 4 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_4.json
 
   five_target:
     needs: [ four_target ]
@@ -81,7 +81,7 @@ jobs:
       #- run: python generate_combo.py -t 5 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_5.json
 
   dungeon:
     needs: [ five_target ]
@@ -97,7 +97,7 @@ jobs:
       - run: python generate_combo.py -d -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_d.json
 
   one_target_move:
     needs: [ dungeon ]
@@ -113,7 +113,7 @@ jobs:
       - run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_1m
 
   spread:
     needs: [ one_target_move ]
@@ -129,7 +129,7 @@ jobs:
       - run: python generate_combo.py -s ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
-          path: ./*.json
+          path: combo_s.json
 
   commit:
     needs: [ spread ]
