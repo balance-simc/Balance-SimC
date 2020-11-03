@@ -26,21 +26,25 @@ with open('move.txt', 'r') as fp:
 with open('spread.txt', 'r') as fp:
     spread = fp.read()
 
-#talents = [ ['NB ', 'WOE', 'FON'], ['SOTF', 'SL  ', 'INC '], ['SD', 'TM', 'SF'], ['SOL', 'FOE', 'NM '] ]
-talents = [ ['NB ', 'WOE'], ['SOTF', 'SL  '], ['SD', 'TM'], ['SOL', 'FOE'] ]
+talents = [
+    ['NB ', 'WOE', 'FON'],
+    ['SOTF', 'SL  ', 'INC '],
+    ['SD', 'TM', 'SF'],
+    ['SOL', 'FOE', 'NM ']
+]
 legendaries = {
-    #'oneth':'7087',
-    #'pulsar':'7088',
-    #'dream':'7108',
-    #'lycaras':'7110',
-    #'boat':'7107',
-    #'circle':'7085',
+    'oneth':'7087',
+    'pulsar':'7088',
+    'dream':'7108',
+    'lycaras':'7110',
+    'boat':'7107',
+    'circle':'7085',
     'draught':'7086',
     'eonar':'7100'
 }
 conduits = [
     #'fury_of_the_skies:7',
-    #'umbral_intensity:7',
+    'umbral_intensity:7',
     'precise_alignment:7',
     'stellar_inspiration:7'
 ]
@@ -110,7 +114,7 @@ covenants = {
 }
 
 #error_str = 'target_error=0.1'
-error_str = ''
+error_str = 'iterations=5'
 
 if args.dungeon:
     error_str = 'target_error=0.2'
