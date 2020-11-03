@@ -41,7 +41,7 @@ legendaries = {
 conduits = [
     #'fury_of_the_skies:7',
     #'umbral_intensity:7',
-    #'precise_alignment:7',
+    'precise_alignment:7',
     'stellar_inspiration:7'
 ]
 cov_conduit = {
