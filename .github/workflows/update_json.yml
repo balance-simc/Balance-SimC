@@ -11,8 +11,26 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-      - run: pip install requests
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
       - run: python generate_combo.py -t 1 ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./*.json
+
+  two_target:
+    needs: [ one_target ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -t 2 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: ./*.json
