@@ -17,6 +17,7 @@ jobs:
       #- run: python generate_combo.py -t 1 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_1.json
 
   two_target:
@@ -33,6 +34,7 @@ jobs:
       #- run: python generate_combo.py -t 2 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_2.json
 
   three_target:
@@ -49,6 +51,7 @@ jobs:
       #- run: python generate_combo.py -t 3 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_3.json
 
   four_target:
@@ -65,6 +68,7 @@ jobs:
       #- run: python generate_combo.py -t 4 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_4.json
 
   five_target:
@@ -81,6 +85,7 @@ jobs:
       #- run: python generate_combo.py -t 5 ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_5.json
 
   dungeon:
@@ -97,6 +102,7 @@ jobs:
       #- run: python generate_combo.py -d -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_d.json
 
   spread:
@@ -110,9 +116,10 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -s ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -s ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_s.json
 
   one_target_move:
@@ -126,9 +133,10 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
+          name: json
           path: combo_1m.json
 
   commit:
@@ -137,6 +145,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
+        with:
+          name: json
       - run: |
           git config user.name Balance-SimC
           git config user.email Balance-SimC@github.com
