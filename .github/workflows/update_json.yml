@@ -94,29 +94,13 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install requests
-      - run: python generate_combo.py -d -m ${{ secrets.RAIDBOTSAPI }}
+      #- run: python generate_combo.py -d -m ${{ secrets.RAIDBOTSAPI }}
       - uses: actions/upload-artifact@v2
         with:
           path: combo_d.json
 
-  one_target_move:
-    needs: [ dungeon ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-      - run: |
-          python -m pip install --upgrade pip
-          pip install requests
-      - run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
-      - uses: actions/upload-artifact@v2
-        with:
-          path: combo_1m
-
   spread:
-    needs: [ one_target_move ]
+    needs: [ dungeon ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -130,6 +114,22 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: combo_s.json
+
+  one_target_move:
+    needs: [ spread ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
+      - uses: actions/upload-artifact@v2
+        with:
+          path: combo_1m.json
 
   commit:
     needs: [ spread ]
