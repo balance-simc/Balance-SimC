@@ -1,11 +1,15 @@
 copy=nightfae
 covenant=night_fae
+soulbind=grove_invigoration/fury_of_the_skies:7/niyas_tools_burrs
 copy=venthyr
 covenant=venthyr
+soulbind=soothing_shade/endless_thirst:7/fury_of_the_skies:7
 copy=necrolord
 covenant=necrolord
+soulbind=lead_by_example/fury_of_the_skies:7/evolved_swarm:7
 copy=kyrian
 covenant=kyrian
+soulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past
 
 copy=kyrian-oneth,kyrian
 tabard=,id=31405,bonus_id=7087

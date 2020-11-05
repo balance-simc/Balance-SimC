@@ -62,15 +62,24 @@ for cov in covs:
         name = cov + ' - ' + leg
 
         if spread_add == True:
-            target_str = 'target_error=0.1\ndesired_targets=1\n' + spread
+            target_str = '\ndesired_targets=1\n' + spread
         elif args.targets == 0:
-            target_str = 'target_error=0.2\n' + mplus + '\n' + move
+            target_str = '\n' + mplus + '\n' + move
         elif args.targets < 0:
-            target_str = 'target_error=0.1\ndesired_targets=' + targets.strip('-') + '\n' + move
+            target_str = '\ndesired_targets=' + targets.strip('-') + '\n' + move
         else:
-            target_str = 'target_error=0.1\ndesired_targets=' + targets
+            target_str = '\ndesired_targets=' + targets
 
-        simc = profile + '\ntalents=0000000\ncovenant=' + cov + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + sets
+        if cov == 'kyrian':
+            cov_str = '\ncovenant=kyrian\nsoulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past'
+        elif cov == 'necrolord':
+            cov_str = '\ncovenant=necrolord\nsoulbind=lead_by_example/fury_of_the_skies:7/evolved_swarm:7'
+        elif cov == 'night_fae':
+            cov_str = '\ncovenant=night_fae\nsoulbind=grove_invigoration/fury_of_the_skies:7/niyas_tools_burrs'
+        elif cov == 'venthyr':
+            cov_str = '\ncovenant=venthyr\nsoulbind=soothing_shade/endless_thirst:7/fury_of_the_skies:7'
+
+        simc = profile + '\ntalents=0000000' + cov_str + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + sets
 
         while True:
             time.sleep(5) 
