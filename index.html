@@ -3,7 +3,7 @@
     <script>
       function resetTitle() {
         let title = document.getElementById('simtitle');
-        title.textContent = 'Detailed Sims by Talents';
+        title.textContent = 'Frequently Asked Questions';
       }
       function setTitle(str) {
         let title = document.getElementById('simtitle');
@@ -56,14 +56,15 @@
           </select>
         </div>
         <div><iframe id="frame2" src="by_combo_1.html" style="border:none; font-family:monospace; font-size:large; width:44ch; height:88ex;"></iframe></div>
-        <div style="text-align:center; font-size:larger; margin-top:1em; margin-bottom:0.5em;"><a style="text-decoration:underline;" href="md.html?file=faq.txt" target="simframe" onclick="setTitle('Frequently Asked Questions')"><b>FAQ (Updated October 31st, 2020)</b></a></div>
-        <div style="text-align:center; font-size:larger; margin-top:0.5em; margin-bottom:0.5em;"><a style="text-decoration:underline;" href="md.html?file=balance.txt" target="simframe" onclick="setTitle('Balance APL')"><b>Shadowlands BETA Balance APL</b></a></div>
-        <div style="text-align:center; font-size:larger; margin-top:0.5em; margin-bottom:1em;"><a style="text-decoration:underline;" href="https://github.com/balance-simc/Balance-SimC/issues/new/choose"><b>Bugs/Improvements/Questions</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="md.html?file=faq.txt" target="simframe" onclick="setTitle('Frequently Asked Questions')"><b>FAQ (Updated November 5th)</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="md.html?file=balance.txt" target="simframe" onclick="setTitle('Balance APL')"><b>Shadowlands BETA Balance APL</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="https://github.com/balance-simc/Balance-SimC/issues/new/choose"><b>Bugs/Improvements/Questions</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="by_talent.html" target="simframe" onclick="setTitle('Detailed Sims by Talents')"><b>Detailed Sims by Talents</b></a></div>
         <div id="dir"></div>
       </div>
       <div style="display:flex; flex-direction:column; height:97vh">
-        <div><b><span id="simtitle">Detailed Sims by Talents</span></b> <a href="by_talent.html" target="simframe" style="font-family:monospace; text-decoration:underline;" onclick="resetTitle()">reset</a></div>
-        <iframe name="simframe" src="by_talent.html" style="border:none; height:98%; width:1260px; margin-top:5px" onload="changeFrame(this)"></iframe>
+        <div><b><span id="simtitle">Frequently Asked Questions</span></b></div>
+        <iframe name="simframe" src="md.html?file=faq.txt" style="border:none; height:98%; width:1260px; margin-top:5px" onload="changeFrame(this)"></iframe>
       </div>
     </div>
   <body>

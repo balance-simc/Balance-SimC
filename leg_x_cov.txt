@@ -1,6 +1,6 @@
 copy=nightfae
 covenant=night_fae
-soulbind=grove_invigoration/fury_of_the_skies:7/niyas_tools_burrs
+soulbind=grove_invigoration/conflux_of_elements:7/niyas_tools_burrs
 copy=venthyr
 covenant=venthyr
 soulbind=soothing_shade/endless_thirst:7/fury_of_the_skies:7
