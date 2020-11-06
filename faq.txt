@@ -3,6 +3,11 @@
 1. What's new?
     * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See below for details on what specific loadout is used.
     * For each covenant & legendary combo, talents are simmed using the 'Smart Sim' setting. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
+    * Eclipse Mastery snapshot & re-snapshot added to match new in-game behavior.
+        - Eclipse will snapshot mastery when you enter eclipse via casting 2 generator or via Celestial Alignment/Incarnation.
+        - When you cast Starsurge, Starfall, or Full Moon, any current eclipse will re-snapshot mastery.
+        - Every ~3 seconds, any current eclipse will re-snapshot mastery.
+
 
 1. What about soulbinds and conduits?
     * Kyrian uses Pelagos with:
