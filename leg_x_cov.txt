@@ -11,7 +11,6 @@ copy=kyrian
 covenant=kyrian
 soulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past
 
-#1532=235,1522=225,1507=210,1487=190
 copy=kyrian-oneth,kyrian
 feet=,id=172315,bonus_id=7087/6716/6648/6649/1532
 copy=nightfae-oneth,nightfae
@@ -22,22 +21,22 @@ copy=necrolord-oneth,necrolord
 feet=,id=172315,bonus_id=7087/6716/6648/6649/1532
 
 copy=kyrian-pulsar,kyrian
-shoulder=,id=172319,bonus_id=7088/6716/6648/6649/1532
+hands=,id=172316,bonus_id=7088/6716/6648/6649/1532
 copy=nightfae-pulsar,nightfae
-shoulder=,id=172319,bonus_id=7088/6716/6648/6649/1532
+hands=,id=172316,bonus_id=7088/6716/6648/6649/1532
 copy=venthyr-pulsar,venthyr
-shoulder=,id=172319,bonus_id=7088/6716/6648/6649/1532
+hands=,id=172316,bonus_id=7088/6716/6648/6649/1532
 copy=necrolord-pulsar,necrolord
-shoulder=,id=172319,bonus_id=7088/6716/6648/6649/1532
+hands=,id=172316,bonus_id=7088/6716/6648/6649/1532
 
 copy=kyrian-dream,kyrian
-chest=,id=172314,bonus_id=7108/6716/6648/6649/1532
+finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 copy=nightfae-dream,nightfae
-chest=,id=172314,bonus_id=7108/6716/6648/6649/1532
+finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 copy=venthyr-dream,venthyr
-chest=,id=172314,bonus_id=7108/6716/6648/6649/1532
+finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 copy=necrolord-dream,necrolord
-chest=,id=172314,bonus_id=7108/6716/6648/6649/1532
+finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 
 copy=kyrian-lycaras,kyrian
 feet=,id=172315,bonus_id=7110/6716/6648/6649/1532
@@ -58,28 +57,30 @@ copy=necrolord-boat,necrolord
 legs=,id=172318,bonus_id=7107/6716/6648/6649/1532
 
 copy=kyrian-circle,kyrian
-head=,id=172317,bonus_id=7085/6716/7193/6648/6649/1532
+finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 copy=nightfae-circle,nightfae
-head=,id=172317,bonus_id=7085/6716/7193/6648/6649/1532
+finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 copy=venthyr-circle,venthyr
-head=,id=172317,bonus_id=7085/6716/7193/6648/6649/1532
+finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 copy=necrolord-circle,necrolord
-head=,id=172317,bonus_id=7085/6716/7193/6648/6649/1532
+finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste
 
 copy=kyrian-draught,kyrian
-chest=,id=172314,bonus_id=7086/6716/6648/6649/1532
+neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery
 copy=nightfae-draught,nightfae
-chest=,id=172314,bonus_id=7086/6716/6648/6649/1532
+neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery
 copy=venthyr-draught,venthyr
-chest=,id=172314,bonus_id=7086/6716/6648/6649/1532
+neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery
 copy=necrolord-draught,necrolord
-chest=,id=172314,bonus_id=7086/6716/6648/6649/1532
+neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery
 
 copy=kyrian-eonar,kyrian
-waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532
+waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery
 copy=nightfae-eonar,nightfae
-waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532
+waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery
 copy=venthyr-eonar,venthyr
-waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532
+waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery
 copy=necrolord-eonar,necrolord
-waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532
+waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery
+
+#1532=235,1522=225,1507=210,1487=190
