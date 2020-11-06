@@ -1,7 +1,7 @@
-### Updated November 5th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+#### Updated November 5th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
 
 1. What's new?
-    * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See `What about soulbinds and conduits` question below for details on what specific loadout is used.
+    * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See below for details on what specific loadout is used.
     * For each covenant & legendary combo, talents are simmed using the 'Smart Sim' setting. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
 
 1. What about soulbinds and conduits?
@@ -22,7 +22,7 @@
         - Soothing Shade
         - Endless Thirst, Rank 7
         - Fury of the Skies, Rank 7
-    * *Full soulbind & conduit sims with all combinations are 'coming soon'.*
+    * **Full soulbind & conduit sims with all combinations are 'coming soon'.**
 
 1. What is the base profile used in the sims?
     * The base character can be found in [sandbag.txt](sandbag.txt).
