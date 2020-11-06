@@ -1,13 +1,14 @@
-#### Updated November 5th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+Updated November 6th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
 
 1. What's new?
     * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See below for details on what specific loadout is used.
-    * For each covenant & legendary combo, talents are simmed using the 'Smart Sim' setting. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
+    * For each covenant & legendary combo, talents are simmed using the 'Smart Sim' setting. This means that for each covenant & legendary combo, **the talents that sim highest will be more accurate than the talents that sim the lowest.**
     * Eclipse Mastery snapshot & re-snapshot added to match new in-game behavior.
         - Eclipse will snapshot mastery when you enter eclipse via casting 2 generator or via Celestial Alignment/Incarnation.
         - When you cast Starsurge, Starfall, or Full Moon, any current eclipse will re-snapshot mastery.
         - Every ~3 seconds, any current eclipse will re-snapshot mastery.
-
+    * Additional APL improvements for Kindred Spirits & Convoke the Spirits. See changelog in the APL for details.
+    * Legendaries set to use ilevel 235 items with Haste & Mastery.
 
 1. What about soulbinds and conduits?
     * Kyrian uses Pelagos with:
@@ -33,7 +34,7 @@
     * The base character can be found in [sandbag.txt](sandbag.txt).
     * All items are from Mythic Castle Nathria.
     * Full 6 mastery gems are socketted and all available enchants are applied.
-    * No gear has extra ilevel for being legendary.
+    * Legendary items are set to ilevel 235 with Haste & Mastery.
     * All raid buffs and consumables are used.
     * 'Smart Sim' setting is used for each set of talents with a fixed covenant & legendary. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
 
