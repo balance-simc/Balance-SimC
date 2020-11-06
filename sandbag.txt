@@ -33,8 +33,6 @@ main_hand=torch_of_fiery_atonement,id=182418,ilevel=233,enchant=celestial_guidan
 #legs=chiropteran_leggings,id=182993,ilevel=226
 #finger2=ritualists_treasured_ring,id=183037,ilevel=226,gems=16mastery,enchant=tenet_of_haste
 
-tabard=,id=31405
-
 soulbind=fury_of_the_skies:7
 
 chart_show_relative_difference=1
