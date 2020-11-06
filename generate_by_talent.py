@@ -40,7 +40,7 @@ for line in sets:
     splits = line.split('=', 1)
     talent = splits[-1]
     name = splits[0].split('.')[-1]
-    simc = profile + '\n\n' + apl + '\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
+    simc = profile + '\n\n' + apl + '\n\ntarget_error=0.2\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
 
     while True:
         time.sleep(3)

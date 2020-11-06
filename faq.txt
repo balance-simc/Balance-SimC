@@ -1,4 +1,4 @@
-Updated November 6th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+##Updated November 6th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
 
 1. What's new?
     * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See below for details on what specific loadout is used.
