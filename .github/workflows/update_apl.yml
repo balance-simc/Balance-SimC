@@ -23,9 +23,7 @@ jobs:
         run: python generate_apl.py "./simc"
       - name: commit APL
         run: |
-          echo "[Balance] Update APL" > commit_msg
-          echo >> commit_msg
-          git log -1 --pretty=format:"%B%nbalance-simc/Balance-SimC@%h" >> commit_msg
+          git log -1 --pretty=format:"%B%nbalance-simc/Balance-SimC@%h" > commit_msg
           echo >> commit_msg
           echo >> commit_msg
           echo "Co-authored-by: Balance-SimC <Balance-SimC@github.com>" >> commit_msg
