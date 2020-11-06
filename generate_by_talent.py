@@ -43,7 +43,7 @@ for line in sets:
     simc = profile + '\n\n' + apl + '\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
 
     while True:
-        time.sleep(5)
+        time.sleep(3)
 
         try:
             post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
@@ -56,7 +56,7 @@ for line in sets:
             continue
 
     while True:
-        time.sleep(5)
+        time.sleep(3)
 
         try:
             get = requests.get(get_url + simID)

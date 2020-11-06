@@ -36,8 +36,7 @@ with open('leg_x_cov.txt', 'r') as fp:
             line_2 = fp.readline()
             if line_2[0] == '#':
                 continue
-            value_ = line_2.split('=')[-1]
-            legs[key_] = int(value_)
+            legs[key_] = line_2
             continue
 
 with open('sandbag.txt', 'r') as fp:
@@ -82,10 +81,10 @@ for cov in covs:
         elif cov == 'venthyr':
             cov_str = '\ncovenant=venthyr\nsoulbind=soothing_shade/endless_thirst:7/fury_of_the_skies:7'
 
-        simc = profile + '\ntalents=0000000' + cov_str + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + apl + '\n\n' + sets
+        simc = profile + '\ntalents=0000000' + cov_str + '\n\n' + bonus + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + apl + '\n\n' + sets
 
         while True:
-            time.sleep(5) 
+            time.sleep(3) 
 
             try:
                 post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
@@ -98,7 +97,7 @@ for cov in covs:
                 continue
 
         while True:
-            time.sleep(5)
+            time.sleep(3)
 
             try:
                 get = requests.get(get_url + simID)
