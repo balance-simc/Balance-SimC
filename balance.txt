@@ -178,7 +178,7 @@ actions.boat+=/convoke_the_spirits,if=(variable.convoke_desync&interpolated_figh
 #### Cancel starlord with less than 6 secs remaining and about to dump starsurges
 actions.boat+=/cancel_buff,name=starlord,if=(buff.balance_of_all_things_nature.remains>4.5|buff.balance_of_all_things_arcane.remains>4.5)&astral_power>=90&(cooldown.ca_inc.remains>7|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))
 #### Dump starsurges with the crit buff and before using convoke
-actions.boat+=/starsurge,if=!variable.critnotup&(cooldown.ca_inc.remains>7|covenant.night_fae)&(cooldown.empower_bond.remains>7|!covenant.kyrian)|buff.kindred_empowerment_energize.up&cooldown.ca_inc.remains>30&eclipse.in_any
+actions.boat+=/starsurge,if=!variable.critnotup&(covenant.night_fae|cooldown.ca_inc.remains>7|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))
 #### Dump starsurges before convoke
 actions.boat+=/starsurge,if=(cooldown.convoke_the_spirits.up&(variable.convoke_desync|cooldown.ca_inc.remains<5))&astral_power>50&covenant.night_fae
 #### Sunfire when the crit buff isn't up, you won't overcap or ca/inc is about to be used
