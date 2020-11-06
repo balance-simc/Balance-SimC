@@ -7,7 +7,7 @@ spec=balance
 
 talents=0000000
 
-head=sadists_sinister_mask,id=182980,ilevel=311,gems=16mastery,enchant=shadowcore_oil
+head=sadists_sinister_mask,id=182980,ilevel=311,gems=16mastery
 shoulder=wicked_flankers_gorget,id=183029,ilevel=311
 #chest=miasmalacquered_jerkin,id=183009,ilevel=304,enchant=eternal_stats
 chest=miasmalacquered_jerkin,id=183009,ilevel=304,enchant=eternal_insight
@@ -20,7 +20,7 @@ legs=volatile_shadestitch_legguards,id=183024,ilevel=304
 feet=enchanted_toetappers,id=183030,ilevel=304
 finger1=most_regal_signet_of_sire_denathrius,id=183036,ilevel=311,gems=16mastery,enchant=tenet_of_haste
 finger2=hyperlight_band,id=183038,ilevel=304,gems=16mastery,enchant=tenet_of_haste
-trinket1=cabalists_hymnal,id=184028,ilevel=311
+trinket1=cabalists_hymnal,id=184028,ilevel=311,enchant=shadowcore_oil
 trinket2=dreadfire_vessel,id=184030,ilevel=311
 main_hand=torch_of_fiery_atonement,id=182418,ilevel=311,enchant=celestial_guidance
 
