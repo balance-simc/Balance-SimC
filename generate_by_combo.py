@@ -75,7 +75,7 @@ for cov in covs:
         elif cov == 'necrolord':
             cov_str = '\ncovenant=necrolord\nsoulbind=lead_by_example/fury_of_the_skies:7/evolved_swarm:7'
         elif cov == 'night_fae':
-            cov_str = '\ncovenant=night_fae\nsoulbind=grove_invigoration/fury_of_the_skies:7/niyas_tools_burrs'
+            cov_str = '\ncovenant=night_fae\nsoulbind=grove_invigoration/conflux_of_elements:7/niyas_tools_burrs'
         elif cov == 'venthyr':
             cov_str = '\ncovenant=venthyr\nsoulbind=soothing_shade/endless_thirst:7/fury_of_the_skies:7'
 

@@ -17,7 +17,7 @@ soulbind=fury_of_the_skies:7/heirmirs_arsenal_marrowed_gemstone
 #night_fae
 copy=niya
 covenant=night_fae
-soulbind=grove_invigoration/fury_of_the_skies:7/niyas_tools_burrs
+soulbind=grove_invigoration/conflux_of_elements:7/niyas_tools_burrs
 copy=dreamweaver
 soulbind=fury_of_the_skies:7/conflux_of_elements:7/field_of_blossoms
 copy=korayn
