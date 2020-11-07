@@ -40,10 +40,10 @@ for line in sets:
     splits = line.split('=', 1)
     talent = splits[-1]
     name = splits[0].split('.')[-1]
-    simc = profile + '\n\n' + apl + '\n\ntarget_error=0.2\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
+    simc = profile + '\n\n' + apl + '\n\ntarget_error=0.5\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
 
     while True:
-        time.sleep(3)
+        time.sleep(2)
 
         try:
             post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
@@ -56,7 +56,7 @@ for line in sets:
             continue
 
     while True:
-        time.sleep(3)
+        time.sleep(2)
 
         try:
             get = requests.get(get_url + simID)
