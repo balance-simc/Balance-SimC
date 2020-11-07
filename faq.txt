@@ -81,6 +81,7 @@
     * When you cast Starsurge, Starfall, or Full Moon, any current eclipse will re-snapshot mastery.
     * Every ~3 seconds, any current eclipse will re-snapshot mastery.
     * This behavior happens in-game and in SimC.
+    * Adaptive Swarm will not jump onto an ally that already has a Swarm and will fizzle if there are no other friendly targets.
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
