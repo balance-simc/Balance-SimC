@@ -2,6 +2,7 @@ import requests
 import time
 import argparse
 import json
+from itertools import combinations
 
 post_url = 'https://www.raidbots.com/sim'
 get_url = 'https://www.raidbots.com/api/job/'
@@ -33,17 +34,17 @@ talents = [
     ['SOL', 'FOE', 'NM ']
 ]
 legendaries = {
-    'oneth':'7087',
-    'pulsar':'7088',
-    'dream':'7108',
-    'lycaras':'7110',
-    'boat':'7107',
-    'circle':'7085',
-    'draught':'7086',
-    'eonar':'7100'
+    'oneth':'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
+    'pulsar':'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
+    'dream':'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
+    'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
+    'boat':'legs=,id=172318,bonus_id=7107/6716/6648/6649/1532',
+    'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
+    'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
+    'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery'
 }
 conduits = [
-    #'fury_of_the_skies:7',
+    'fury_of_the_skies:7',
     'umbral_intensity:7',
     'precise_alignment:7',
     'stellar_inspiration:7'
@@ -113,10 +114,7 @@ covenants = {
     }
 }
 
-error_str = 'target_error=0.1'
-
 if args.dungeon:
-    error_str = 'target_error=0.2'
     target_str = dungeon
 elif args.spread:
     target_str = spread
@@ -126,84 +124,85 @@ else:
 if args.move:
     target_str += '\n' + move
 
-# empty so it defaults to smart sim for testing
-error_str = ''
-
-sets_list = []
-for leg, bonus in legendaries.items():
-    legendary_str = 'tabard=,id=31405,bonus_id=' + bonus
-
-    for cov, soulbinds in covenants.items():
-        covenant_str = 'covenant=' + cov
-
-        for soul, traits in soulbinds.items():
-            soulbind_list = []
-            if traits['base']:
-                soulbind_list.append(traits['base'])
-
-            this_conduits = conduits.copy()
-            this_conduits.append(cov_conduit[cov])
-            for trait in traits['trait']:
-                this_conduits.append(trait)
-
-            for cond in this_conduits:
-                this_soulbind_list = soulbind_list.copy()
-                this_soulbind_list.append(cond)
-                soulbind_str = 'soulbind+=' + '/'.join(this_soulbind_list)
-
-                name = '-'.join([cov, soul, cond, leg])
-                sets_list.append('profileset.' + name + '=' + legendary_str)
-                sets_list.append('profileset.' + name + '+=' + covenant_str)
-                sets_list.append('profileset.' + name + '+=' + soulbind_str)
-sets_str = '\n'.join(sets_list)
-
 buffer = []
 
-for t15, talent15 in enumerate(talents[0], 1):
-    for t40, talent40 in enumerate(talents[1], 1):
-        for t45, talent45 in enumerate(talents[2], 1):
-            for t50, talent50 in enumerate(talents[3], 1):
-                talent = str(t15) + '000' + str(t40) + str(t45) + str(t50)
-                talent_str = 'talents=' + str(t15) + '000' + str(t40) + str(t45) + str(t50)
-                name_str = 'name=' + talent
+for leg, leg_str in legendaries.items():
 
-                simc = '\n'.join([profile, talent_str, name_str, error_str, target_str, sets_str])
+    for cov, soulbinds in covenants.items():
+        cov_str = 'covenant=' + cov
 
-                while True:
-                    time.sleep(3)
-                    try:
-                        post = requests.post(post_url, json={'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
-                        reply = post.json()
-                        simID = reply['simId']
-                        sim_url = report_url + simID
-                        print(sim_url)
-                        break
-                    except:
-                        continue
+        name_str = 'name=' + '-'.join([cov, leg])
+        sets_list = []
 
-                while True:
-                    time.sleep(3)
-                    try:
-                        get = requests.get(get_url + simID)
-                        status = get.json()
-                        if status['job']['state'] == 'complete':
-                            data = requests.get(sim_url + '/data.json')
-                            results = data.json()
-                            if results['simbot']['hasFullJson']:
-                                data = requests.get(sim_url + '/data.full.json')
-                                results = data.json()
-                            break
-                        continue
-                    except:
-                        continue
+        for soul, traits in soulbinds.items():
+            soulbind_master = []
+            if traits['base']:
+                soulbind_master.append(traits['base'])
+            conduits_master = conduits.copy()
+            conduits_master.append(cov_conduit[cov])
+            for t in traits['trait']:
+                conduits_master.append(t)
 
-                tal_key = results['sim']['players'][0]['name']
+            for combo in combinations(conduits_master, 2):
+                cond1, cond2 = combo
+                if cond1 in traits['trait'] and cond2 in traits['trait']:
+                    continue
 
-                for actor in results['sim']['profilesets']['results']:
-                    cov_key, soul_key, cond_key, leg_key = actor['name'].split('-')
-                    dps_key = actor['mean']
+                soulbind_list = soulbind_master.copy()
+                soulbind_list.append(cond1)
+                soulbind_list.append(cond2)
+                soulbind_str = 'soulbind=' + '/'.join(soulbind_list)
 
-                    buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond':cond_key, 'tal':tal_key, 'dps':dps_key})
+                for t15, talent15 in enumerate(talents[0], 1):
+                    for t40, talent40 in enumerate(talents[1], 1):
+                        for t45, talent45 in enumerate(talents[2], 1):
+                            for t50, talent50 in enumerate(talents[3], 1):
+                                talent = str(t15) + '000' + str(t40) + str(t45) + str(t50)
+                                talent_str = 'talents=' + talent
+
+                                profile_name = '\"' + '-'.join([soul, cond1, cond2, talent]) +'\"'
+                                sets_list.append('profileset.' + profile_name + '=' + talent_str)
+                                sets_list.append('profileset.' + profile_name + '+=' + soulbind_str)
+
+        sets_str = '\n'.join(sets_list)
+
+        simc = '\n'.join([profile, leg_str, cov_str, name_str, target_str, sets_str])
+
+        while True:
+            time.sleep(2)
+            try:
+                post = requests.post(post_url, json={'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                reply = post.json()
+                simID = reply['simId']
+                sim_url = report_url + simID
+                print(sim_url)
+                break
+            except:
+                continue
+
+        while True:
+            time.sleep(5)
+            try:
+                get = requests.get(get_url + simID)
+                status = get.json()
+                if status['job']['state'] == 'complete':
+                    data = requests.get(sim_url + '/data.json')
+                    results = data.json()
+                    if results['simbot']['hasFullJson']:
+                        data = requests.get(sim_url + '/data.full.json')
+                        results = data.json()
+                    break
+                continue
+            except:
+                continue
+
+            cov_key, leg_key = results['sim']['players'][0]['name'].split('-')
+
+            for actor in results['sim']['profilesets']['results']:
+                soul_key, cond1_key, cond2_key, tal_key = actor['name'].split('-')
+                dps_key = actor['mean']
+
+                buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond1':cond1_key, 'cond2':cond2_key, 'tal':tal_key, 'dps':dps_key})
 
 json_name = 'combo_'
 if args.dungeon:
