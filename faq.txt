@@ -10,10 +10,10 @@
     * Additional APL improvements for Kindred Spirits & Convoke the Spirits. See changelog in the APL for details.
     * Legendaries set to use ilevel 235 items with Haste & Mastery.
     * Convoke the Spirits updated based on latest raid testing logs. It now casts:
-        - 15% chance to cast Full Moon
+        - 20% chance to cast Full Moon
         - 3 to 5 heals
         - Starfall if it is not up
-        - At least one more Wrath than all other damage spells
+        - One more Wrath than all other damage spells
         - Remaining spells randomly selected between Wrath, Starsurge, and Moonfire (if there are undotted targets)
 
 1. What about soulbinds and conduits?
@@ -64,10 +64,10 @@
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
     * Convoke the Spirits will cast:
-        - 15% chance to cast Full Moon
+        - 20% chance to cast Full Moon
         - 3 to 5 heals
         - Starfall if it is not up
-        - At least one more Wrath than all other damage spells
+        - One more Wrath than all other damage spells
         - Remaining spells randomly selected between Wrath, Starsurge, and Moonfire (if there are undotted targets)
 
 1. How does SimC handle Kindred Spirits (Kyrian)?
