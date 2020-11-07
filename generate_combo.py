@@ -34,14 +34,14 @@ talents = [
     ['SOL', 'FOE', 'NM ']
 ]
 legendaries = {
+    'boat':'legs=,id=172318,bonus_id=7107/6716/6648/6649/1532',
+    'dream':'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
     'oneth':'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
     'pulsar':'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
-    'dream':'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
-    'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
-    'boat':'legs=,id=172318,bonus_id=7107/6716/6648/6649/1532',
-    'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
-    'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
-    'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery'
+    #'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
+    #'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
+    #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
+    'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste'
 }
 conduits = [
     'fury_of_the_skies:7',
@@ -196,13 +196,13 @@ for leg, leg_str in legendaries.items():
             except:
                 continue
 
-            cov_key, leg_key = results['sim']['players'][0]['name'].split('-')
+        cov_key, leg_key = results['sim']['players'][0]['name'].split('-')
 
-            for actor in results['sim']['profilesets']['results']:
-                soul_key, cond1_key, cond2_key, tal_key = actor['name'].split('-')
-                dps_key = actor['mean']
+        for actor in results['sim']['profilesets']['results']:
+            soul_key, cond1_key, cond2_key, tal_key = actor['name'].split('-')
+            dps_key = actor['mean']
 
-                buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond1':cond1_key, 'cond2':cond2_key, 'tal':tal_key, 'dps':dps_key})
+            buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond1':cond1_key, 'cond2':cond2_key, 'tal':tal_key, 'dps':dps_key})
 
 json_name = 'combo_'
 if args.dungeon:
