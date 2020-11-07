@@ -1,4 +1,4 @@
-## Updated November 6th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+## Updated November yth <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
 
 1. What's new?
     * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See below for details on what specific loadout is used.
@@ -9,6 +9,12 @@
         - Every ~3 seconds, any current eclipse will re-snapshot mastery.
     * Additional APL improvements for Kindred Spirits & Convoke the Spirits. See changelog in the APL for details.
     * Legendaries set to use ilevel 235 items with Haste & Mastery.
+    * Convoke the Spirits updated based on latest raid testing logs. It now casts:
+        - 15% chance to cast Full Moon
+        - 3 to 5 heals
+        - Starfall if it is not up
+        - At least one more Wrath than all other damage spells
+        - Remaining spells randomly selected between Wrath, Starsurge, and Moonfire (if there are undotted targets)
 
 1. What about soulbinds and conduits?
     * Kyrian uses Pelagos with:
@@ -57,10 +63,18 @@
         * Random 0s to ~20s wait after each fight
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
-    * SimC assumes it will cast ~3.5 healing spells, 1 Starfall if it isn't up, 1 Moonfire if you have a target without it, at least 1 Wrath, then roughly balance out the remaining between Starsurge, Wrath, and Moonfire on any further un-dotted targets.
+    * Convoke the Spirits will cast:
+        - 15% chance to cast Full Moon
+        - 3 to 5 heals
+        - Starfall if it is not up
+        - At least one more Wrath than all other damage spells
+        - Remaining spells randomly selected between Wrath, Starsurge, and Moonfire (if there are undotted targets)
 
 1. How does SimC handle Kindred Spirits (Kyrian)?
-    * SimC assumes that you are bonding with someone who does the exact same damage as you, and that 15% of the pool is lost from taking damage. The additional damage done by you AND your partner are attributed to you.
+    * SimC makes the following assumptions:
+        - You are bonding with someone who does the exact same damage as you
+        - 15% of the pool is lost from taking damage
+        - The additional damage done by you AND your partner are attributed to you
 
 1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
     * Eclipse will snapshot mastery when you enter eclipse via casting 2 generator or via Celestial Alignment/Incarnation.
