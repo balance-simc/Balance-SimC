@@ -1,4 +1,4 @@
-## Updated November 7th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+## Updated November 10th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
 
 1. What's new?
     * Each covenant uses a possible soulbind & conduit loadout that may be the current best. See below for details on what specific loadout is used.
@@ -9,12 +9,15 @@
         - Every ~3 seconds, any current eclipse will re-snapshot mastery.
     * Additional APL improvements for Kindred Spirits & Convoke the Spirits. See changelog in the APL for details.
     * Legendaries set to use ilevel 235 items with Haste & Mastery.
-    * Convoke the Spirits updated based on latest raid testing logs. It now casts:
-        - 20% chance to cast Full Moon
+    * NEW Further updates to Convoke the Spirits. It now casts:
         - 3 to 5 heals
-        - Starfall if it is not up
-        - One more Wrath than all other damage spells
-        - Remaining spells randomly selected between Wrath, Starsurge, and Moonfire (if there are undotted targets)
+        - Chance to cast Starfall if it's not up with a weight of 1.0
+        - Chance to cast Moonfire if it's not up with a weight of 0.3
+        - Chance to cast Starsurge with a weight of 0.3
+        - Chance to cast Wrath with a weight of 0.4
+        - 20% chance to replace a damage spell with Full Moon
+    * NEW Niya's Tools: Burrs removed as it is currently bugged and does not apply to bosses. Replaced with Fury of the Skies, Rank 7
+    * NEW Combat Meditation buffed to 350 mastery rating as per Nov 9 hotfix
 
 1. What about soulbinds and conduits?
     * Kyrian uses Pelagos with:
@@ -29,12 +32,27 @@
     * Night Fae uses Niya with:
         - Grove Invigoration
         - Conflux of Elements, Rank 7
-        - Niya's Tools: Burrs
+        - Fury of the Skies, Rank 7
     * Venthyr uses Theotar with:
         - Soothing Shade
         - Endless Thirst, Rank 7
         - Fury of the Skies, Rank 7
     * **Full soulbind & conduit sims with all combinations are 'coming soon'.**
+
+1. How does SimC handle Convoke the Spirits (Night Fae)?
+    * Convoke the Spirits will cast:
+        - 3 to 5 heals
+        - Chance to cast Starfall if it's not up with a weight of 1.0
+        - Chance to cast Moonfire if it's not up with a weight of 0.3
+        - Chance to cast Starsurge with a weight of 0.3
+        - Chance to cast Wrath with a weight of 0.4
+        - 20% chance to replace a damage spell with Full Moon
+
+1. How does SimC handle Kindred Spirits (Kyrian)?
+    * SimC makes the following assumptions:
+        - You are bonding with someone who does the exact same damage as you
+        - 15% of the pool is lost from taking damage
+        - The additional damage done by you AND your partner are attributed to you
 
 1. What is the base profile used in the sims?
     * The base character can be found in [sandbag.txt](sandbag.txt).
@@ -55,33 +73,18 @@
         * Sunfire and Moonfire, starting with the lowest remaining duration
 
 1. What is the 'Dungeon' selection in the target dropdown?
-    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random dungeon-like encounter. The simc raid_events can be found in [mplus.txt](mplus.txt). It consists of:
+    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random dungeon-like encounter. The simc raid_events can be found in [dungeon.txt](dungeon.txt). It consists of:
         * Random light movement as per the '1T Move' script
         * ~450s total fight time
         * ~130s to ~150s fighting one mob
         * ~30s to ~50s fighting a wave of 3 to 7 mobs, each wave random and repeating until the end of the fight
         * Random 0s to ~20s wait after each fight
 
-1. How does SimC handle Convoke the Spirits (Night Fae)?
-    * Convoke the Spirits will cast:
-        - 20% chance to cast Full Moon
-        - 3 to 5 heals
-        - Starfall if it is not up
-        - One more Wrath than all other damage spells
-        - Remaining spells randomly selected between Wrath, Starsurge, and Moonfire (if there are undotted targets)
-
-1. How does SimC handle Kindred Spirits (Kyrian)?
-    * SimC makes the following assumptions:
-        - You are bonding with someone who does the exact same damage as you
-        - 15% of the pool is lost from taking damage
-        - The additional damage done by you AND your partner are attributed to you
-
 1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
-    * Eclipse will snapshot mastery when you enter eclipse via casting 2 generator or via Celestial Alignment/Incarnation.
-    * When you cast Starsurge, Starfall, or Full Moon, any current eclipse will re-snapshot mastery.
-    * Every ~3 seconds, any current eclipse will re-snapshot mastery.
-    * This behavior happens in-game and in SimC.
-    * Adaptive Swarm will not jump onto an ally that already has a Swarm and will fizzle if there are no other friendly targets.
+    * The following bugs are present in the game AND in SimC
+        - Niya's Tools: Burrs will not do any damage to slow-immune mobs, such as bosses
+    * The following bugs are present in the game but NOT in SimC
+        - Adaptive Swarm will not jump onto an ally that already has a Swarm and will fizzle if there are no other friendly targets.
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
@@ -89,18 +92,6 @@
 
 1. How can I run my own beta sims?
     * Full instructions for building SimC can be found in the SimC wiki <a href="https://github.com/simulationcraft/simc/wiki/HowToBuild" target="_top">HowToBuild</a> page.
-
-1. How do I sim a covenant?
-    * Add the line **covenant=covenant_name**
-
-1. How do I sim a conduit?
-    * Add the line **soulbind=conduit_name:rank/conduit2_name:rank/...**
-
-1. How do I sim a legendary?
-    * Legendary effects are added to gear as a bonus_id. Add the line for a tabard with the legendary effect from [leg_x_cov.txt](leg_x_cov.txt)
-
-1. How can I see past sims to see how we've been nerfed/buffed?
-    * With the BETA state of Shadowlands and things constantly in development, we can't easily show pre-/post- sims. This may change during the major patches once Shadowlands goes live.
 
 1. I found a bug! Something in the sims doesn't line up with what's in game!
     * Submit an issue report with the [Bugs/Improvements/Questions](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link
