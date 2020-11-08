@@ -37,6 +37,7 @@ jobs:
           if [ -z "$(git status --porcelain)" ]; then
             echo "no updates to JSON"
           else
+            git pull --rebase --autostash
             git add .
             git commit -m "update JSON"
             git push
