@@ -54,6 +54,12 @@ input[type=button] {
     padding-left: 1.5em;
 }
 
+#frame {
+    border: none;
+    width: 0px;
+    height: 0px;
+}
+
 .pvtUi { color: #333; }
 
 table.pvtTable {
