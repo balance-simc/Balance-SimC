@@ -59,6 +59,7 @@ input[type=button] {
 }
 
 #side {
+    border: none;
     flex-grow: 1;
     width: 0px;
     height: 0px;
