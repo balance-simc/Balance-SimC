@@ -34,8 +34,11 @@
                     });
                 });
             }
+
+            load_json($("#fightstyle").val());
+
             $("#fightstyle").change(function() {
-                load_json(this.value);
+                load_json($(this).val());
             });
         });
     </script>
