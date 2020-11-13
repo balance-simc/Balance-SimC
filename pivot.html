@@ -56,8 +56,8 @@
             }
 
             function load_json(url) {
-                $.getJSON("https://balance-simc.github.io/Balance-SimC/" + url, function(json) {
-                //$.getJSON(url, function(json) {
+                //$.getJSON("https://balance-simc.github.io/Balance-SimC/" + url, function(json) {
+                $.getJSON(url, function(json) {
                     payload = json;
 
                     $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
@@ -98,9 +98,9 @@
             });
 
             $("#nav a.load").click(function(event) {
-                //$("#main").remove();
-                $("frame").width(1260);
-                $("frame").height("98%");
+                $("#main").remove();
+                $("#side").width(1260);
+                $("#side").height("98%");
             })
         });
         (async () => {
@@ -158,7 +158,7 @@
             <div id="pivot"></div>
         </div>
         <div>
-            <iframe id="frame"></iframe>
+            <iframe id="side" name="frame"></iframe>
         </div>
     </div>
 </body>
