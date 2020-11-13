@@ -10,7 +10,7 @@
     <script>
         $(function() {
             function load_json(url) {
-                $.getJSON(url, function(json) {
+                $.getJSON("https://balance-simc.github.io/Balance-SimC/" + url, function(json) {
                     $("#pivot").pivotUI(json, {
                         renderers: $.extend($.pivotUtilities.renderers, $.pivotUtilities.plotly_renderers),
                         hiddenFromDragDrop: ["dps"],

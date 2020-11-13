@@ -105,7 +105,8 @@ table.pvtTable tbody tr td {
     z-index: 100;
     width: 300px;
     border: 1px solid gray;
-    /*background-color: #fff;*/
+    color: #FF7D0A;
+    background-color: #242424;
     position: absolute;
     text-align: center;
 }
