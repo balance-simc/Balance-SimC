@@ -47,7 +47,8 @@ jobs:
         if: failure()
         with:
           name: update_json_heroic
-          path: *.json
+          path: |
+            *.json
 
   update_json_mythic:
     name: Update JSON (Mythic)
@@ -93,4 +94,5 @@ jobs:
         if: failure()
         with:
           name: update_json_mythic
-          path: *.json
+          path: |
+            *.json
