@@ -8,12 +8,32 @@ select {
     color:#FF7D0A;
     background-color:#242424;
     font-size: 1em;
+    border: 1px solid #666;
+    padding: 2px 5px;
+    white-space: nowrap;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=button] {
+    color:#FF7D0A;
+    background-color:#242424;
+    border: 1px solid #AAA;
+    padding: 2px 5px;
+    white-space: nowrap;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .title {
     font-size: 1.5em;
     font-weight: bold;
-    margin-bottom: 0.5em;
+}
+
+.buttons {
+    margin: 0 0.5em 0.5em 0.5em;
 }
 
 .pvtUi { color: #333; }
@@ -24,8 +44,7 @@ table.pvtTable {
     border-collapse: collapse;
 }
 table.pvtTable thead tr th, table.pvtTable tbody tr th {
-    /*background-color: #e6EEEE;*/
-    border: 1px solid #CDCDCD;
+    border: 1px solid #666;
     font-size: 8pt;
     padding: 5px;
 }
@@ -34,10 +53,10 @@ table.pvtTable .pvtColLabel {text-align: center;}
 table.pvtTable .pvtTotalLabel {text-align: right;}
 
 table.pvtTable tbody tr td {
-    color: #3D3D3D;
+    color: #333;
     padding: 5px;
     background-color: #FF7D0A;
-    border: 1px solid #CDCDCD;
+    border: 1px solid #666;
     vertical-align: top;
     text-align: right;
 }
@@ -54,8 +73,7 @@ table.pvtTable tbody tr td {
 .pvtAggregator { margin-bottom: 5px ;}
 
 .pvtAxisContainer, .pvtVals {
-    border: 1px solid gray;
-    /*background: #EEE;*/
+    border: 1px solid #666;
     padding: 5px;
     min-width: 20px;
     min-height: 20px;
@@ -76,14 +94,13 @@ table.pvtTable tbody tr td {
     padding: 3px 15px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: 1px dashed #aaa;
+    border: 1px dashed #666;
 }
 
 .pvtAxisContainer li span.pvtAttr {
     -webkit-text-size-adjust: 100%;
-    /*background: #F3F3F3;*/
     color: #FF7D0A;
-    border: 1px solid #DEDEDE;
+    border: 1px solid #666;
     padding: 2px 5px;
     white-space:nowrap;
     -webkit-border-radius: 5px;
@@ -93,7 +110,7 @@ table.pvtTable tbody tr td {
 
 .pvtTriangle {
     cursor:pointer;
-    color: grey;
+    color: #AAA;
 }
 
 .pvtHorizList li { display: inline; }
@@ -104,7 +121,7 @@ table.pvtTable tbody tr td {
 .pvtFilterBox{
     z-index: 100;
     width: 300px;
-    border: 1px solid gray;
+    border: 1px solid #666;
     color: #FF7D0A;
     background-color: #242424;
     position: absolute;
@@ -116,7 +133,7 @@ table.pvtTable tbody tr td {
 .pvtFilterBox label { font-weight: normal; }
 .pvtFilterBox input[type='checkbox'] { margin-right: 10px; margin-left: 10px; }
 .pvtFilterBox input[type='text'] { width: 230px; }
-.pvtFilterBox .count { color: gray; font-weight: normal; margin-left: 3px;}
+.pvtFilterBox .count { color: #666; font-weight: normal; margin-left: 3px;}
 
 .pvtCheckContainer{
     text-align: left;
@@ -125,8 +142,8 @@ table.pvtTable tbody tr td {
     overflow-y: scroll;
     width: 100%;
     max-height: 250px;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid #AAA;
+    border-bottom: 1px solid #AAA;
 }
 
 .pvtCheckContainer p{ margin: 5px; }
