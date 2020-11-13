@@ -36,6 +36,24 @@ input[type=button] {
     margin: 0 0.5em 0.5em 0.5em;
 }
 
+#nav {
+    text-align: center;
+    margin: 0.5em;
+    font-size: larger;
+}
+#nav div {
+    margin-bottom: 0.5em;
+}
+#nav a {
+    color: #FF7D0A;
+}
+
+#dir ul {
+    font-size: small;
+    text-align: left;
+    padding-left: 1.5em;
+}
+
 .pvtUi { color: #333; }
 
 table.pvtTable {

@@ -56,8 +56,8 @@
             }
 
             function load_json(url) {
-                //$.getJSON("https://balance-simc.github.io/Balance-SimC/" + url, function(json) {
-                $.getJSON(url, function(json) {
+                $.getJSON("https://balance-simc.github.io/Balance-SimC/" + url, function(json) {
+                //$.getJSON(url, function(json) {
                     payload = json;
 
                     $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
@@ -96,37 +96,66 @@
 
                 $("#pivot").pivotUI(payload, $.extend(config, defaultOptions), true);
             });
+
+            $("#nav a.load").click(function(event) {
+                event.preventDefault();
+                $("#main").load($(this).attr("href"));
+            })
         });
+        (async () => {
+            const response = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/contents/');
+            const data = await response.json();
+            let htmlString = '<ul>';
+            for (let file of data) {
+                let ext = file.name.split('.').pop();
+                if (ext == 'txt') {
+                    htmlString += `<li><a href="${file.name}">${file.name}</a></li>`;
+                }
+            }
+            htmlString += '</ul>';
+            document.getElementById('dir').innerHTML = htmlString;
+        })()
     </script>
 </head>
 <body>
-    <div class="title">
-    Balance Druid Shadowlands DPS Charts
-    <select id="fightstyle">
-        <option value="combo_h_1.json">Heroic 1 Target</option>
-        <option value="combo_h_2.json">Heroic 2 Targets</option>
-        <option value="combo_h_3.json">Heroic 3 Targets</option>
-        <option value="combo_h_4.json">Heroic 4 Targets</option>
-        <option value="combo_h_5.json">Heroic 5 Targets</option>
-        <option value="combo_h_1m.json">Heroic 1T Move</option>
-        <option value="combo_h_s.json">Heroic 2T Spread</option>
-        <option value="combo_h_d.json">Heroic Dungeon</option>
-        <option value="combo_1.json">Mythic 1 Target</option>
-        <option value="combo_2.json">Mythic 2 Targets</option>
-        <option value="combo_3.json">Mythic 3 Targets</option>
-        <option value="combo_4.json">Mythic 4 Targets</option>
-        <option value="combo_5.json">Mythic 5 Targets</option>
-        <option value="combo_1m.json">Mythic 1T Move</option>
-        <option value="combo_s.json">Mythic 2T Spread</option>
-        <option value="combo_d.json">Mythic Dungeon</option>
-    </select>
+    <div style="display: flex">
+        <div id="nav">
+            <div><a href="pivot.html"><b>Charts</b></a></div>
+            <div><a class="load" href="md.html?file=faq.txt"><b>FAQ</b></a></div>
+            <div><a class="load" href="md.html?file=balance.txt"><b>Balance APL</b></a></div>
+            <div><a href="https://github.com/balance-simc/Balance-SimC/issues/new/choose"><b>Report Issue</b></a></div>
+            <div><a class="load" href="by_talent.html"><b>Detailed Sims</b></a></div>
+            <div id="dir"></div>
+        </div>
+        <div id="main">
+            <div class="title">Balance Druid Shadowlands DPS Charts
+            <select id="fightstyle">
+                <option value="combo_h_1.json">Heroic 1 Target</option>
+                <option value="combo_h_2.json">Heroic 2 Targets</option>
+                <option value="combo_h_3.json">Heroic 3 Targets</option>
+                <option value="combo_h_4.json">Heroic 4 Targets</option>
+                <option value="combo_h_5.json">Heroic 5 Targets</option>
+                <option value="combo_h_1m.json">Heroic 1T Move</option>
+                <option value="combo_h_s.json">Heroic 2T Spread</option>
+                <option value="combo_h_d.json">Heroic Dungeon</option>
+                <option value="combo_1.json">Mythic 1 Target</option>
+                <option value="combo_2.json">Mythic 2 Targets</option>
+                <option value="combo_3.json">Mythic 3 Targets</option>
+                <option value="combo_4.json">Mythic 4 Targets</option>
+                <option value="combo_5.json">Mythic 5 Targets</option>
+                <option value="combo_1m.json">Mythic 1T Move</option>
+                <option value="combo_s.json">Mythic 2T Spread</option>
+                <option value="combo_d.json">Mythic Dungeon</option>
+            </select>
+            </div>
+            <div class="buttons">
+                <input type="button" value="Reset Layout" id="reset" />
+                <input type="button" value="Save Layout" id="save" />
+                <input type="button" value="Load Layout" id="load" />
+                <input type="button" value="Clear Saved" id="clear" />
+            </div>
+            <div id="pivot"></div>
+        </div>
     </div>
-    <div class="buttons">
-        <input type="button" value="Reset Layout" id="reset" />
-        <input type="button" value="Save Layout" id="save" />
-        <input type="button" value="Load Layout" id="load" />
-        <input type="button" value="Clear Saved" id="clear" />
-    </div>
-    <div id="pivot"></div>
 </body>
 </html>
