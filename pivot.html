@@ -56,7 +56,6 @@
             }
 
             function load_json(url) {
-                //$.getJSON("https://balance-simc.github.io/Balance-SimC/" + url, function(json) {
                 $.getJSON(url, function(json) {
                     payload = json;
 
@@ -99,8 +98,8 @@
 
             $("#nav a.load").click(function(event) {
                 $("#main").remove();
-                $("#side").width(1260);
-                $("#side").height("98%");
+                $(".frames").width("100%");
+                $("#side").height("96vh");
             })
         });
         (async () => {
@@ -157,8 +156,8 @@
             </div>
             <div id="pivot"></div>
         </div>
-        <div>
-            <iframe id="side" name="frame"></iframe>
+        <div class="frames">
+            <iframe id="side" name="frame" style="flex-grow: 1;"></iframe>
         </div>
     </div>
 </body>
