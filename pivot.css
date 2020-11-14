@@ -125,7 +125,7 @@ table.pvtTable tbody tr td {
 }
 
 .pvtUnused, .pvtUnused .pvtAttr {
-    color: #666 !important;
+    color: #727272 !important;
 }
 
 .pvtTotal, .pvtGrandTotal { font-weight: bold; }
@@ -163,7 +163,6 @@ table.pvtTable tbody tr td {
     border-radius: 5px;
     border: 1px dashed #666;
 }
-
 .pvtAxisContainer li span.pvtAttr {
     -webkit-text-size-adjust: 100%;
     color: #FF7D0A;
@@ -173,6 +172,10 @@ table.pvtTable tbody tr td {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+.pvtAxisLabel {
+    background-color: #363636;
 }
 
 .pvtTriangle {

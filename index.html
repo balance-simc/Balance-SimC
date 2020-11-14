@@ -135,8 +135,8 @@
             }
 
             function load_json(url) {
-                $.getJSON(url, function(json) {
-                //$.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
+                //$.getJSON(url, function(json) {
+                $.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
                     payload = json;
 
                     $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
