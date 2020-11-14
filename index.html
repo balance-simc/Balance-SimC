@@ -222,6 +222,8 @@
                 let ifdoc = f.contentWindow.document;
                 if (ifdoc.contentType == "text/plain" || ifdoc.mimeType == "text/plain") {
                     ifdoc.body.style.color = '#FF7D0A';
+                    // As requested by Tettles
+                    ifdoc.body.style.fontFamily = "Comic Sans MS, Comic Sans, cursive, sans-serif";
                 }
             }
             catch(e) {
