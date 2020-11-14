@@ -81,6 +81,7 @@ input[type=button] {
 }
 
 #side {
+    color: #FF7D0A;
     border: none;
     flex-grow: 1;
     width: 0px;

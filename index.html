@@ -217,6 +217,17 @@
                 $("#side").height("96vh");
             });
         })()
+        function loadiFrame(f) {
+            try {
+                let ifdoc = f.contentWindow.document;
+                if (ifdoc.contentType == "text/plain" || ifdoc.mimeType == "text/plain") {
+                    ifdoc.body.style.color = '#FF7D0A';
+                }
+            }
+            catch(e) {
+                return;
+            }
+        }
     </script>
 </head>
 <body>
@@ -259,7 +270,7 @@
             <div id="pivot"></div>
         </div>
         <div class="frames">
-            <iframe id="side" name="frame" style="flex-grow: 1;"></iframe>
+            <iframe id="side" name="frame" onload="loadiFrame(this)"></iframe>
         </div>
     </div>
 </body>
