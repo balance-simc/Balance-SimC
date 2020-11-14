@@ -4,6 +4,28 @@ body {
     background-color: #242424;
 }
 
+.selectdiv {
+    position: relative;
+    float: right;
+}
+.selectdiv:after {
+    content: '<>';
+    font: 17px "Consolas", monospace;
+    color: #AAA;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    top: 5px;
+    right: -3px;
+    border-bottom: 1px solid #AAA;
+    position: absolute;
+    pointer-events: none;
+}
+.selectdiv select {
+    appearance: none;
+}
+
 select {
     color:#FF7D0A;
     background-color:#242424;
@@ -33,7 +55,7 @@ input[type=button] {
 }
 
 .buttons {
-    margin: 0 0.5em 0.5em 0.5em;
+    margin: 0.5em;
 }
 
 .frames {
@@ -65,6 +87,10 @@ input[type=button] {
     height: 0px;
 }
 
+#fightstyle {
+    font-size: 0.8em;
+}
+
 .pvtUi { color: #333; }
 
 table.pvtTable {
@@ -78,8 +104,16 @@ table.pvtTable thead tr th, table.pvtTable tbody tr th {
     padding: 5px;
 }
 
-table.pvtTable .pvtColLabel {text-align: center;}
-table.pvtTable .pvtTotalLabel {text-align: right;}
+table.pvtTable .pvtRowLabel {
+    text-transform: capitalize;
+}
+table.pvtTable .pvtColLabel {
+    text-align: center;
+    text-transform: capitalize;
+}
+table.pvtTable .pvtTotalLabel {
+    text-align: right;
+}
 
 table.pvtTable tbody tr td {
     color: #333;
@@ -88,6 +122,10 @@ table.pvtTable tbody tr td {
     border: 1px solid #666;
     vertical-align: top;
     text-align: right;
+}
+
+.pvtUnused, .pvtUnused .pvtAttr {
+    color: #666 !important;
 }
 
 .pvtTotal, .pvtGrandTotal { font-weight: bold; }
@@ -177,4 +215,83 @@ table.pvtTable tbody tr td {
 
 .pvtCheckContainer p{ margin: 5px; }
 
-.pvtRendererArea { padding: 5px;}
+.pvtRendererArea { padding: 5px; }
+
+.ui-helper-hidden {	display: none; }
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.ui-helper-reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+	content: "";
+	display: table;
+	border-collapse: collapse;
+}
+.ui-helper-clearfix:after {	clear: both; }
+.ui-helper-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+	filter:Alpha(Opacity=0); /* support: IE8 */
+}
+
+.ui-front {	z-index: 100; }
+
+.tip { font-size: 12px; }
+.tip .tip-right { text-align: right; font-weight: bold; }
+.tip .tip-dps { font-size: 14px; font-weight: bold; }
+/*.tip tr.tip-dps td.tip-right { font-weight: normal; }*/
+
+.ui-tooltip {
+    color: #FF7D0A;
+    background: #111;
+    border-radius: 8px;
+    padding: 4px;
+    border: 2px solid #FF7D0A;
+    z-index: 9999;
+    opacity: 0.9375;
+    text-transform: capitalize;
+    position: absolute;
+}
+.ui-tooltip:after, .ui-tooltip:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.ui-tooltip:after {
+	border-color: rgba(17, 17, 17, 0);
+	border-right-color: #111;
+	border-width: 7px;
+	margin-top: -7px;
+}
+.ui-tooltip:before {
+	border-color: rgba(255, 125, 10, 0);
+	border-right-color: #FF7D0A;
+	border-width: 10px;
+	margin-top: -10px;
+}

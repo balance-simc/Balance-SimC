@@ -623,22 +623,6 @@
       }
       return naturalSort;
     };
-    function fullname(str) {
-      if (str == "leg")
-        return "Legendary";
-      else if (str == "cov")
-        return "Covenant";
-      else if (str == "soul")
-        return "Soulbind";
-      else if (str == "cond1")
-        return "Conduit1";
-      else if (str == "cond2")
-        return "Conduit2";
-      else if (str == "tal")
-        return "Talent";
-      else
-        return str;
-    };
 
     /*
     Data Model class
@@ -926,10 +910,12 @@
     Default Renderer for hierarchical table layout
      */
     pivotTableRenderer = function(pivotData, opts) {
-      var aggregator, c, colAttrs, colKey, colKeys, defaults, getClickHandler, i, j, r, result, rowAttrs, rowKey, rowKeys, spanSize, tbody, td, th, thead, totalAggregator, tr, txt, val, x;
+      var aggregator, c, colAttrs, colKey, colKeys, defaults, getClickHandler, getMouseEnterHandler, getMouseLeaveHandler, i, j, r, result, rowAttrs, rowKey, rowKeys, spanSize, tbody, td, th, thead, totalAggregator, tr, txt, val, x;
       defaults = {
         table: {
           clickCallback: null,
+          mouseenterCallback: null,
+          mouseleaveCallback: null,
           rowTotals: true,
           colTotals: true
         },
@@ -962,6 +948,52 @@
           }
           return function(e) {
             return opts.table.clickCallback(e, value, filters, pivotData);
+          };
+        };
+      }
+      if (opts.table.mouseenterCallback) {
+        getMouseEnterHandler = function(value, rowValues, colValues) {
+          var attr, filters, i;
+          filters = {};
+          for (i in colAttrs) {
+            if (!hasProp.call(colAttrs, i)) continue;
+            attr = colAttrs[i];
+            if (colValues[i] != null) {
+              filters[attr] = colValues[i];
+            }
+          }
+          for (i in rowAttrs) {
+            if (!hasProp.call(rowAttrs, i)) continue;
+            attr = rowAttrs[i];
+            if (rowValues[i] != null) {
+              filters[attr] = rowValues[i];
+            }
+          }
+          return function(e) {
+            return opts.table.mouseenterCallback(e, value, filters, pivotData);
+          };
+        };
+      }
+      if (opts.table.mouseleaveCallback) {
+        getMouseLeaveHandler = function(value, rowValues, colValues) {
+          var attr, filters, i;
+          filters = {};
+          for (i in colAttrs) {
+            if (!hasProp.call(colAttrs, i)) continue;
+            attr = colAttrs[i];
+            if (colValues[i] != null) {
+              filters[attr] = colValues[i];
+            }
+          }
+          for (i in rowAttrs) {
+            if (!hasProp.call(rowAttrs, i)) continue;
+            attr = rowAttrs[i];
+            if (rowValues[i] != null) {
+              filters[attr] = rowValues[i];
+            }
+          }
+          return function(e) {
+            return opts.table.mouseleaveCallback(e, value, filters, pivotData);
           };
         };
       }
@@ -1008,7 +1040,7 @@
         }
         th = document.createElement("th");
         th.className = "pvtAxisLabel";
-        th.textContent = fullname(c);
+        th.textContent = c;
         tr.appendChild(th);
         for (i in colKeys) {
           if (!hasProp.call(colKeys, i)) continue;
@@ -1041,7 +1073,7 @@
           r = rowAttrs[i];
           th = document.createElement("th");
           th.className = "pvtAxisLabel";
-          th.textContent = fullname(r);
+          th.textContent = r;
           tr.appendChild(th);
         }
         th = document.createElement("th");
@@ -1085,6 +1117,12 @@
           if (getClickHandler != null) {
             td.onclick = getClickHandler(val, rowKey, colKey);
           }
+          if (getMouseEnterHandler != null) {
+            td.onmouseenter = getMouseEnterHandler(val, rowKey, colKey);
+          }
+          if (getMouseLeaveHandler != null) {
+            td.onmouseleave = getMouseLeaveHandler(val, rowKey, colKey);
+          }
           tr.appendChild(td);
         }
         if (opts.table.rowTotals || colAttrs.length === 0) {
@@ -1096,6 +1134,12 @@
           td.setAttribute("data-value", val);
           if (getClickHandler != null) {
             td.onclick = getClickHandler(val, rowKey, []);
+          }
+          if (getMouseEnterHandler != null) {
+            td.onmouseenter = getMouseEnterHandler(val, rowKey, []);
+          }
+          if (getMouseLeaveHandler != null) {
+            td.onmouseleave = getMouseLeaveHandler(val, rowKey, []);
           }
           td.setAttribute("data-for", "row" + i);
           tr.appendChild(td);
@@ -1123,6 +1167,12 @@
           if (getClickHandler != null) {
             td.onclick = getClickHandler(val, [], colKey);
           }
+          if (getMouseEnterHandler != null) {
+            td.onmouseenter = getMouseEnterHandler(val, [], colKey);
+          }
+          if (getMouseLeaveHandler != null) {
+            td.onmouseleave = getMouseLeaveHandler(val, [], colKey);
+          }
           td.setAttribute("data-for", "col" + j);
           tr.appendChild(td);
         }
@@ -1136,7 +1186,13 @@
           if (getClickHandler != null) {
             td.onclick = getClickHandler(val, [], []);
           }
-          tr.appendChild(td);
+          if (getMouseEnterHandler != null) {
+            td.onmouseenter = getMouseEnterHandler(val, [], []);
+          }
+          if (getMouseLeaveHandler != null) {
+            td.onmouseleave = getMouseLeaveHandler(val, [], []);
+          }
+         tr.appendChild(td);
         }
         tbody.appendChild(tr);
       }
@@ -1300,6 +1356,7 @@
           $("<option>").val(x).html(x).appendTo(renderer);
         }
         unused = $("<td>").addClass('pvtAxisContainer pvtUnused pvtUiCell');
+        $(unused).text("Filters");
         shownAttributes = (function() {
           var results;
           results = [];
@@ -1363,7 +1420,7 @@
           })();
           hasExcludedItem = false;
           valueList = $("<div>").addClass('pvtFilterBox').hide();
-          valueList.append($("<h4>").append($("<span>").text(fullname(attr)), $("<span>").addClass("count").text("(" + values.length + ")")));
+          valueList.append($("<h4>").append($("<span>").text(attr), $("<span>").addClass("count").text("(" + values.length + ")")));
           if (values.length > opts.menuLimit) {
             valueList.append($("<p>").html(opts.localeStrings.tooMany));
           } else {
@@ -1476,7 +1533,7 @@
               top: top + 10
             }).show();
           });
-          attrElem = $("<li>").addClass("axis_" + i).append($("<span>").addClass('pvtAttr').text(fullname(attr)).data("attrName", attr).append(triangleLink));
+          attrElem = $("<li>").addClass("axis_" + i).append($("<span>").addClass('pvtAttr').text(attr).data("attrName", attr).append(triangleLink));
           if (hasExcludedItem) {
             attrElem.addClass('pvtFilteredAttribute');
           }
