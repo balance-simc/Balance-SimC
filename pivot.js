@@ -1356,7 +1356,7 @@
           $("<option>").val(x).html(x).appendTo(renderer);
         }
         unused = $("<td>").addClass('pvtAxisContainer pvtUnused pvtUiCell');
-        $(unused).text("Filters");
+        //$(unused).text("Filters");
         shownAttributes = (function() {
           var results;
           results = [];

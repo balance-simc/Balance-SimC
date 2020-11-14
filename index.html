@@ -29,6 +29,39 @@
             rend["Line Chart"] = plot["Line Chart"];
             rend["Area Chart"] = plot["Area Chart"];
 
+            function getT15(r) {
+                switch(r.tal.charAt(0)) {
+                    case '1': return "NB";
+                    case '2': return "WOE";
+                    case '3': return "FON";
+                    default: return "";
+                }
+            }
+            function getT40(r) {
+                switch(r.tal.charAt(4)) {
+                    case '1': return "SOTF";
+                    case '2': return "INC";
+                    case '3': return "SL";
+                    default: return "";
+                }
+            }
+            function getT45(r) {
+                switch(r.tal.charAt(5)) {
+                    case '1': return "SD";
+                    case '2': return "TM";
+                    case '3': return "SF";
+                    default: return "";
+                }
+            }
+            function getT50(r) {
+                switch(r.tal.charAt(6)) {
+                    case '1': return "SOL";
+                    case '2': return "FOE";
+                    case '3': return "NM";
+                    default: return "";
+                }
+            }
+
             var defaultOptions = {
                 renderers: rend,
                 hiddenFromDragDrop: ["dps", "cov", "soul", "cond1", "cond2", "leg", "tal"],
@@ -103,40 +136,23 @@
                     "Conduit1": r => { return r.cond1.replaceAll('_', ' '); },
                     "Conduit2": r => { return r.cond2.replaceAll('_', ' '); },
                     "Talents": r => {
-                        let t = r.tal;
                         let str = [];
-                        switch(t.charAt(0)) {
-                            case '1': str.push("NB"); break;
-                            case '2': str.push("WOE"); break;
-                            case '3': str.push("FON"); break;
-                            default: break;
-                        }
-                        switch(t.charAt(4)) {
-                            case '1': str.push("SOTF"); break;
-                            case '2': str.push("SL"); break;
-                            case '3': str.push("INC"); break;
-                            default: break;
-                        }
-                        switch(t.charAt(5)) {
-                            case '1': str.push("SD"); break;
-                            case '2': str.push("TM"); break;
-                            case '3': str.push("SF"); break;
-                            default: break;
-                        }
-                        switch(t.charAt(6)) {
-                            case '1': str.push("SOL"); break;
-                            case '2': str.push("FOE"); break;
-                            case '3': str.push("NM"); break;
-                            default: break;
-                        }
+                        str.push(getT15(r));
+                        str.push(getT40(r));
+                        str.push(getT45(r));
+                        str.push(getT50(r));
                         return str.join('/');
-                    }
+                    },
+                    "T15": r => { return getT15(r); },
+                    "T40": r => { return getT40(r); },
+                    "T45": r => { return getT45(r); },
+                    "T50": r => { return getT50(r); }
                 },
             }
 
             function load_json(url) {
-                //$.getJSON(url, function(json) {
-                $.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
+                $.getJSON(url, function(json) {
+                //$.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
                     payload = json;
 
                     $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));

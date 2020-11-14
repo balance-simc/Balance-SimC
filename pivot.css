@@ -127,6 +127,9 @@ table.pvtTable tbody tr td {
 .pvtUnused, .pvtUnused .pvtAttr {
     color: #727272 !important;
 }
+td.pvtUnused, td.pvtVals.pvtUiCell {
+    border: 0;
+}
 
 .pvtTotal, .pvtGrandTotal { font-weight: bold; }
 
