@@ -5,6 +5,21 @@
     * Use the [Report Issue](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link for any issues/questions/suggestions.
     * All hotfixes up to November 12th are included.
 
+1. What are the base profiles used in the sims?
+    * All raid buffs and consumables are used.
+    * 'Smart Sim' setting is used for each set of talents with a fixed covenant & legendary. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
+    * Full 6 mastery gems are socketted and all available enchants are applied.
+    * The base Mythic character can be found in [sandbag.txt](sandbag.txt).
+        - All items are from Mythic Castle Nathria.
+        - Legendary items are set to ilevel 235 with Haste & Mastery.
+        - All soulbinds are fully unlocked.
+        - All conduits are at Rank 7.
+    * The base Heroic chracter can be found in [sandbag_h.txt](sandbag_h.txt).
+        - All items are from Heroic Castle Nathria
+        - Legendary items are set to ilevel 225 with Haste & Mastery.
+        - Soulbinds are only unlocked to Renown 13.
+        - All conduits are at Rank 6.
+
 1. How does SimC handle Convoke the Spirits (Night Fae)?
     * Convoke the Spirits will cast:
         - 3 to 5 heals
@@ -19,15 +34,7 @@
         - You are bonding with someone who does the exact same damage as you
         - 15% of the pool is lost from taking damage
         - The additional damage done by you AND your partner are attributed to you
-
-1. What is the base profile used in the sims?
-    * The base character can be found in [sandbag.txt](sandbag.txt).
-    * All items are from Mythic Castle Nathria.
-    * Full 6 mastery gems are socketted and all available enchants are applied.
-    * Legendary items are set to ilevel 235 with Haste & Mastery.
-    * All raid buffs and consumables are used.
-    * 'Smart Sim' setting is used for each set of talents with a fixed covenant & legendary. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
-
+    
 1. What is the '1T Move' selection in the target dropdown?
     * This is a ***LARGELY UNOPTIMIZED APPROXIMATION*** of a light movement encounter. The simc raid_events can be found in [move.txt](move.txt). It consists of:
         * Each movement has a random distance of 20yd to 30yd
