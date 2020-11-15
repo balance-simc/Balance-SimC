@@ -18,47 +18,29 @@ $(function() {
     rend["Line Chart"] = plot["Line Chart"];
     rend["Area Chart"] = plot["Area Chart"];
 
-    function getT15(r) {
-        switch(r.tal.charAt(0)) {
-            case '1': return "NB";
-            case '2': return "WOE";
-            case '3': return "FON";
-            default: return "";
-        }
+    var talentCode = {
+        '15': { '1': "NB",   '2': "WOE", '3': "FON" },
+        '40': { '1': "SOTF", '2': "SL",  '3': "INC" },
+        '45': { '1': "SD",   '2': "TM",  '3': "SF"  },
+        '50': { '1': "SOL",  '2': "FOE", '3': "NM"  }
     }
-    function getT40(r) {
-        switch(r.tal.charAt(4)) {
-            case '1': return "SOTF";
-            case '2': return "SL";
-            case '3': return "INC";
-            default: return "";
-        }
+    function getTalentNum(tier, tal) {
+        let o = talentCode[tier];
+        return Object.keys(o).find(key => o[key] === tal);
     }
-    function getT45(r) {
-        switch(r.tal.charAt(5)) {
-            case '1': return "SD";
-            case '2': return "TM";
-            case '3': return "SF";
-            default: return "";
-        }
-    }
-    function getT50(r) {
-        switch(r.tal.charAt(6)) {
-            case '1': return "SOL";
-            case '2': return "FOE";
-            case '3': return "NM";
-            default: return "";
-        }
-    }
+    function getT15(r) { return talentCode['15'][r.tal.charAt(0)]; }
+    function getT40(r) { return talentCode['40'][r.tal.charAt(4)]; }
+    function getT45(r) { return talentCode['45'][r.tal.charAt(5)]; }
+    function getT50(r) { return talentCode['50'][r.tal.charAt(6)]; }
+
+    function toCap(s) { return s.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); }
 
     var defaultOptions = {
         renderers: rend,
         hiddenFromDragDrop: ["dps", "cov", "soul", "cond1", "cond2", "leg", "tal"],
         hiddenFromAggregators: ["cov", "soul", "cond1", "cond2", "leg", "tal"],
         aggregators: {
-            "DPS": function() {
-                return $.pivotUtilities.aggregatorTemplates.max()(["dps"])
-            }
+            "DPS": function() { return $.pivotUtilities.aggregatorTemplates.max()(["dps"]) }
         },
         vals: ["dps"],
         rendererOptions: {
@@ -76,12 +58,8 @@ $(function() {
                     let $tar = $(e.target);
                     if ($tar.hasClass("pvtVal")) {
                         let buf = [];
-                        pivotData.forEachMatchingRecord(filters, function(r) {
-                            buf.push(r);
-                        });
-                        buf.sort(function(a, b) {
-                            return b.dps - a.dps;
-                        });
+                        pivotData.forEachMatchingRecord(filters, function(r) { buf.push(r); });
+                        buf.sort(function(a, b) { return b.dps - a.dps; });
                         let str = "<table class=\"tip\">";
                         str += "<tr><td class=\"tip-right\">Covenant:</td><td>" + buf[0].Covenant + "</td></tr>";
                         str += "<tr><td class=\"tip-right\">Soulbind:</td><td>" + buf[0].Soulbind + "</td></tr>";
@@ -119,18 +97,16 @@ $(function() {
             })()
         },
         derivedAttributes: {
-            "Covenant": r => { 
+            'Covenant': r => { 
                 let c = r.cov;
-                if (c == "night_fae") {
-                    c = "Night Fae";
-                }
+                if (c == "night_fae") { c = "Night Fae"; }
                 return c;
             },
-            "Soulbind": r => { return r.soul; },
-            "Legendary": r => { return r.leg; },
-            "Conduit1": r => { return r.cond1.replaceAll('_', ' '); },
-            "Conduit2": r => { return r.cond2.replaceAll('_', ' '); },
-            "Talents": r => {
+            'Soulbind':  r => { return toCap(r.soul); },
+            'Legendary': r => { return toCap(r.leg); },
+            'Conduit1':  r => { return toCap(r.cond1.replaceAll('_', ' ')); },
+            'Conduit2':  r => { return toCap(r.cond2.replaceAll('_', ' ')); },
+            'Talents':   r => {
                 let str = [];
                 str.push(getT15(r));
                 str.push(getT40(r));
@@ -138,11 +114,17 @@ $(function() {
                 str.push(getT50(r));
                 return str.join('/');
             },
-            "T15": r => { return getT15(r); },
-            "T40": r => { return getT40(r); },
-            "T45": r => { return getT45(r); },
-            "T50": r => { return getT50(r); }
+            'T15': r => { return getT15(r); },
+            'T40': r => { return getT40(r); },
+            'T45': r => { return getT45(r); },
+            'T50': r => { return getT50(r); }
         },
+        sorters: {
+            'T15': (a,b) => { return Number(getTalentNum('15', a)) - Number(getTalentNum('15', b)); },
+            'T40': (a,b) => { return Number(getTalentNum('40', a)) - Number(getTalentNum('40', b)); },
+            'T45': (a,b) => { return Number(getTalentNum('45', a)) - Number(getTalentNum('45', b)); },
+            'T50': (a,b) => { return Number(getTalentNum('50', a)) - Number(getTalentNum('50', b)); }
+        }
     }
 
     function load_json(url) {
@@ -201,7 +183,7 @@ $(function() {
     let htmlString = '<ul>';
     for (let file of c_json) {
         let ext = file.name.split('.').pop();
-        if (ext == 'txt') {
+        if (ext == 'txt' && file != 'faq.txt') {
             htmlString += `<li><a class="load" href="${file.name}" target="frame">${file.name}</a></li>`;
         }
     }
