@@ -144,7 +144,7 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 .pvtAggregator { margin-bottom: 5px ;}
 
 .pvtAxisContainer, .pvtVals {
-    border: 1px solid #666;
+    border: 1px solid #AAA;
     padding: 5px;
     min-width: 20px;
     min-height: 20px;
@@ -271,12 +271,12 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 
 .ui-tooltip {
     color: #FF7D0A;
-    background: #111;
+    background: #1A1A1A;
     border-radius: 8px;
     padding: 4px;
     border: 2px solid #FF7D0A;
     z-index: 9999;
-    opacity: 0.9375;
+    opacity: 0.90;
     text-transform: capitalize;
     position: absolute;
 }
@@ -292,7 +292,7 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 }
 .ui-tooltip:after {
 	border-color: rgba(17, 17, 17, 0);
-	border-right-color: #111;
+	border-right-color: #1A1A1A;
 	border-width: 7px;
 	margin-top: -7px;
 }
