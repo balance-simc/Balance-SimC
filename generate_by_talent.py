@@ -15,14 +15,11 @@ get_url = 'https://mimiron.raidbots.com/api/job/'
 report_url = 'https://mimiron.raidbots.com/simbot/report/'
 clean_url = 'https://www.raidbots.com/reports/'
 
-profile = apl =combo = sets = ""
+profile = combo = sets = ""
 jso = {}
 
 with open('sandbag.txt', 'r') as fp:
     profile = fp.read()
-
-with open('balance.txt', 'r') as fp:
-    apl = fp.read()
 
 with open('leg_x_cov.txt', 'r') as fp:
     combo = fp.read()
@@ -40,7 +37,7 @@ for line in sets:
     splits = line.split('=', 1)
     talent = splits[-1]
     name = splits[0].split('.')[-1]
-    simc = profile + '\n\n' + apl + '\n\ntarget_error=0.5\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
+    simc = profile + '\n\n' + '\n\ntarget_error=0.5\n\n' + talent + '\n' + 'name=' + name + '\n\n' + combo
 
     while True:
         time.sleep(3)
