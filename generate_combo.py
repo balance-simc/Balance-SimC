@@ -17,9 +17,11 @@ parser.add_argument('-s', '--spread', default=False, action='store_true')
 args = parser.parse_args()
 targets = str(max(1, args.targets))
 
-profile = mplus = move = spread = ""
+profile = apl = dungeon = move = spread = ""
 with open('sandbag.txt', 'r') as fp:
     profile = fp.read()
+with open('balance.txt', 'r') as fp:
+    apl = fp.read()
 with open('dungeon.txt', 'r') as fp:
     dungeon = fp.read()
 with open('move.txt', 'r') as fp:
@@ -166,7 +168,7 @@ for leg, leg_str in legendaries.items():
 
         sets_str = '\n'.join(sets_list)
 
-        simc = '\n'.join([profile, leg_str, cov_str, name_str, target_str, sets_str])
+        simc = '\n'.join([profile, apl, leg_str, cov_str, name_str, target_str, sets_str])
 
         while True:
             time.sleep(2)
