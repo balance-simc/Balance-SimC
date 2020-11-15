@@ -29,8 +29,8 @@ $(function() {
     function getT40(r) {
         switch(r.tal.charAt(4)) {
             case '1': return "SOTF";
-            case '2': return "INC";
-            case '3': return "SL";
+            case '2': return "SL";
+            case '3': return "INC";
             default: return "";
         }
     }
