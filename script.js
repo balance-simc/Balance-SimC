@@ -157,6 +157,7 @@ $(function() {
     load_json($("#fightstyle").val());
 
     $("#fightstyle").change(function() {
+        $(".pvtRendererArea").css("opacity", 0.2);
         load_json($(this).val());
     });
 

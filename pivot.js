@@ -1356,7 +1356,6 @@
           $("<option>").val(x).html(x).appendTo(renderer);
         }
         unused = $("<td>").addClass('pvtAxisContainer pvtUnused pvtUiCell');
-        //$(unused).text("Filters");
         shownAttributes = (function() {
           var results;
           results = [];
@@ -1737,7 +1736,7 @@
         })(this);
         refresh = (function(_this) {
           return function() {
-            pivotTable.css("opacity", 0.5);
+            pivotTable.css("opacity", 0.2);
             return setTimeout(refreshDelayed, 10);
           };
         })(this);

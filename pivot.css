@@ -231,9 +231,12 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
     border-bottom: 1px solid #AAA;
 }
 
-.pvtCheckContainer p{ margin: 5px; }
+.pvtCheckContainer p { margin: 5px; }
 
-.pvtRendererArea { padding: 5px; }
+.pvtRendererArea {
+     padding: 5px;
+     transition: opacity .25s;
+}
 
 .ui-helper-hidden {	display: none; }
 .ui-helper-hidden-accessible {
