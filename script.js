@@ -109,6 +109,14 @@ $(function() {
                 },
                 content: "Something went wrong... Please submit a bug."
             });
+
+            (async () => {
+                let file = $("#fightstyle").val();
+                const commit = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/commits?path=' + file);
+                const d_json = await commit.json();
+                let date = new Date(d_json[0]['commit']['committer']['date']);
+                $("#update").html(date.toLocaleString());
+            })()
         },
         derivedAttributes: {
             "Covenant": r => { 
@@ -203,12 +211,6 @@ $(function() {
         $(".frames").width("100%");
         $("#side").height("96vh");
     });
-
-    const commit = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/commits?path=combo_1.json')
-    const d_json = await commit.json();
-    let date = new Date(d_json[0]['commit']['committer']['date']);
-    $("#update").html(date.toLocaleString());
-    console.log(date.toLocaleTimeString());
 })()
 function loadiFrame(f) {
     try {
