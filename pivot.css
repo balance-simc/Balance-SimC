@@ -60,7 +60,9 @@ input[type=button] {
     font-size: smaller;
 }
 .buttons .date {
-    padding: 3px 5px 0 0;
+    padding: 3px 0 0 0;
+    width: 375px;
+    text-align: right;
 }
 
 .frames {
