@@ -138,8 +138,8 @@ $(function() {
     }
 
     function load_json(url) {
-        //$.getJSON(url, function(json) {
-        $.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
+        $.getJSON(url, function(json) {
+        //$.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
             payload = json;
 
             $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
@@ -187,10 +187,10 @@ $(function() {
     });
 });
 (async () => {
-    const response = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/contents/');
-    const data = await response.json();
+    const content = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/contents/');
+    const c_json = await content.json();
     let htmlString = '<ul>';
-    for (let file of data) {
+    for (let file of c_json) {
         let ext = file.name.split('.').pop();
         if (ext == 'txt') {
             htmlString += `<li><a class="load" href="${file.name}" target="frame">${file.name}</a></li>`;
@@ -203,6 +203,12 @@ $(function() {
         $(".frames").width("100%");
         $("#side").height("96vh");
     });
+
+    const commit = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/commits?path=combo_1.json')
+    const d_json = await commit.json();
+    let date = new Date(d_json[0]['commit']['committer']['date']);
+    $("#update").html(date.toLocaleString());
+    console.log(date.toLocaleTimeString());
 })()
 function loadiFrame(f) {
     try {

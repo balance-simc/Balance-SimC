@@ -104,6 +104,8 @@ jobs:
   update_talents:
     name: Update Talent Sims
     needs: [ update_json_mythic ]
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:

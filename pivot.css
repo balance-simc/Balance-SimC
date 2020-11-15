@@ -56,6 +56,11 @@ input[type=button] {
 
 .buttons {
     margin: 0.5em;
+    display: flex;
+    font-size: smaller;
+}
+.buttons .date {
+    padding: 3px 5px 0 0;
 }
 
 .frames {
@@ -90,6 +95,10 @@ input[type=button] {
 
 #fightstyle {
     font-size: 0.8em;
+}
+
+#update {
+    margin-left: 5px;
 }
 
 .pvtUi { color: #333; }
