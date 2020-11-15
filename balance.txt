@@ -7,6 +7,7 @@
 ### Precast 2 wrath and a surge if below 4 targets
 actions.precombat=flask
 actions.precombat+=/food
+actions.precombat+=/augmentation
 actions.precombat+=/snapshot_stats
 actions.precombat+=/moonkin_form
 actions.precombat+=/wrath
