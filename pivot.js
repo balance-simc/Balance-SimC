@@ -1525,12 +1525,16 @@
             return closeFilterBox();
           });
           triangleLink = $("<span>").addClass('pvtTriangle').html(" &#x25BE;").bind("click", function(e) {
-            var left, ref2, top;
-            ref2 = $(e.currentTarget).position(), left = ref2.left, top = ref2.top;
-            return valueList.css({
-              left: left + 10,
-              top: top + 10
-            }).show();
+            if (valueList.is(":hidden")) {
+              var left, ref2, top;
+              ref2 = $(e.currentTarget).position(), left = ref2.left, top = ref2.top;
+              return valueList.css({
+                left: left + 10,
+                top: top + 10
+              }).show();
+            } else {
+              return closeFilterBox();
+            }
           });
           attrElem = $("<li>").addClass("axis_" + i).append($("<span>").addClass('pvtAttr').text(attr).data("attrName", attr).append(triangleLink));
           if (hasExcludedItem) {
@@ -1736,7 +1740,7 @@
         })(this);
         refresh = (function(_this) {
           return function() {
-            pivotTable.css("opacity", 0.2);
+            pivotTable.css("opacity", 0);
             return setTimeout(refreshDelayed, 10);
           };
         })(this);

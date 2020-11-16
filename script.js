@@ -85,6 +85,11 @@ $(function() {
                     at: "right+7 center",
                     collision: "none"
                 },
+                show: {
+                    delay: 450,
+                    duration: 150
+                },
+                hide: false,
                 content: "Something went wrong... Please submit a bug."
             });
 
@@ -139,7 +144,8 @@ $(function() {
     load_json($("#fightstyle").val());
 
     $("#fightstyle").change(function() {
-        $(".pvtRendererArea").css("opacity", 0.2);
+        $(".pvtRendererArea").css("opacity", 0);
+        $("#pivot").tooltip("destroy");
         load_json($(this).val());
     });
 
