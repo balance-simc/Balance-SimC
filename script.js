@@ -121,8 +121,8 @@ $(function() {
                     if ($tar.hasClass("pvtVal")) {
                         const el = document.createElement('textarea');
                         let prof = isHeroic() ? "sandbag_h.txt" : "sandbag.txt";
-                        //$.get(prof, (d) => {
-                        $.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
+                        $.get(prof, (d) => {
+                        //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let r = getRecord(filters, pivotData);
                             let bonus = isHeroic() ? "1522" : "1532";
                             let buf = [];
@@ -217,8 +217,8 @@ $(function() {
     }
 
     function load_json(url) {
-        //$.getJSON(url, function(json) {
-        $.getJSON("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
+        $.getJSON(url, function(json) {
+        //$.getJSON("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
             payload = json;
 
             $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
