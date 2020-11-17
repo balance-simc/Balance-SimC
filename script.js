@@ -33,7 +33,24 @@ $(function() {
     function getT45(r) { return talentCode['45'][r.tal.charAt(5)]; }
     function getT50(r) { return talentCode['50'][r.tal.charAt(6)]; }
 
+    var whLinks = {
+        // Legendaries
+        'boat': "<a href=https://shadowlands.wowhead.com/spell=339942>Boat</a>",
+        'circle': "<a href=https://shadowlands.wowhead.com/spell=338657>Circle</a>",
+        'dream': "<a href=https://shadowlands.wowhead.com/spell=339949>Dream</a>",
+        'pulsar': "<a href=https://shadowlands.wowhead.com/spell=338668>Pulsar</a>",
+        'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
+    }
+
     function toCap(s) { return s.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); }
+    function stripHTML(s) { return s.replace(/<[^>]*>?/gm, ''); }
+
+    function getRecord(filters, pivotData) {
+        let buf = [];
+        pivotData.forEachMatchingRecord(filters, function(r) { buf.push(r); });
+        buf.sort(function(a, b) { return b.dps - a.dps; });
+        return buf[0];
+    }
 
     var defaultOptions = {
         renderers: rend,
@@ -57,21 +74,20 @@ $(function() {
                 mouseenterCallback: function(e, value, filters, pivotData) {
                     let $tar = $(e.target);
                     if ($tar.hasClass("pvtVal")) {
-                        let buf = [];
-                        pivotData.forEachMatchingRecord(filters, function(r) { buf.push(r); });
-                        buf.sort(function(a, b) { return b.dps - a.dps; });
+                        let r = getRecord(filters, pivotData);
                         let str = "<table class=\"tip\">";
-                        str += "<tr><td class=\"tip-right\">Covenant:</td><td>" + buf[0].Covenant + "</td></tr>";
-                        str += "<tr><td class=\"tip-right\">Soulbind:</td><td>" + buf[0].Soulbind + "</td></tr>";
-                        str += "<tr><td class=\"tip-right\">Talents:</td><td>" + buf[0].Talents + "</td></tr>";
-                        str += "<tr><td class=\"tip-right\">Conduit1:</td><td>" + buf[0].Conduit1 + "</td></tr>";
-                        str += "<tr><td class=\"tip-right\">Conduit2:</td><td>" + buf[0].Conduit2 + "</td></tr>";
-                        str += "<tr><td class=\"tip-right\">Legendary:</td><td>" + buf[0].Legendary + "</td></tr>";
-                        str += "<tr class=\"tip-dps\"><td class=\"tip-right\">DPS:</td><td>" + buf[0].dps.toFixed(2) + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Covenant:</td><td>" + r.Covenant + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Soulbind:</td><td>" + r.Soulbind + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Talents:</td><td>" + r.Talents + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Conduit1:</td><td>" + r.Conduit1 + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Conduit2:</td><td>" + r.Conduit2 + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Legendary:</td><td>" + stripHTML(r.Legendary) + "</td></tr>";
+                        str += "<tr class=\"tip-dps\"><td class=\"tip-right\">DPS:</td><td>" + r.dps.toFixed(2) + "</td></tr>";
                         str += "</table>"
                         $(".ui-tooltip-content").html(str);
                     }
                 }
+                //clickCallback: function(e, value, filters, pivotData) {}
             }
         },
         onRefresh: function(c) {
@@ -93,6 +109,8 @@ $(function() {
                 content: "Something went wrong... Please submit a bug."
             });
 
+            $("#loading").hide();
+
             (async () => {
                 let file = $("#fightstyle").val();
                 const commit = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/commits?path=' + file);
@@ -104,11 +122,11 @@ $(function() {
         derivedAttributes: {
             'Covenant': r => { 
                 let c = r.cov;
-                if (c == "night_fae") { c = "Night Fae"; }
-                return c;
+                if (c == "night_fae") { return "Night Fae"; }
+                return toCap(c);
             },
+            'Legendary': r => { return whLinks[r.leg]; },
             'Soulbind':  r => { return toCap(r.soul); },
-            'Legendary': r => { return toCap(r.leg); },
             'Conduit1':  r => { return toCap(r.cond1.replaceAll('_', ' ')); },
             'Conduit2':  r => { return toCap(r.cond2.replaceAll('_', ' ')); },
             'Talents':   r => {
@@ -140,12 +158,24 @@ $(function() {
             $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
         });
     }
+    function show_loading() {
+        let pos = $(".pvtRendererArea").offset();
+        $("#loading").css({
+            top: pos.top,
+            left: pos.left,
+            width: $(".pvtRendererArea").width(),
+            height: $(".pvtRendererArea").height(),
+            display: "flex"
+        });
+    }
 
     load_json($("#fightstyle").val());
+    show_loading();
 
     $("#fightstyle").change(function() {
-        $(".pvtRendererArea").css("opacity", 0);
         $("#pivot").tooltip("destroy");
+        $(".pvtRendererArea").css("opacity", 0);
+        show_loading();
         load_json($(this).val());
     });
 

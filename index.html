@@ -7,6 +7,8 @@
     <script src="pivot.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/plotly_renderers.min.js"></script>
     <script src="script.js"></script>
+    <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
+    <script src="https://wow.zamimg.com/widgets/power.js"></script>
     <link rel="stylesheet" type="text/css" href="pivot.css">
     <title>Balance Druid Shadowlands DPS</title>
 </head>
@@ -52,10 +54,28 @@
                     <div class="date">Last updated on:<span id="update"></span></div>
                 </div>
             </div>
-            <div id="pivot"></div>
+            <div id="pivot">
+                <div class=pvtRendererArea style="width: 720px; height: 360px; margin: 36px 0 0 108px;"></div>
+            </div>
         </div>
         <div class="frames">
             <iframe id="side" name="frame" onload="loadiFrame(this)"></iframe>
+        </div>
+    </div>
+    <div id="loading">
+        <div class="sk-fading-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
         </div>
     </div>
 </body>
