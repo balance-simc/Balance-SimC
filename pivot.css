@@ -333,6 +333,43 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 	margin-top: -10px;
 }
 
+#copied {
+    background: #FF7D0A;
+    color: #1A1A1A;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 3px;
+    border: 2px solid #FFF;
+    z-index: 9999;
+    opacity: 0.90;
+    text-transform: capitalize;
+    position: absolute;
+    display: none;
+}
+#copied:after, #copied:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+#copied:after {
+	border-color: rgba(255, 125, 10, 0);
+	border-left-color: #FF7D0A;
+	border-width: 7px;
+	margin-top: -7px;
+}
+#copied:before {
+	border-color: rgba(17, 17, 17, 0);
+	border-left-color: #FFF;
+	border-width: 10px;
+	margin-top: -10px;
+}
+
 #loading {
     position: absolute;
     max-height: 80vh;

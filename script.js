@@ -34,7 +34,6 @@ $(function() {
     function getT50(r) { return talentCode['50'][r.tal.charAt(6)]; }
 
     var whLinks = {
-        // Legendaries
         'boat': "<a href=https://shadowlands.wowhead.com/spell=339942>Boat</a>",
         'circle': "<a href=https://shadowlands.wowhead.com/spell=338657>Circle</a>",
         'dream': "<a href=https://shadowlands.wowhead.com/spell=339949>Dream</a>",
@@ -42,12 +41,42 @@ $(function() {
         'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
     }
 
+    var legendaries = {
+        'boat':"legs=,id=172318,bonus_id=7107/6716/6648/6649/",
+        'dream':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/",
+        'oneth':"feet=,id=172315,bonus_id=7087/6716/6648/6649/",
+        'pulsar':"hands=,id=172316,bonus_id=7088/6716/6648/6649/",
+        //'lycaras':"feet=,id=172315,bonus_id=7110/6716/6648/6649/",
+        //'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
+        //'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
+        'circle':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/"
+    }
+
+    var soulbinds = {
+        'pelagos': "combat_meditation",
+        'kleia': "",
+        'mikanikos': "brons_call_to_action",
+        'marileth': "",
+        'emeni': "lead_by_example",
+        'heirmir': "",
+        'niya': "grove_invigoration",
+        'dreamweaver': "field_of_blossoms",
+        'korayn': "wild_hunt_tactics",
+        'nadjia': "thrill_seeker",
+        'theotar': "soothing_shade",
+        'draven': ""
+    }
+
+    function isHeroic() {
+        return $("#fightstyle").val().includes("combo_h");
+    }
+
     function toCap(s) { return s.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); }
     function stripHTML(s) { return s.replace(/<[^>]*>?/gm, ''); }
 
     function getRecord(filters, pivotData) {
         let buf = [];
-        pivotData.forEachMatchingRecord(filters, function(r) { buf.push(r); });
+        pivotData.forEachMatchingRecord(filters, (r) => { buf.push(r); });
         buf.sort(function(a, b) { return b.dps - a.dps; });
         return buf[0];
     }
@@ -86,8 +115,45 @@ $(function() {
                         str += "</table>"
                         $(".ui-tooltip-content").html(str);
                     }
+                },
+                clickCallback: function(e, value, filters, pivotData) {
+                    let $tar = $(e.target);
+                    if ($tar.hasClass("pvtVal")) {
+                        const el = document.createElement('textarea');
+                        let prof = isHeroic() ? "sandbag_h.txt" : "sandbag.txt";
+                        //$.get(prof, (d) => {
+                        $.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
+                            let r = getRecord(filters, pivotData);
+                            let bonus = isHeroic() ? "1522" : "1532";
+                            let buf = [];
+
+                            buf.push(d);
+                            buf.push("covenant=" + r.cov);
+                            buf.push("talents=" + r.tal);
+                            buf.push(legendaries[r.leg] + bonus);
+
+                            let cond = [];
+                            cond.push(soulbinds[r.soul]);
+                            if (r.soul == "pelagos" && !isHeroic()) { cond.push("let_go_of_the_past"); }
+                            if (r.cond1 != "none") { cond.push(r.cond1); }
+                            if (r.cond2 != "none") { cond.push(r.cond2); }
+                            buf.push("soulbind=" + cond.join("/"));
+
+                            el.value = buf.join("\n");
+                            console.log(el.value);
+                            document.body.appendChild(el);
+                            el.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(el);
+
+                            let pos = $(e.target).offset();
+                            $("#copied").css({
+                                top: pos.top,
+                                left: pos.left - $("#copied").width() - 18
+                            }).show().delay(1000).fadeOut();
+                        });
+                    }
                 }
-                //clickCallback: function(e, value, filters, pivotData) {}
             }
         },
         onRefresh: function(c) {
@@ -151,8 +217,8 @@ $(function() {
     }
 
     function load_json(url) {
-        $.getJSON(url, function(json) {
-        //$.getJSON("https://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
+        //$.getJSON(url, function(json) {
+        $.getJSON("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + url, function(json) {
             payload = json;
 
             $("#pivot").pivotUI(json, $.extend({}, defaultOptions, defaultLayout));
