@@ -260,9 +260,12 @@ $(function() {
         Cookies.set("pivotLayout", JSON.stringify(config_copy));
     });
     $("#load").on("click", function() {
-        let config = $("#pivot").data("pivotUIOptions");
-        show_loading();
-        $("#pivot").pivotUI(payload, $.extend(config, JSON.parse(Cookies.get("pivotLayout"))), true);
+        let cookie = Cookies.get("pivotLayout");
+        if (cookie) {
+            let config = $("#pivot").data("pivotUIOptions");
+            show_loading();
+            $("#pivot").pivotUI(payload, $.extend(config, JSON.parse(Cookies.get("pivotLayout"))), true);
+        }
     });
     $("#clear").on("click", function() {
         Cookies.remove("pivotLayout");
