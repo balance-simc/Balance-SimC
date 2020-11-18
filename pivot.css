@@ -152,11 +152,17 @@ table.pvtTable tbody tr td {
     text-align: right;
 }
 
-.pvtUnused, .pvtUnused .pvtAttr {
+.pvtUnused, .pvtUnused :not(.pvtFilteredAttribute) .pvtAttr {
     color: #727272 !important;
 }
+
 td.pvtUnused, td.pvtVals.pvtUiCell {
     border: 0;
+}
+
+.pvtFilteredAttribute {
+    color: #FF7D0A;
+    font-style: italic
 }
 
 .pvtTotal, .pvtGrandTotal { font-weight: bold; }
@@ -216,8 +222,6 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 
 .pvtHorizList li { display: inline; }
 .pvtVertList { vertical-align: top; }
-
-.pvtFilteredAttribute { font-style: italic }
 
 .pvtFilterBox{
     z-index: 100;
