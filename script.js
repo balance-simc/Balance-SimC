@@ -261,7 +261,7 @@ $(function() {
     });
     $("#load").on("click", function() {
         let config = $("#pivot").data("pivotUIOptions");
-
+        show_loading();
         $("#pivot").pivotUI(payload, $.extend(config, JSON.parse(Cookies.get("pivotLayout"))), true);
     });
     $("#clear").on("click", function() {
@@ -269,7 +269,7 @@ $(function() {
     });
     $("#reset").on("click", function() {
         let config = $("#pivot").data("pivotUIOptions");
-
+        show_loading();
         $("#pivot").pivotUI(payload, $.extend(config, defaultLayout), true);
     });
 
