@@ -1,7 +1,7 @@
 #kyrian
 copy=pelagos
 covenant=kyrian
-soulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past
+soulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7
 copy=kleia
 soulbind=fury_of_the_skies:7/pointed_courage
 copy=mikanikos
@@ -13,7 +13,7 @@ soulbind=fury_of_the_skies:7/evolved_swarm:7
 copy=emeni
 soulbind=lead_by_example/fury_of_the_skies:7/evolved_swarm:7
 copy=heirmir
-soulbind=fury_of_the_skies:7/heirmirs_arsenal_marrowed_gemstone
+soulbind=forgeborne_reveries/fury_of_the_skies:7/heirmirs_arsenal_marrowed_gemstone
 #night_fae
 copy=niya
 covenant=night_fae

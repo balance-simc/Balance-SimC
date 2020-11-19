@@ -1,9 +1,7 @@
-## Updated November 13th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
-
-1. What's new?
+1. What's new? <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
     * NEW LAYOUT! All combinations of covenants, legendaries, soulbinds, conduits, traits, and talents are available. You can drag & drop to adjust the layout, filters, and chart displays however you want.
     * Use the [Report Issue](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link for any issues/questions/suggestions.
-    * All hotfixes up to November 12th are included.
+    * All hotfixes up to November 18th are included.
 
 1. What are the base profiles used in the sims?
     * All raid buffs and consumables are used.
