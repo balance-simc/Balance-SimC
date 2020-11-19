@@ -39,6 +39,7 @@ $(function() {
         'dream': "<a href=https://shadowlands.wowhead.com/spell=339949>Dream</a>",
         'pulsar': "<a href=https://shadowlands.wowhead.com/spell=338668>Pulsar</a>",
         'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
+        'draught': "<a href=https://shadowlands.wowhead.com/spell=338658>Draught</a>",
     }
 
     var legendaries = {
@@ -47,7 +48,7 @@ $(function() {
         'oneth':"feet=,id=172315,bonus_id=7087/6716/6648/6649/",
         'pulsar':"hands=,id=172316,bonus_id=7088/6716/6648/6649/",
         //'lycaras':"feet=,id=172315,bonus_id=7110/6716/6648/6649/",
-        //'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
+        'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
         //'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
         'circle':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/"
     }
@@ -134,7 +135,6 @@ $(function() {
 
                             let cond = [];
                             if (soulbinds[r.soul] !== "") { cond.push(soulbinds[r.soul]) };
-                            if (r.soul === "pelagos" && !isHeroic()) { cond.push("let_go_of_the_past"); }
                             if (r.cond1 !== "none") { cond.push(r.cond1); }
                             if (r.cond2 !== "none") { cond.push(r.cond2); }
                             buf.push("soulbind=" + cond.join("/"));

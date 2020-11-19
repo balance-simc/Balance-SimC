@@ -41,7 +41,7 @@ legendaries = {
     'oneth':'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
     'pulsar':'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
     #'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
-    #'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
+    'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
     #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
     'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste'
 }
@@ -60,7 +60,7 @@ cov_conduit = {
 covenants = {
     'kyrian':{
         'pelagos':{
-            'base':'combat_meditation/let_go_of_the_past',
+            'base':'combat_meditation',
             'trait':[]
         },
         'kleia':{
@@ -82,7 +82,7 @@ covenants = {
             'trait':['gnashing_chompers']
         },
         'heirmir':{
-            'base':'',
+            'base':'forgeborne_reveries',
             'trait':['heirmirs_arsenal_marrowed_gemstone']
         }
     },

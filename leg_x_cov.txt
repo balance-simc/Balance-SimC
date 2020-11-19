@@ -9,7 +9,7 @@ covenant=necrolord
 soulbind=lead_by_example/fury_of_the_skies:7/evolved_swarm:7
 copy=kyrian
 covenant=kyrian
-soulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7/let_go_of_the_past
+soulbind=combat_meditation/fury_of_the_skies:7/umbral_intensity:7
 
 copy=kyrian-oneth,kyrian
 feet=,id=172315,bonus_id=7087/6716/6648/6649/1532
