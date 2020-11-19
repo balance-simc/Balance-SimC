@@ -31,8 +31,6 @@ jobs:
         run: python generate_combo_h.py -s ${{ secrets.RAIDBOTSAPI }}
       - name: one target move
         run: python generate_combo_h.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
-      - name: detailed talent sims
-        run: python generate_by_talent.py $APIKEY
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -115,7 +113,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: talent sims
-        run: python generate_by_talent.py $APIKEY
+        run: python generate_by_talent.py ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
