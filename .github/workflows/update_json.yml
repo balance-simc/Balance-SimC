@@ -87,7 +87,6 @@ jobs:
             echo "no updates to JSON"
           else
             git pull --rebase --autostash
-            echo "$(date)" > date.txt
             git add .
             git commit -m "update JSON"
             git push
