@@ -205,8 +205,9 @@ $(function() {
                 if (this_run["status"] === "in_progress") {
                     const jobs = await fetch(this_run["jobs_url"]);
                     const j_json = await jobs.json();
+                    let this_job = j_json["jobs"][jobmap[file]];
 
-                    if (j_json[jobmap[file]]["status"] === "in_progress") {
+                    if ( this_job !== undefined && this_job["status"] === "in_progress") {
                         $("#update").html("<span id=\"inprogress\"><b>Currently Running Sims...</b></span>");
                         return;
                     }
