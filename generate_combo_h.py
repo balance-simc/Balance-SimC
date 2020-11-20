@@ -41,7 +41,7 @@ legendaries = {
     'oneth':'feet=,id=172315,bonus_id=7087/6716/6648/6649/1522',
     'pulsar':'hands=,id=172316,bonus_id=7088/6716/6648/6649/1522',
     #'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1522',
-    #'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1522,gems=16mastery',
+    'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1522,gems=16mastery',
     #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1522,gems=16mastery',
     'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1522,gems=16mastery,enchant=tenet_of_haste'
 }

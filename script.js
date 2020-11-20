@@ -68,6 +68,25 @@ $(function() {
         'draven': ""
     }
 
+    var jobmap = {
+        'combo_h_1.json': 0,
+        'combo_h_2.json': 0,
+        'combo_h_3.json': 0,
+        'combo_h_4.json': 0,
+        'combo_h_5.json': 0,
+        'combo_h_1m.json': 1,
+        'combo_h_s.json': 1,
+        'combo_h_d.json': 1,
+        'combo_1.json': 2,
+        'combo_2.json': 2,
+        'combo_3.json': 2,
+        'combo_4.json': 2,
+        'combo_5.json': 2,
+        'combo_1m.json': 3,
+        'combo_s.json': 3,
+        'combo_d.json': 3
+    }
+
     function isHeroic() {
         return $("#fightstyle").val().includes("combo_h");
     }
@@ -178,15 +197,21 @@ $(function() {
             $("#loading").hide();
 
             (async () => {
+                let file = $("#fightstyle").val();
                 const runs = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/actions/workflows/update_json.yml/runs');
                 const r_json = await runs.json();
-                console.log(r_json);
-                if (r_json["workflow_runs"][0]["status"] === "in_progress") {
-                    $("#update").html("<span id=\"inprogress\"><b>Currently Running Sims...</b></span>");
-                    return;
+                const this_run = r_json["workflow_runs"][0];
+
+                if (this_run["status"] === "in_progress") {
+                    const jobs = await fetch(this_run["jobs_url"]);
+                    const j_json = await jobs.json();
+
+                    if (j_json[jobmap[file]]["status"] === "in_progress") {
+                        $("#update").html("<span id=\"inprogress\"><b>Currently Running Sims...</b></span>");
+                        return;
+                    }
                 }
 
-                let file = $("#fightstyle").val();
                 const commit = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/commits?path=' + file);
                 const d_json = await commit.json();
                 let date = new Date(d_json[0]['commit']['committer']['date']);
