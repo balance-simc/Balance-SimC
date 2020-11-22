@@ -225,7 +225,7 @@ $(function() {
                 if (c == "night_fae") { return "Night Fae"; }
                 return toCap(c);
             },
-            'Legendary': r => { return whLinks[r.leg]; },
+            'Legendary': r => { return stripHTML(whLinks[r.leg]); },
             'Soulbind':  r => { return toCap(r.soul); },
             'Conduit1':  r => { return toCap(r.cond1.replaceAll('_', ' ')); },
             'Conduit2':  r => { return toCap(r.cond2.replaceAll('_', ' ')); },
