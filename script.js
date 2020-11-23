@@ -40,6 +40,7 @@ $(function() {
         'pulsar': "<a href=https://shadowlands.wowhead.com/spell=338668>Pulsar</a>",
         'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
         'draught': "<a href=https://shadowlands.wowhead.com/spell=338658>Draught</a>",
+        'lycaras': "<a href=https://shadowlands.wowhead.com/spell=340059>Lycaras</a>"
     }
 
     var legendaries = {
@@ -47,7 +48,7 @@ $(function() {
         'dream':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/",
         'oneth':"feet=,id=172315,bonus_id=7087/6716/6648/6649/",
         'pulsar':"hands=,id=172316,bonus_id=7088/6716/6648/6649/",
-        //'lycaras':"feet=,id=172315,bonus_id=7110/6716/6648/6649/",
+        'lycaras':"feet=,id=172315,bonus_id=7110/6716/6648/6649/",
         'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
         //'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
         'circle':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/"
@@ -59,7 +60,7 @@ $(function() {
         'mikanikos': "brons_call_to_action",
         'marileth': "",
         'emeni': "lead_by_example",
-        'heirmir': "",
+        'heirmir': "forgeborne_reveries",
         'niya': "grove_invigoration",
         'dreamweaver': "field_of_blossoms",
         'korayn': "wild_hunt_tactics",
