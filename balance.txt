@@ -4,7 +4,7 @@
 #### - With certain legendaries like Oneth's and BoAT the APL can be further optimized for higher Starsurge usage
 #### - When to dot can be further optimized, specifically for short duration encounters and in regards to the time to die
 
-### Precast 2 wrath and a surge if below 4 targets
+### Precast 2 wrath and a starfire
 actions.precombat=flask
 actions.precombat+=/food
 actions.precombat+=/augmentation
@@ -25,11 +25,7 @@ actions+=/heart_essence,if=level=50
 actions+=/run_action_list,name=aoe,if=variable.is_aoe
 actions+=/run_action_list,name=dreambinder,if=runeforge.timeworn_dreambinder.equipped
 actions+=/run_action_list,name=boat,if=runeforge.balance_of_all_things.equipped
-actions+=/run_action_list,name=st,if=level>50
-actions+=/variable,name=prev_wrath,value=prev.wrath
-actions+=/variable,name=prev_starfire,value=prev.starfire
-actions+=/variable,name=prev_starsurge,value=prev.starsurge
-actions+=/run_action_list,name=prepatch_st
+actions+=/run_action_list,name=st
 
 ### Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
 #### Use adaptive swarm when there is no active swarm, as late as possible on swarm with 2 or fewer stacks or on a 3+ swarm so that the new swarm arrives just after that swarm expires
@@ -211,26 +207,6 @@ actions.boat+=/warrior_of_elune
 actions.boat+=/starfire,if=eclipse.in_lunar|eclipse.solar_next|eclipse.any_next|buff.warrior_of_elune.up&eclipse.in_lunar|(buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)
 actions.boat+=/wrath
 actions.boat+=/run_action_list,name=fallthru
-
-actions.prepatch_st=moonfire,target_if=refreshable&target.time_to_die>12,if=(buff.ca_inc.remains>5|!buff.ca_inc.up|astral_power<30)&ap_check
-actions.prepatch_st+=/sunfire,target_if=refreshable&target.time_to_die>12,if=(buff.ca_inc.remains>5|!buff.ca_inc.up|astral_power<30)&ap_check
-actions.prepatch_st+=/stellar_flare,target_if=refreshable&target.time_to_die>16,if=(buff.ca_inc.remains>5|!buff.ca_inc.up|astral_power<30)&ap_check
-actions.prepatch_st+=/force_of_nature,if=ap_check
-actions.prepatch_st+=/celestial_alignment,if=(astral_power>90|buff.bloodlust.up&buff.bloodlust.remains<26)&!buff.ca_inc.up
-actions.prepatch_st+=/incarnation,if=(astral_power>90|buff.bloodlust.up&buff.bloodlust.remains<36)&!buff.ca_inc.up
-actions.prepatch_st+=/variable,name=save_for_ca_inc,value=!cooldown.ca_inc.ready
-actions.prepatch_st+=/fury_of_elune,if=eclipse.in_any&ap_check&variable.save_for_ca_inc
-actions.prepatch_st+=/cancel_buff,name=starlord,if=buff.starlord.remains<6&(buff.eclipse_solar.up|buff.eclipse_lunar.up)&astral_power>90
-actions.prepatch_st+=/starsurge,if=(!azerite.streaking_stars.rank|buff.ca_inc.remains<execute_time|!variable.prev_starsurge)&(buff.ca_inc.up|astral_power>90&eclipse.in_any)
-actions.prepatch_st+=/starsurge,if=(!azerite.streaking_stars.rank|buff.ca_inc.remains<execute_time|!variable.prev_starsurge)&talent.starlord.enabled&(buff.starlord.up|astral_power>90)&buff.starlord.stack<3&(buff.eclipse_solar.up|buff.eclipse_lunar.up)&cooldown.ca_inc.remains>7
-actions.prepatch_st+=/starsurge,if=(!azerite.streaking_stars.rank|buff.ca_inc.remains<execute_time|!variable.prev_starsurge)&buff.eclipse_solar.remains>7&eclipse.in_solar&!talent.starlord.enabled&cooldown.ca_inc.remains>7
-actions.prepatch_st+=/new_moon,if=(buff.eclipse_lunar.up|(charges=2&recharge_time<5)|charges=3)&ap_check&variable.save_for_ca_inc
-actions.prepatch_st+=/half_moon,if=(buff.eclipse_lunar.up|(charges=2&recharge_time<5)|charges=3|buff.ca_inc.up)&ap_check&variable.save_for_ca_inc
-actions.prepatch_st+=/full_moon,if=(buff.eclipse_lunar.up|(charges=2&recharge_time<5)|charges=3|buff.ca_inc.up)&ap_check&variable.save_for_ca_inc
-actions.prepatch_st+=/warrior_of_elune
-actions.prepatch_st+=/starfire,if=(azerite.streaking_stars.rank&buff.ca_inc.remains>execute_time&variable.prev_wrath)|(!azerite.streaking_stars.rank|buff.ca_inc.remains<execute_time|!variable.prev_starfire)&(eclipse.in_lunar|eclipse.solar_next|eclipse.any_next|buff.warrior_of_elune.up&buff.eclipse_lunar.up|(buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up))|(azerite.dawning_sun.rank>2&buff.eclipse_solar.remains>5&!buff.dawning_sun.remains>action.wrath.execute_time)
-actions.prepatch_st+=/wrath
-actions.prepatch_st+=/run_action_list,name=fallthru
 
 ### Fallthru actions to cast when nothing else is priority or when moving
 #### Starsurge for movement unless using BoAT
