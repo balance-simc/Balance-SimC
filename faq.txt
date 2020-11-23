@@ -3,6 +3,9 @@
     * NEW LAYOUT! All combinations of covenants, legendaries, soulbinds, conduits, traits, and talents are available. You can drag & drop to adjust the layout, filters, and chart displays however you want.
     * Use the [Report Issue](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link for any issues/questions/suggestions.
 
+1. How do I use the new charts?
+    * The main sims page on [Dreamgrove](https://dreamgrove.gg/sims) has brief instructions on how to use various parts of the chart to look at the information you want.
+
 1. What are the base profiles used in the sims?
     * All raid buffs and consumables are used.
     * 'Smart Sim' setting is used for each set of talents with a fixed covenant & legendary. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
