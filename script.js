@@ -160,7 +160,6 @@ $(function() {
                             buf.push("soulbind=" + cond.join("/"));
 
                             el.value = buf.join("\n");
-                            console.log(el.value);
                             document.body.appendChild(el);
                             el.select();
                             document.execCommand('copy');
