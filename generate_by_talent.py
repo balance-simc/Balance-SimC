@@ -10,9 +10,9 @@ apikey = args.apikey
 #with open('apikey', 'r') as fp: apikey = fp.read()
 #targets = str(args.targets)
 
-post_url = 'https://mimiron.raidbots.com/sim'
-get_url = 'https://mimiron.raidbots.com/api/job/'
-report_url = 'https://mimiron.raidbots.com/simbot/report/'
+post_url = 'https://www.raidbots.com/sim'
+get_url = 'https://www.raidbots.com/api/job/'
+report_url = 'https://www.raidbots.com/simbot/report/'
 clean_url = 'https://www.raidbots.com/reports/'
 
 profile = apl =combo = sets = ""
