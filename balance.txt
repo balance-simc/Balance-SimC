@@ -12,7 +12,8 @@ actions.precombat+=/snapshot_stats
 actions.precombat+=/moonkin_form
 actions.precombat+=/wrath
 actions.precombat+=/wrath
-actions.precombat+=/starfire
+actions.precombat+=/starfire,if=!runeforge.balance_of_all_things|!covenant.night_fae|!spell_targets.starfall=1
+actions.precombat+=/starsurge,if=runeforge.balance_of_all_things&covenant.night_fae&spell_targets.starfall=1
 
 ### Decide action list based on situation
 actions=variable,name=is_aoe,value=spell_targets.starfall>1&(!talent.starlord.enabled|talent.stellar_drift.enabled)|spell_targets.starfall>2
@@ -32,8 +33,8 @@ actions+=/run_action_list,name=st
 ### Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
 #### Use adaptive swarm when there is no active swarm, as late as possible on swarm with 2 or fewer stacks or on a 3+ swarm so that the new swarm arrives just after that swarm expires
 actions.st=adaptive_swarm,target_if=!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>5)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3&dot.adaptive_swarm_damage.ticking
-#### Uses convoke if ca is up or you are dsyncinc ca/inc with convoke and you are below 50 asp
-actions.st+=/convoke_the_spirits,if=(variable.convoke_desync&!cooldown.ca_inc.ready|buff.ca_inc.up)&astral_power<50&(buff.eclipse_lunar.remains>10|buff.eclipse_solar.remains>10)|fight_remains<10
+#### Uses convoke if ca is up or you are dsyncinc ca/inc with convoke and you are below 40 asp
+actions.st+=/convoke_the_spirits,if=(variable.convoke_desync&!cooldown.ca_inc.ready|buff.ca_inc.up)&astral_power<40&(buff.eclipse_lunar.remains>10|buff.eclipse_solar.remains>10)|fight_remains<10
 #### Refresh dots unless ca/inc has less than 5 secs remaining, the venthyr buff or the kyrian buff is about to fall off and any eclipse is about to expire
 actions.st+=/variable,name=dot_requirements,value=(buff.ca_inc.remains>5&(buff.ravenous_frenzy.remains>5|!buff.ravenous_frenzy.up)|!buff.ca_inc.up|astral_power<30)&(!buff.kindred_empowerment_energize.up|astral_power<30)&(buff.eclipse_solar.remains>gcd.max|buff.eclipse_lunar.remains>gcd.max)
 actions.st+=/moonfire,target_if=refreshable&target.time_to_die>12,if=ap_check&variable.dot_requirements
@@ -56,7 +57,7 @@ actions.st+=/fury_of_elune,if=eclipse.in_any&ap_check&buff.primordial_arcanic_pu
 actions.st+=/starfall,if=buff.oneths_perception.up&buff.starfall.refreshable
 actions.st+=/cancel_buff,name=starlord,if=buff.starlord.remains<5&(buff.eclipse_solar.remains>5|buff.eclipse_lunar.remains>5)&astral_power>90
 #### Dumps asp before convoke using the convoke condition to check if convoke is actually about to be cast
-actions.st+=/starsurge,if=covenant.night_fae&variable.convoke_desync&cooldown.convoke_the_spirits.remains<gcd.max*ceil(astral_power%30)
+actions.st+=/starsurge,if=covenant.night_fae&variable.convoke_desync&cooldown.convoke_the_spirits.remains<5
 #### Use starfall with stellar drift and no starlord, when no starfall is up, you are in lunar eclipse, proc pulsar when above 90 asp or adpative swarm has 8+secs remaining or is in flight
 actions.st+=/starfall,if=talent.stellar_drift.enabled&!talent.starlord.enabled&buff.starfall.refreshable&(buff.eclipse_lunar.remains>6&eclipse.in_lunar&buff.primordial_arcanic_pulsar.value<250|buff.primordial_arcanic_pulsar.value>=250&astral_power>90|dot.adaptive_swarm_damage.remains>8|action.adaptive_swarm_damage.in_flight)&!cooldown.ca_inc.ready
 #### Use ss oneth procs and dump asp when ca/inc or the venthyr buff is about to fall off or you'd cap asp
@@ -178,7 +179,7 @@ actions.boat+=/cancel_buff,name=starlord,if=(buff.balance_of_all_things_nature.r
 #### Dump starsurges with the crit buff and before using convoke
 actions.boat+=/starsurge,if=!variable.critnotup&(covenant.night_fae|cooldown.ca_inc.remains>7|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))
 #### Dump starsurges before convoke
-actions.boat+=/starsurge,if=(cooldown.convoke_the_spirits.remains<5&(variable.convoke_desync|cooldown.ca_inc.remains<5))&astral_power>50&covenant.night_fae
+actions.boat+=/starsurge,if=(cooldown.convoke_the_spirits.remains<5&(variable.convoke_desync|cooldown.ca_inc.remains<5))&astral_power>40&covenant.night_fae
 #### Sunfire when the crit buff isn't up, you won't overcap or ca/inc is about to be used
 actions.boat+=/sunfire,target_if=refreshable&target.time_to_die>16,if=ap_check&(variable.critnotup|(astral_power<30&!buff.ca_inc.up)|cooldown.ca_inc.ready)
 #### Moonfire when the crit buff isn't up, you won't overcap or ca/inc is about to be used and the kindred buff isn't up
@@ -194,8 +195,6 @@ actions.boat+=/kindred_spirits,if=(eclipse.lunar_next|eclipse.solar_next|eclipse
 #### Ca/Inc when at 90+ asp without losing time in bloodlust or just on cooldown when not lining up with convoke
 actions.boat+=/celestial_alignment,if=(astral_power>90&(buff.kindred_empowerment_energize.up|!covenant.kyrian)|covenant.night_fae|buff.bloodlust.up&buff.bloodlust.remains<20+(conduit.precise_alignment.time_value))&(variable.convoke_desync|cooldown.convoke_the_spirits.ready)|interpolated_fight_remains<20+(conduit.precise_alignment.time_value)
 actions.boat+=/incarnation,if=(astral_power>90&(buff.kindred_empowerment_energize.up|!covenant.kyrian)|covenant.night_fae|buff.bloodlust.up&buff.bloodlust.remains<30+(conduit.precise_alignment.time_value))&(variable.convoke_desync|cooldown.convoke_the_spirits.ready)|interpolated_fight_remains<30+(conduit.precise_alignment.time_value)
-#### Extra line for starsurge dump with convoke
-actions.boat+=/starsurge,if=covenant.night_fae&(variable.convoke_desync|cooldown.ca_inc.remains<10)&astral_power>50&cooldown.convoke_the_spirits.remains<10
 #### Dump starsurges when the fight is about to end, frenzy is about to end, you are at 90+ asp in an eclipse or ca/inc lasts another 8+secs
 actions.boat+=/variable,name=aspPerSec,value=eclipse.in_lunar*8%action.starfire.execute_time+!eclipse.in_lunar*6%action.wrath.execute_time+0.2%spell_haste
 actions.boat+=/starsurge,if=(interpolated_fight_remains<4|(buff.ravenous_frenzy.remains<gcd.max*ceil(astral_power%30)&buff.ravenous_frenzy.up))|(astral_power+variable.aspPerSec*buff.eclipse_solar.remains+dot.fury_of_elune.ticks_remain*2.5>120|astral_power+variable.aspPerSec*buff.eclipse_lunar.remains+dot.fury_of_elune.ticks_remain*2.5>120)&eclipse.in_any&((!cooldown.ca_inc.up|covenant.kyrian&!cooldown.empower_bond.up)|covenant.night_fae)&(!covenant.venthyr|!buff.ca_inc.up|astral_power>90)|buff.ca_inc.remains>8&!buff.ravenous_frenzy.up
