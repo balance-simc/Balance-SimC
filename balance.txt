@@ -22,13 +22,10 @@ actions+=/berserking,if=(!covenant.night_fae|!cooldown.convoke_the_spirits.up)&b
 actions+=/potion,if=buff.ca_inc.up
 actions+=/variable,name=convoke_desync,value=floor((interpolated_fight_remains-20-cooldown.convoke_the_spirits.remains)%120)>floor((interpolated_fight_remains-25-(10*talent.incarnation.enabled)-(conduit.precise_alignment.time_value)-cooldown.ca_inc.remains)%180)|cooldown.ca_inc.remains>interpolated_fight_remains|cooldown.convoke_the_spirits.remains>interpolated_fight_remains|!covenant.night_fae
 actions+=/use_item,name=inscrutable_quantum_device,if=buff.ca_inc.up
-actions+=/use_items,slots=trinket1,if=!trinket.1.has_proc.any|buff.ca_inc.up|cooldown.ca_inc.remains-10>trinket.1.cooldown.duration|fight_remains<20
-actions+=/use_items,slots=trinket2,if=!trinket.2.has_proc.any|buff.ca_inc.up|cooldown.ca_inc.remains-10>trinket.2.cooldown.duration|fight_remains<20
+actions+=/use_items,slots=trinket1,if=!trinket.1.has_proc.any|buff.ca_inc.up|cooldown.ca_inc.remains-10>trinket.1.cooldown.duration&!covenant.kyrian|covenant.night_fae&variable.convoke_desync&cooldown.convoke_the_spirits.up|buff.kindred_empowerment_energize.up|fight_remains<20
+actions+=/use_items,slots=trinket2,if=!trinket.2.has_proc.any|buff.ca_inc.up|cooldown.ca_inc.remains-10>trinket.2.cooldown.duration&!covenant.kyrian|covenant.night_fae&variable.convoke_desync&cooldown.convoke_the_spirits.up|buff.kindred_empowerment_energize.up|fight_remains<20
 actions+=/use_items
 actions+=/run_action_list,name=aoe,if=variable.is_aoe
-actions+=/run_action_list,name=dreambinder,if=runeforge.timeworn_dreambinder.equipped
-actions+=/run_action_list,name=boat,if=runeforge.balance_of_all_things.equipped
-actions+=/run_action_list,name=st
 
 ### Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
 #### Use adaptive swarm when there is no active swarm, as late as possible on swarm with 2 or fewer stacks or on a 3+ swarm so that the new swarm arrives just after that swarm expires
