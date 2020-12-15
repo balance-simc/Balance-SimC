@@ -1,8 +1,8 @@
 ---
-name: Beta Question
-about: Questions related to balance druids for the Shadowlands BETA version of SimC
+name: Question
+about: Questions related to balance druids for SimC, the APL, or the charts
 title: ''
-labels: BETA, Question
+labels: Question
 assignees: ''
 
 ---
