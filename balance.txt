@@ -85,8 +85,10 @@ actions.st+=/run_action_list,name=fallthru
 ### AoE action list called on 2+ targets since starfall and starfire is always better there
 #### Calculates whether the Dreamcatcher buff will fall off within the next cast
 actions.aoe=variable,name=dream_will_fall_off,value=(buff.timeworn_dreambinder.remains<gcd.max+0.1|buff.timeworn_dreambinder.remains<action.starfire.execute_time+0.1&(eclipse.in_lunar|eclipse.solar_next|eclipse.any_next))&buff.timeworn_dreambinder.up&runeforge.timeworn_dreambinder.equipped
+#### Calculates whether starsurge is worth casting over starfire in lunar eclipse
+actions.aoe+=/variable,name=ignore_starsurge,value=buff.eclipse_lunar.up&(spell_targets.starfire>4&talent.soul_of_the_forest.enabled|spell_targets.starfire>6)
 #### Use convoke when at less than 50 astral power and line up with ca/inc without losing a use
-actions.aoe+=/convoke_the_spirits,if=(variable.convoke_desync&!cooldown.ca_inc.ready|buff.ca_inc.up)&astral_power<50&(buff.eclipse_lunar.remains>6|buff.eclipse_solar.remains>6)&(!runeforge.balance_of_all_things|buff.balance_of_all_things_nature.stack>3|buff.balance_of_all_things_arcane.stack>3)|fight_remains<10
+actions.aoe+=/convoke_the_spirits,if=(variable.convoke_desync&!cooldown.ca_inc.ready|buff.ca_inc.up)&(astral_power<50|variable.ignore_starsurge)&(buff.eclipse_lunar.remains>6|buff.eclipse_solar.remains>6)&(!runeforge.balance_of_all_things|buff.balance_of_all_things_nature.stack>3|buff.balance_of_all_things_arcane.stack>3)|fight_remains<10
 #### Use sunfire in pandemic when at 14secs remaining or less with more targets and if it would fall off before entering the next eclipse
 actions.aoe+=/sunfire,target_if=refreshable&target.time_to_die>14-spell_targets+remains&(eclipse.in_any|remains<gcd.max),if=
 #### Keep up starfall at all times unless using Lycaras and it is about to proc or let the special action line below handle dreambinder on 2 targets
@@ -96,7 +98,7 @@ actions.aoe+=/starfall,if=runeforge.timeworn_dreambinder.equipped&spell_targets.
 #### Calculates whether a starsurge use will cause starfall to fall off, and use starsurge to keep dreambinder stack up
 actions.aoe+=/variable,name=starfall_wont_fall_off,value=astral_power>80-(10*buff.timeworn_dreambinder.stack)-(buff.starfall.remains*3%spell_haste)-(dot.fury_of_elune.remains*5)&buff.starfall.up
 #### Use starsurge with dreambinder to keep up the buff without losing starfall uptime and use starsurge on 4+ boat stacks until 4 targets
-actions.aoe+=/starsurge,if=variable.dream_will_fall_off&variable.starfall_wont_fall_off|(buff.balance_of_all_things_nature.stack>3|buff.balance_of_all_things_arcane.stack>3)&spell_targets.starfall<4
+actions.aoe+=/starsurge,if=variable.dream_will_fall_off&variable.starfall_wont_fall_off&!variable.ignore_starsurge|(buff.balance_of_all_things_nature.stack>3|buff.balance_of_all_things_arcane.stack>3)&spell_targets.starfall<4
 #### Use swarm so that you get max uptime by using it as late as possible on less than 3 stacks or just when 3+ stacks expire
 actions.aoe+=/adaptive_swarm,target_if=!ticking&!action.adaptive_swarm_damage.in_flight|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3
 #### Refresh moonfire if ca/inc is ready or there are less than 5 targets in lunar eclipse with sotf or less than 10 otherwise in any eclipse. Don't refresh during kindred empowerment and don't overcap asp
@@ -118,7 +120,7 @@ actions.aoe+=/fury_of_elune,if=eclipse.in_any&ap_check&buff.primordial_arcanic_p
 actions.aoe+=/starfall,if=buff.oneths_perception.up&(buff.starfall.refreshable|astral_power>90)
 #### Dump asp before convoke with starfall and then starsurge
 actions.aoe+=/starfall,if=covenant.night_fae&(variable.convoke_desync|cooldown.ca_inc.up|buff.ca_inc.up)&cooldown.convoke_the_spirits.remains<gcd.max*ceil(astral_power%50)&buff.starfall.remains<4
-actions.aoe+=/starsurge,if=covenant.night_fae&(variable.convoke_desync|cooldown.ca_inc.up|buff.ca_inc.up)&cooldown.convoke_the_spirits.remains<6&buff.starfall.up&eclipse.in_any
+actions.aoe+=/starsurge,if=covenant.night_fae&(variable.convoke_desync|cooldown.ca_inc.up|buff.ca_inc.up)&cooldown.convoke_the_spirits.remains<6&buff.starfall.up&eclipse.in_any&!variable.ignore_starsurge
 #### Use starsurge with an oneth proc or you'd overcap asp with your next cast. Also dumps asp at the end of the venthyr buff if starfall wouldnt fall off on 4 or less targets
 actions.aoe+=/starsurge,if=buff.oneths_clear_vision.up|(!starfire.ap_check|(buff.ca_inc.remains<5&buff.ca_inc.up|(buff.ravenous_frenzy.remains<gcd.max*ceil(astral_power%30)&buff.ravenous_frenzy.up))&variable.starfall_wont_fall_off&spell_targets.starfall<3)&(!runeforge.timeworn_dreambinder.equipped|spell_targets.starfall<3)
 #### Use moons during lunar unless overcapping (maybe needs changes with astral moons)
