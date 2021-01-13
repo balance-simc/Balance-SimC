@@ -189,12 +189,10 @@ actions.boat+=/cancel_buff,name=starlord,if=(buff.balance_of_all_things_nature.r
 actions.boat+=/starsurge,if=!variable.critnotup&(covenant.night_fae|cooldown.ca_inc.remains>7|!variable.cd_condition&!covenant.kyrian|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))
 #### Dump starsurges before convoke
 actions.boat+=/starsurge,if=(cooldown.convoke_the_spirits.remains<5&!druid.no_cds&(variable.convoke_desync|cooldown.ca_inc.remains<5))&astral_power>40&covenant.night_fae&!druid.no_cds
-actions.boat+=/variable,name=dot_requirements,value=(buff.ca_inc.remains>5&(buff.ravenous_frenzy.remains>5|!buff.ravenous_frenzy.up)|!buff.ca_inc.up|astral_power<30)&(!buff.kindred_empowerment_energize.up|astral_power<30)&(buff.eclipse_solar.remains>gcd.max|buff.eclipse_lunar.remains>gcd.max)
-#### Sunfire when the crit buff isn't up, you won't overcap or ca/inc is about to be used
+#### Don't dot during the end of ca/inc, during kindred empowerment or in the last gcd of an eclipse
+actions.boat+=/variable,name=dot_requirements,value=(buff.ca_inc.remains>5&(buff.ravenous_frenzy.remains>5|!buff.ravenous_frenzy.up)|!buff.ca_inc.up)&(!buff.kindred_empowerment_energize.up)&(buff.eclipse_solar.remains>gcd.max|buff.eclipse_lunar.remains>gcd.max)
 actions.boat+=/sunfire,target_if=refreshable&target.time_to_die>16,if=ap_check&variable.dot_requirements
-#### Moonfire when the crit buff isn't up, you won't overcap or ca/inc is about to be used and the kindred buff isn't up
 actions.boat+=/moonfire,target_if=refreshable&target.time_to_die>13.5,if=ap_check&variable.dot_requirements
-#### Flare when the crit buff isn;t up and you won't overcap or ca/inc is about to be used
 actions.boat+=/stellar_flare,target_if=refreshable&target.time_to_die>16+remains,if=ap_check&variable.dot_requirements
 #### FoN outside the crit buff or when you don't have enough asp to surge
 actions.boat+=/force_of_nature,if=ap_check
