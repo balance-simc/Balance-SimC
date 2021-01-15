@@ -36,7 +36,7 @@ actions+=/run_action_list,name=st
 ### Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
 #### Use adaptive swarm when there is no active swarm, as late as possible on swarm with 2 or fewer stacks or on a 3+ swarm so that the new swarm arrives just after that swarm expires
 actions.st=adaptive_swarm,target_if=!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>5)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3&dot.adaptive_swarm_damage.ticking
-#### Uses convoke if ca is up or you are dsyncinc ca/inc with convoke and you are below 40 asp
+#### Uses convoke if ca is up or you are desyncing ca/inc with convoke and you are below 40 asp
 actions.st+=/convoke_the_spirits,if=!druid.no_cds&((variable.convoke_desync&!cooldown.ca_inc.ready|buff.ca_inc.up)&astral_power<40&(buff.eclipse_lunar.remains>10|buff.eclipse_solar.remains>10)|fight_remains<10)
 #### Refresh dots unless ca/inc has less than 5 secs remaining, the venthyr buff or the kyrian buff is about to fall off and any eclipse is about to expire
 actions.st+=/variable,name=dot_requirements,value=(buff.ca_inc.remains>5&(buff.ravenous_frenzy.remains>5|!buff.ravenous_frenzy.up)|!buff.ca_inc.up|astral_power<30)&(!buff.kindred_empowerment_energize.up|astral_power<30)&(buff.eclipse_solar.remains>gcd.max|buff.eclipse_lunar.remains>gcd.max)
