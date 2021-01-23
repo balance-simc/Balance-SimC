@@ -11,10 +11,10 @@ cpp_path = os.path.join(simc_path, 'engine', 'class_modules', 'sc_druid.cpp')
 apl_lists = {}
 
 with open('balance.txt', 'r') as apl_file:
-    next_comment=""
+    temp_comment=""
     for line in apl_file:
         if line.startswith('####'):
-            next_comment=line.strip('# \n')
+            temp_comment=line.strip('# \n')
         if line.startswith('actions'):
             apl = 'default'
 
@@ -31,11 +31,8 @@ with open('balance.txt', 'r') as apl_file:
 
             if apl not in apl_lists:
                 apl_lists[apl] = []
-            if next_comment:
-                apl_lists[apl].append(suf,next_comment)
-                next_comment=""
-            else:
-                apl_lists[apl].append(suf,)
+            apl_lists[apl].append((suf,temp_comment))
+            temp_comment=""
 
 marker_start = '### BALANCE_APL_START ###'
 marker_end = '### BALANCE_APL_END ###'
