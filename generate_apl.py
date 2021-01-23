@@ -11,27 +11,31 @@ cpp_path = os.path.join(simc_path, 'engine', 'class_modules', 'sc_druid.cpp')
 apl_lists = {}
 
 with open('balance.txt', 'r') as apl_file:
+    next_comment=""
     for line in apl_file:
-        if line.startswith('actions') == False:
-            continue
+        if line.startswith('####'):
+            next_comment=line.strip('# \n')
+        if line.startswith('actions'):
+            apl = 'default'
 
-        apl = 'default'
+            split_ = line.split('=', 1)
+            pref = split_[0].rstrip('+')
+            suf = split_[1].lstrip('/').rstrip('\n')
 
-        split_ = line.split('=', 1)
-        pref = split_[0].rstrip('+')
-        suf = split_[1].lstrip('/').rstrip('\n')
+            if suf == 'flask' or suf == 'food' or suf == 'augmentation' or suf == 'snapshot_stats':
+                continue
 
-        if suf == 'flask' or suf == 'food' or suf == 'augmentation' or suf == 'snapshot_stats':
-            continue
+            pref_apl_ = pref.split('.')
+            if len(pref_apl_) > 1:
+                apl = pref_apl_[1]
 
-        pref_apl_ = pref.split('.')
-        if len(pref_apl_) > 1:
-            apl = pref_apl_[1]
-
-        if apl not in apl_lists:
-            apl_lists[apl] = []
-
-        apl_lists[apl].append(suf)
+            if apl not in apl_lists:
+                apl_lists[apl] = []
+            if next_comment:
+                apl_lists[apl].append(suf,next_comment)
+                next_comment=""
+            else:
+                apl_lists[apl].append(suf,)
 
 marker_start = '### BALANCE_APL_START ###'
 marker_end = '### BALANCE_APL_END ###'
@@ -68,7 +72,10 @@ for line in cpp_old:
 
             cpp_new.write('\n')
             for action in apl_lists[apl]:
-                cpp_new.write('  ' + apl_var + '->add_action( \"' + action + '\" );\n')
+                if action[1]:                    
+                    cpp_new.write('  ' + apl_var + '->add_action( \"' + action[0] + '\",\"'+action[1]+'\" );\n')
+                else:
+                    cpp_new.write('  ' + apl_var + '->add_action( \"' + action[0] + '\" );\n')
 
 cpp_new.close()
 cpp_old.close()
