@@ -4,7 +4,6 @@
 ### - With certain legendaries like Oneth's and BoAT the APL can be further optimized for higher Starsurge usage
 ### - When to dot can be further optimized, specifically for short duration encounters and in regards to the time to die
 
-#### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT or Starfire otherwise
 actions.precombat=flask
 actions.precombat+=/food
 actions.precombat+=/augmentation
@@ -14,6 +13,7 @@ actions.precombat+=/variable,name=on_use_trinket,value=0
 actions.precombat+=/variable,name=on_use_trinket,op=add,value=trinket.1.has_proc.any&trinket.1.cooldown.duration
 actions.precombat+=/variable,name=on_use_trinket,op=add,value=(trinket.2.has_proc.any&trinket.2.cooldown.duration)*2
 actions.precombat+=/moonkin_form
+#### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT or Starfire otherwise
 actions.precombat+=/wrath
 actions.precombat+=/wrath
 actions.precombat+=/starfire,if=!runeforge.balance_of_all_things|!covenant.night_fae|!spell_targets.starfall=1|!talent.natures_balance.enabled
