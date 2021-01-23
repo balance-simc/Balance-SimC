@@ -1,10 +1,10 @@
 ## Shadowland Balance Druid APL <a href="https://github.com/balance-simc/Balance-SimC/commits/master/balance.txt" target="_top">(changelog)</a>
 
-### TODO:
-#### - With certain legendaries like Oneth's and BoAT the APL can be further optimized for higher Starsurge usage
-#### - When to dot can be further optimized, specifically for short duration encounters and in regards to the time to die
+## TODO:
+### - With certain legendaries like Oneth's and BoAT the APL can be further optimized for higher Starsurge usage
+### - When to dot can be further optimized, specifically for short duration encounters and in regards to the time to die
 
-### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT or Starfire otherwise
+#### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT or Starfire otherwise
 actions.precombat=flask
 actions.precombat+=/food
 actions.precombat+=/augmentation
