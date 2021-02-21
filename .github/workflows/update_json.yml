@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  update_json_heroic:
-    name: Update JSON (Heroic)
+  update_json_ptr:
+    name: Update JSON (PTR)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,15 +16,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: one target
-        run: python generate_combo_h.py -t 1 ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -t 1 ${{ secrets.RAIDBOTSAPI }}
       - name: two targets
-        run: python generate_combo_h.py -t 2 ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -t 2 ${{ secrets.RAIDBOTSAPI }}
       - name: three targets
-        run: python generate_combo_h.py -t 3 ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -t 3 ${{ secrets.RAIDBOTSAPI }}
       - name: four targets
-        run: python generate_combo_h.py -t 4 ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -t 4 ${{ secrets.RAIDBOTSAPI }}
       - name: five targets
-        run: python generate_combo_h.py -t 5 ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -t 5 ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -35,19 +35,19 @@ jobs:
             git pull --rebase --autostash
             echo "$(date)" > date.txt
             git add .
-            git commit -m "update JSON heroic"
+            git commit -m "update JSON PTR"
             git push
           fi
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: update_json_heroic
+          name: update_json_ptr
           path: |
             *.json
 
-  update_json_heroic2:
-    name: Update JSON (Heroic) 2
-    needs: [ update_json_heroic ]
+  update_json_ptr2:
+    name: Update JSON (PTR) 2
+    needs: [ update_json_ptr ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -58,11 +58,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: dungeon
-        run: python generate_combo_h.py -d -m ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -d -m ${{ secrets.RAIDBOTSAPI }}
       - name: spread
-        run: python generate_combo_h.py -s ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -s ${{ secrets.RAIDBOTSAPI }}
       - name: one target move
-        run: python generate_combo_h.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo_ptr.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -73,19 +73,19 @@ jobs:
             git pull --rebase --autostash
             echo "$(date)" > date.txt
             git add .
-            git commit -m "update JSON heroic"
+            git commit -m "update JSON PTR"
             git push
           fi
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: update_json_heroic
+          name: update_json_ptr
           path: |
             *.json
 
   update_json_mythic:
     name: Update JSON (Mythic)
-    needs: [ update_json_heroic2 ]
+    needs: [ update_json_ptr2 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
