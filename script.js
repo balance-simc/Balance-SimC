@@ -70,14 +70,14 @@ $(function() {
     }
 
     var jobmap = {
-        'combo_h_1.json': 0,
-        'combo_h_2.json': 0,
-        'combo_h_3.json': 0,
-        'combo_h_4.json': 0,
-        'combo_h_5.json': 0,
-        'combo_h_1m.json': 1,
-        'combo_h_s.json': 1,
-        'combo_h_d.json': 1,
+        'combo_ptr_1.json': 0,
+        'combo_ptr_2.json': 0,
+        'combo_ptr_3.json': 0,
+        'combo_ptr_4.json': 0,
+        'combo_ptr_5.json': 0,
+        'combo_ptr_1m.json': 1,
+        'combo_ptr_s.json': 1,
+        'combo_ptr_d.json': 1,
         'combo_1.json': 2,
         'combo_2.json': 2,
         'combo_3.json': 2,
@@ -88,8 +88,8 @@ $(function() {
         'combo_d.json': 3
     }
 
-    function isHeroic() {
-        return $("#fightstyle").val().includes("combo_h");
+    function isPtr() {
+        return $("#fightstyle").val().includes("combo_ptr");
     }
 
     function toCap(s) { return s.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); }
@@ -141,11 +141,11 @@ $(function() {
                     let $tar = $(e.target);
                     if ($tar.hasClass("pvtVal")) {
                         const el = document.createElement('textarea');
-                        let prof = isHeroic() ? "sandbag_h.txt" : "sandbag.txt";
+                        let prof = isPtr() ? "sangbag_ptr.txt" : "sandbag.txt";
                         $.get(prof, (d) => {
                         //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let r = getRecord(filters, pivotData);
-                            let bonus = isHeroic() ? "1522" : "1532";
+                            let bonus = isPtr() ? "1522" : "1532";
                             let buf = [];
 
                             buf.push(d);
