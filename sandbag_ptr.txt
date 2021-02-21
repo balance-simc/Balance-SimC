@@ -1,3 +1,4 @@
+ptr=1
 druid="Sandbag"
 level=60
 #race=tauren
