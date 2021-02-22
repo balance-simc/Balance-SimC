@@ -37,3 +37,4 @@ main_hand=torch_of_fiery_atonement,id=182418,ilevel=233,enchant=celestial_guidan
 chart_show_relative_difference=1
 report_details=0
 max_time=300
+vary_combat_length=0.1
