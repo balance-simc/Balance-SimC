@@ -141,7 +141,7 @@ $(function() {
                     let $tar = $(e.target);
                     if ($tar.hasClass("pvtVal")) {
                         const el = document.createElement('textarea');
-                        let prof = isPtr() ? "sangbag_ptr.txt" : "sandbag.txt";
+                        let prof = isPtr() ? "sandbag_ptr.txt" : "sandbag.txt";
                         $.get(prof, (d) => {
                         //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let r = getRecord(filters, pivotData);
