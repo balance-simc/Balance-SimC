@@ -145,7 +145,7 @@ $(function() {
                         $.get(prof, (d) => {
                         //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let r = getRecord(filters, pivotData);
-                            let bonus = isPtr() ? "1522" : "1532";
+                            let bonus = isPtr() ? "1532" : "1532";
                             let buf = [];
 
                             buf.push(d);
