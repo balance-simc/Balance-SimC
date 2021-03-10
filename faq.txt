@@ -45,13 +45,13 @@
         * Starsurge if Balance of All Things is not equipped
         * Sunfire and Moonfire, starting with the lowest remaining duration
 
-1. What is the 'Dungeon' selection in the target dropdown?
-    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random dungeon-like encounter. The simc raid_events can be found in [dungeon.txt](dungeon.txt). It consists of:
+1. What is the 'Composite' selection in the target dropdown?
+    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random highly variable encounter as often found in dungeons. The simc raid_events can be found in [composite.txt](composite.txt). It consists of:
         * Random light movement as per the '1T Move' script
-        * ~450s total fight time
+        * ~550s total fight time
         * ~130s to ~150s fighting one mob
         * ~30s to ~50s fighting a wave of 3 to 7 mobs, each wave random and repeating until the end of the fight
-        * Random 0s to ~20s wait after each fight
+        * Random ~10s to ~30s wait after each fight
 
 1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
     * The following bugs are present in the game but NOT in SimC

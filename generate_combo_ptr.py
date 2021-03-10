@@ -22,7 +22,7 @@ with open('sandbag_ptr.txt', 'r') as fp:
     profile = fp.read()
 with open('balance.txt', 'r') as fp:
     apl = fp.read()
-with open('dungeon.txt', 'r') as fp:
+with open('composite.txt', 'r') as fp:
     dungeon = fp.read()
 with open('move.txt', 'r') as fp:
     move = fp.read()
