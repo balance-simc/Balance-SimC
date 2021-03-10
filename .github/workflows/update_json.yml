@@ -4,88 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  update_json_ptr:
-    name: Update JSON (PTR)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-      - run: |
-          python -m pip install --upgrade pip
-          pip install requests
-      - name: one target
-        run: python generate_combo_ptr.py -t 1 ${{ secrets.RAIDBOTSAPI }}
-      - name: two targets
-        run: python generate_combo_ptr.py -t 2 ${{ secrets.RAIDBOTSAPI }}
-      - name: three targets
-        run: python generate_combo_ptr.py -t 3 ${{ secrets.RAIDBOTSAPI }}
-      - name: four targets
-        run: python generate_combo_ptr.py -t 4 ${{ secrets.RAIDBOTSAPI }}
-      - name: five targets
-        run: python generate_combo_ptr.py -t 5 ${{ secrets.RAIDBOTSAPI }}
-      - name: commit
-        run: |
-          git config user.name Balance-SimC
-          git config user.email Balance-SimC@github.com
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "no updates to JSON"
-          else
-            git pull --rebase --autostash
-            echo "$(date)" > date.txt
-            git add .
-            git commit -m "update JSON PTR"
-            git push
-          fi
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: update_json_ptr
-          path: |
-            *.json
-
-  update_json_ptr2:
-    name: Update JSON (PTR) 2
-    needs: [ update_json_ptr ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-      - run: |
-          python -m pip install --upgrade pip
-          pip install requests
-      - name: dungeon
-        run: python generate_combo_ptr.py -d -m ${{ secrets.RAIDBOTSAPI }}
-      - name: spread
-        run: python generate_combo_ptr.py -s ${{ secrets.RAIDBOTSAPI }}
-      - name: one target move
-        run: python generate_combo_ptr.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
-      - name: commit
-        run: |
-          git config user.name Balance-SimC
-          git config user.email Balance-SimC@github.com
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "no updates to JSON"
-          else
-            git pull --rebase --autostash
-            echo "$(date)" > date.txt
-            git add .
-            git commit -m "update JSON PTR"
-            git push
-          fi
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: update_json_ptr
-          path: |
-            *.json
-
-  update_json_mythic:
-    name: Update JSON (Mythic)
-    needs: [ update_json_ptr2 ]
+  update_json:
+    name: Update JSON
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -120,13 +40,13 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: update_json_mythic
+          name: update_json
           path: |
             *.json
 
-  update_json_mythic2:
-    name: Update JSON (Mythic) 2
-    needs: [ update_json_mythic ]
+  update_json2:
+    name: Update JSON 2
+    needs: [ update_json ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -157,13 +77,13 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: update_json_mythic
+          name: update_json2
           path: |
             *.json
 
   update_talents:
     name: Update Talent Sims
-    needs: [ update_json_mythic2 ]
+    needs: [ update_json2 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -191,7 +111,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: generate_sims
+          name: update_talents
           path: |
             by_talent.html
             jso.js
