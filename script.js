@@ -203,7 +203,7 @@ $(function() {
                 const r_json = await runs.json();
                 const this_run = r_json["workflow_runs"][0];
 
-                if (this_run["status"] === "in_progress") {
+                if (this_run !== undefined && this_run["status"] === "in_progress") {
                     const jobs = await fetch(this_run["jobs_url"]);
                     const j_json = await jobs.json();
                     let n_job = jobmap[file];
