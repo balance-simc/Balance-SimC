@@ -10,16 +10,32 @@
     * All raid buffs and consumables are used.
     * 'Smart Sim' setting is used for each set of talents with a fixed covenant & legendary. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
     * Full 6 mastery gems are socketted and all available enchants are applied.
-    * The base Mythic character can be found in [sandbag.txt](sandbag.txt).
-        - All items are from Mythic Castle Nathria.
+    * The base character can be found in [sandbag.txt](sandbag.txt).
+        - All items are from Mythic Castle Nathria, except for Inscrutable Quantum Device, which is a Great Vault item.
         - Legendary items are set to ilevel 235 with Haste & Mastery.
         - All soulbinds are fully unlocked.
         - All conduits are at Rank 7.
-    * The base Heroic chracter can be found in [sandbag_h.txt](sandbag_h.txt).
-        - All items are from Heroic Castle Nathria
-        - Legendary items are set to ilevel 225 with Haste & Mastery.
-        - Soulbinds are only unlocked to Renown 13.
-        - All conduits are at Rank 6.
+
+1. What is the '1T Move' selection in the target dropdown?
+    * This is an approximation of a light movement encounter. The simc raid_events can be found in [move.txt](move.txt). It consists of:
+        * Each movement has a random distance of 20yd to 30yd
+        * Movement starts when boss health reaches 95%
+        * Movement repeats every ~30s to ~60s
+    * There is no optimization of pooling and planning for movement
+    * Fallback casts during movement are:
+        * Starsurge if Balance of All Things is not equipped
+        * Sunfire and Moonfire, starting with the lowest remaining duration
+
+2. What is the '2T Spread' selection in the target dropdown?
+    * This represents an encounter with two targets which are by 15 yards so Starfire and Moonfire /w Twin Moons talent cannot hit both targets at the same time.
+
+1. What is the 'Composite' selection in the target dropdown?
+    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random highly variable encounter as often found in dungeons. The simc raid_events can be found in [composite.txt](composite.txt). It consists of:
+        * Random light movement as per the '1T Move' script
+        * ~550s total fight time
+        * ~130s to ~150s fighting one mob
+        * ~30s to ~50s fighting a wave of 3 to 7 mobs, each wave random and repeating until the end of the fight
+        * Random ~10s to ~30s wait after each fight
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
     * Convoke the Spirits will cast:
@@ -32,27 +48,9 @@
 1. How does SimC handle Kindred Spirits (Kyrian)?
     * SimC makes the following assumptions:
         - You are bonding with someone who does the exact same damage as you
-        - 15% of the pool is lost from taking damage
+        - 20% of the pool is lost from taking damage
         - The additional damage done by you AND your partner are attributed to you
     
-1. What is the '1T Move' selection in the target dropdown?
-    * This is a ***LARGELY UNOPTIMIZED APPROXIMATION*** of a light movement encounter. The simc raid_events can be found in [move.txt](move.txt). It consists of:
-        * Each movement has a random distance of 20yd to 30yd
-        * Movement starts when boss health reaches 95%
-        * Movement repeats every ~30s to ~60s
-    * There is no optimization of pooling and planning for movement
-    * Fallback casts during movement are:
-        * Starsurge if Balance of All Things is not equipped
-        * Sunfire and Moonfire, starting with the lowest remaining duration
-
-1. What is the 'Composite' selection in the target dropdown?
-    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random highly variable encounter as often found in dungeons. The simc raid_events can be found in [composite.txt](composite.txt). It consists of:
-        * Random light movement as per the '1T Move' script
-        * ~550s total fight time
-        * ~130s to ~150s fighting one mob
-        * ~30s to ~50s fighting a wave of 3 to 7 mobs, each wave random and repeating until the end of the fight
-        * Random ~10s to ~30s wait after each fight
-
 1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
     * The following bugs are present in the game but NOT in SimC
         - Adaptive Swarm will not jump onto an ally that already has a Swarm and will fizzle if there are no other friendly targets.
@@ -61,7 +59,7 @@
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
     * Goto `http://github.com/simulationcraft/simc/commits/<enter git build code here>` to see all the changes to SimC that have been incorporated into the sim.
 
-1. How can I run my own beta sims?
+1. How can I run my own sims?
     * Full instructions for building SimC can be found in the SimC wiki <a href="https://github.com/simulationcraft/simc/wiki/HowToBuild" target="_top">HowToBuild</a> page.
 
 1. I found a bug! Something in the sims doesn't line up with what's in game!
