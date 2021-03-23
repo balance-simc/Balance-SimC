@@ -5,7 +5,8 @@ override.power_word_fortitude=1
 override.bloodlust=1
 max_time=550
 ignore_invulnerable_targets=1
+target_error=0.1
 raid_events+=/invulnerable,cooldown=900,duration=900,retarget=1
 raid_events+=/adds,name=Boss,count=1,cooldown=900,duration=140,duration_stddev=10
-raid_events+=/adds,name=MiniBoss,count=1,first=155,cooldown=900,duration=30,duration_stddev=5
-raid_events+=/adds,name=Trash,count=5,count_range=2,first=195,cooldown=60,duration=40,duration_stddev=10,same_duration=1
+raid_events+=/adds,name=MiniBoss,count=1,first=155,cooldown=900,duration=35,duration_stddev=5
+raid_events+=/adds,name=Trash,count=5,count_range=2,first=200,cooldown=60,duration=40,duration_stddev=10,same_duration=1
