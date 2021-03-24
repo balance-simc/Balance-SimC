@@ -33,10 +33,10 @@
     * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random highly variable encounter as often found in dungeons. The simc raid_events can be found in [composite.txt](composite.txt). It consists of:
         * Random light movement as per the '1T Move' script
         * ~550s total fight time
-        * ~130s to ~150s fighting one boss mob
-        * ~30s to ~40s fighting one mini-boss mob
-        * ~30s to ~50s fighting waves of 3 to 7 mobs, each wave random and repeating until the end of the fight
-        * Random ~10s to ~30s wait after each fight
+        * ~115s to ~160s fighting one boss mob
+        * ~25s to ~45s fighting one mini-boss mob
+        * ~20s to ~40s fighting waves of 1 to 7 mobs, each wave random and repeating until the end of the fight
+        * Random ~5s to ~25s wait after each fight
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
     * Convoke the Spirits will cast:
