@@ -157,8 +157,6 @@ actions.aoe+=/run_action_list,name=fallthru
 ### Special action list for Balance of All Things (BoAT)
 #### Frenzy with CA/Inc
 actions.boat=ravenous_frenzy,if=buff.ca_inc.remains>15
-#### Checks if the BoAT crit buff is not up for later use
-actions.boat+=/variable,name=critnotup,value=!buff.balance_of_all_things_nature.up&!buff.balance_of_all_things_arcane.up
 #### Use Adaptive Swarm when at less than 4 BoAT stacks and to refresh a <=2 stack as late as possible or time it so it arrives just after a 3+ stack expires
 actions.boat+=/adaptive_swarm,target_if=buff.balance_of_all_things_nature.stack<8&buff.balance_of_all_things_arcane.stack<8&(!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>3)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<5&dot.adaptive_swarm_damage.ticking)
 #### Use Convoke with CA/Inc when possible and otherwise with a BoAT buff when desyncing
@@ -168,9 +166,9 @@ actions.boat+=/fury_of_elune,if=((buff.balance_of_all_things_nature.stack>6|buff
 #### Cancel Starlord with a new BoAT buff and CA/Inc isn't about to be used
 actions.boat+=/cancel_buff,name=starlord,if=(buff.balance_of_all_things_nature.remains>7.5|buff.balance_of_all_things_arcane.remains>7.5)&(cooldown.ca_inc.remains>7|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))&astral_power>=30
 #### Dump Starsurges with a BoAT buff but not when pooling for CA/Inc or Kindred Spirits
-actions.boat+=/starsurge,if=!variable.critnotup&(covenant.night_fae|cooldown.ca_inc.remains>7|!variable.cd_condition&!covenant.kyrian|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))&(!dot.fury_of_elune.ticking|!cooldown.ca_inc.ready|!cooldown.convoke_the_spirits.ready)
+actions.boat+=/starsurge,if=(buff.balance_of_all_things_nature.stack>2|buff.balance_of_all_things_arcane.stack>2)&(covenant.night_fae|cooldown.ca_inc.remains>7|!variable.cd_condition&!covenant.kyrian|(cooldown.empower_bond.remains>7&!buff.kindred_empowerment_energize.up&covenant.kyrian))&(!dot.fury_of_elune.ticking|!cooldown.ca_inc.ready|!cooldown.convoke_the_spirits.ready)
 #### Dump Starsurges before Convoke
-actions.boat+=/starsurge,if=(cooldown.convoke_the_spirits.remains<5&!druid.no_cds&(variable.convoke_desync|cooldown.ca_inc.remains<5)&variable.cd_condition)&!dot.fury_of_elune.ticking&covenant.night_fae&!druid.no_cds&eclipse.in_any
+actions.boat+=/starsurge,if=(cooldown.convoke_the_spirits.remains<5&!druid.no_cds&(variable.convoke_desync|cooldown.ca_inc.remains<5)&variable.cd_condition)&!dot.fury_of_elune.ticking&covenant.night_fae&!druid.no_cds&eclipse.in_any&astral_power>40
 #### Don't dot during the end of Ravenous Frenzy, during kindred empowerment or in the last gcd of an Eclipse
 actions.boat+=/variable,name=dot_requirements,value=(buff.ravenous_frenzy.remains>5|!buff.ravenous_frenzy.up)&(buff.kindred_empowerment_energize.remains<gcd.max)&(buff.eclipse_solar.remains>gcd.max|buff.eclipse_lunar.remains>gcd.max)
 actions.boat+=/sunfire,target_if=refreshable&target.time_to_die>16,if=ap_check&variable.dot_requirements
