@@ -30,7 +30,7 @@ actions+=/variable,name=cd_condition,value=(target.time_to_die>15|raid_event.add
 #### Use Empyreal Ordnance 20secs before a CA/Inc use.
 actions+=/use_item,name=empyreal_ordnance,if=cooldown.ca_inc.remains<20&cooldown.convoke_the_spirits.remains<20|fight_remains<37
 #### Use Soulleting Ruby 6secs before a CA/Inc use.
-actions+=/use_item,name=soulletting_ruby,if=cooldown.ca_inc.remains<6&!covenant.venthyr&(!variable.convoke_desync|!covenant.night_fae)|cooldown.convoke_the_spirits.remains<6&variable.convoke_desync&covenant.night_fae|covenant.venthyr&(!runeforge.sinful_hysteria&cooldown.ca_inc.remains<6|buff.ravenous_frenzy.remains<14&buff.ravenous_frenzy.up)|fight_remains<25
+actions+=/use_item,name=soulletting_ruby,if=cooldown.ca_inc.remains<6&!covenant.venthyr&(!variable.convoke_desync|!covenant.night_fae)|cooldown.convoke_the_spirits.remains<6&variable.convoke_desync&covenant.night_fae|covenant.venthyr&(!runeforge.sinful_hysteria&cooldown.ca_inc.remains<6|buff.ravenous_frenzy.remains<14+(5*equipped.instructors_divine_bell)&buff.ravenous_frenzy.up)|fight_remains<25
 ### Always use IQD with CA/Inc
 actions+=/use_item,name=inscrutable_quantum_device,if=buff.ca_inc.remains>15&(!runeforge.sinful_hysteria|buff.ravenous_frenzy.remains<13+(4*buff.bloodlust.up)+(5*(equipped.instructors_divine_bell&!buff.bloodlust.up))&buff.ravenous_frenzy.up)|fight_remains<25
 #### This is a rather elaborate way to make all on use stat trinkets to be lined up with CA/Inc and Convoke and use the 2nd slot on cd if both trinkets are on use stat trinkets
@@ -62,7 +62,7 @@ actions.st+=/force_of_nature,if=ap_check
 #### Use Kindred Spirits with any long enough lasting Eclipse and try to line it up with Pulsar and CA/Inc
 actions.st+=/kindred_spirits,if=((buff.eclipse_solar.remains>10|buff.eclipse_lunar.remains>10)&cooldown.ca_inc.remains>30&(buff.primordial_arcanic_pulsar.value<240|!runeforge.primordial_arcanic_pulsar.equipped))|buff.primordial_arcanic_pulsar.value>=270|cooldown.ca_inc.ready&astral_power>90
 #### Use CA/Inc with Convoke/Kindred Spirits and don't overwrite Pulsar or when Bloodlust would expire before CA/Inc expires
-actions.st+=/variable,name=cd_condition_st,value=!druid.no_cds&variable.cd_condition&(astral_power>90&(!talent.fury_of_elune.enabled|buff.ca_inc.duration>cooldown.fury_of_elune.remains+8)&(!soulbind.thrill_seeker.enabled|buff.thrill_seeker.stack>38-(runeforge.sinful_hysteria*5))&(buff.kindred_empowerment_energize.up|!covenant.kyrian)|fight_remains<buff.ca_inc.duration|covenant.night_fae|buff.bloodlust.up&buff.bloodlust.remains<buff.ca_inc.duration+(9*runeforge.primordial_arcanic_pulsar.equipped))&!buff.ca_inc.up&(!covenant.night_fae|cooldown.convoke_the_spirits.up|interpolated_fight_remains<cooldown.convoke_the_spirits.remains+6|interpolated_fight_remains%%180<buff.ca_inc.duration)
+actions.st+=/variable,name=cd_condition_st,value=!druid.no_cds&variable.cd_condition&(astral_power>90&(!talent.fury_of_elune.enabled|buff.ca_inc.duration>cooldown.fury_of_elune.remains+8)&(!soulbind.thrill_seeker.enabled|fight_remains>200|buff.thrill_seeker.stack>38-(runeforge.sinful_hysteria*5))&(buff.kindred_empowerment_energize.up|!covenant.kyrian)&target.time_to_die>buff.ca_inc.duration*0.7|fight_remains<buff.ca_inc.duration|covenant.night_fae|buff.bloodlust.up&buff.bloodlust.remains<buff.ca_inc.duration+(9*runeforge.primordial_arcanic_pulsar.equipped))&!buff.ca_inc.up&(!covenant.night_fae|cooldown.convoke_the_spirits.up|fight_remains<cooldown.convoke_the_spirits.remains+6|fight_remains%%180<buff.ca_inc.duration)
 actions.st+=/celestial_alignment,if=variable.cd_condition_st
 actions.st+=/incarnation,if=variable.cd_condition_st
 #### Variable used on abilities that want to be saved for CA/Inc so that they arent wasted just before them
@@ -83,7 +83,7 @@ actions.st+=/starsurge,if=talent.starlord.enabled&!runeforge.timeworn_dreambinde
 #### Estimates how much AsP are gained per second
 actions.st+=/variable,name=aspPerSec,value=eclipse.in_lunar*8%action.starfire.execute_time+!eclipse.in_lunar*(6+talent.soul_of_the_forest.enabled*3)%action.wrath.execute_time+0.45%spell_haste+0.5*talent.natures_balance.enabled
 #### Dump Starsurge in a 7+sec Solar Eclipse, don't let it proc Pulsar (that is handled by either the Starfall line or the AsP>90 line for Starsurge), don't overwrite an Oneth proc and let the above line handle Starlord
-actions.st+=/starsurge,if=!runeforge.timeworn_dreambinder&(buff.primordial_arcanic_pulsar.value<270|buff.primordial_arcanic_pulsar.value<250&talent.stellar_drift.enabled)&(eclipse.in_solar&astral_power+variable.aspPerSec*buff.eclipse_solar.remains+dot.fury_of_elune.ticks_remain*2.5>80|eclipse.in_lunar&astral_power+variable.aspPerSec*buff.eclipse_lunar.remains+dot.fury_of_elune.ticks_remain*2.5>90)&!buff.oneths_perception.up&!talent.starlord.enabled&(cooldown.ca_inc.remains>7|soulbind.thrill_seeker.enabled&buff.thrill_seeker.stack<35-(runeforge.sinful_hysteria*5)&fight_remains>buff.ca_inc.duration+7)&(cooldown.kindred_spirits.remains>7|!covenant.kyrian)
+actions.st+=/starsurge,if=!runeforge.timeworn_dreambinder&(buff.primordial_arcanic_pulsar.value<270|buff.primordial_arcanic_pulsar.value<250&talent.stellar_drift.enabled)&(eclipse.in_solar&astral_power+variable.aspPerSec*buff.eclipse_solar.remains+dot.fury_of_elune.ticks_remain*2.5>80|eclipse.in_lunar&astral_power+variable.aspPerSec*buff.eclipse_lunar.remains+dot.fury_of_elune.ticks_remain*2.5>90)&!buff.oneths_perception.up&!talent.starlord.enabled&(cooldown.ca_inc.remains>7|soulbind.thrill_seeker.enabled&buff.thrill_seeker.stack<35-(runeforge.sinful_hysteria*5)&fight_remains>buff.ca_inc.duration+7&fight_remains<200)&(cooldown.kindred_spirits.remains>7|!covenant.kyrian)
 #### Use Moons in Lunar Eclipse and save Half+Full Moon for CA/Inc and Kindred Empowerment
 actions.st+=/new_moon,if=(buff.eclipse_lunar.remains>execute_time|(charges=2&recharge_time<5)|charges=3)&ap_check&variable.save_for_ca_inc
 actions.st+=/half_moon,if=(buff.eclipse_lunar.remains>execute_time&!covenant.kyrian|(buff.kindred_empowerment_energize.up&covenant.kyrian)|(charges=2&recharge_time<5)|charges=3|buff.ca_inc.up)&ap_check&variable.save_for_ca_inc&(buff.ravenous_frenzy.remains<5&buff.ravenous_frenzy.up&!runeforge.sinful_hysteria|!buff.ravenous_frenzy.up)
@@ -157,7 +157,6 @@ actions.aoe+=/wrath,if=(eclipse.lunar_next|eclipse.any_next&variable.is_cleave)&
 actions.aoe+=/starfire
 #### Fallthru
 actions.aoe+=/run_action_list,name=fallthru
-
 
 ### Special action list for Balance of All Things (BoAT)
 #### Frenzy with CA/Inc
