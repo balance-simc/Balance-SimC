@@ -20,7 +20,7 @@ targets = str(max(1, args.targets))
 profile = apl = dungeon = move = spread = ""
 with open('sandbag_ptr.txt', 'r') as fp:
     profile = fp.read()
-with open('balance.txt', 'r') as fp:
+with open('balance_ptr.txt', 'r') as fp:
     apl = fp.read()
 with open('composite.txt', 'r') as fp:
     dungeon = fp.read()
@@ -32,7 +32,7 @@ with open('spread.txt', 'r') as fp:
 talents = [
     ['NB ', 'WOE', 'FON'],
     ['SOTF', 'SL  ', 'INC '],
-    ['SD', 'TM', 'SF'],
+    ['TM', 'SD', 'SF'],
     ['SOL', 'FOE', 'NM ']
 ]
 legendaries = {
@@ -43,7 +43,13 @@ legendaries = {
     #'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
     'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
     #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
-    'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste'
+    'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste'    
+    'kyrian:affinity':'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
+    'necrolord:swarm':'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
+    'night_fae:spirits':'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
+    'venthyr:hysteria':'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
+}
+cov_legendary = {    
 }
 conduits = [
     'fury_of_the_skies:7',
@@ -131,6 +137,10 @@ buffer = []
 for leg, leg_str in legendaries.items():
 
     for cov, soulbinds in covenants.items():
+        leg=leg.split(":")
+        if leg[1] and not leg[1]==cov:
+            break
+        leg=leg[0]
         cov_str = 'covenant=' + cov
 
         name_str = 'name=' + '-'.join([cov, leg])
