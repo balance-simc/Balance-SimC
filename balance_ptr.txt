@@ -94,7 +94,7 @@ actions.st+=/full_moon,if=(buff.eclipse_lunar.remains>execute_time&!covenant.kyr
 #### Use WoE on cd
 actions.st+=/warrior_of_elune
 #### Use Starfire to proc Solar Eclipse, CA/Inc has less time than a Wrath execute left or only Lunar Eclipse is up
-actions.st+=/starfire,if=eclipse.in_lunar|eclipse.solar_next|eclipse.any_next|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr)&buff.eclipse_lunar.up|(buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)
+actions.st+=/starfire,if=eclipse.in_lunar|eclipse.solar_next|eclipse.any_next|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)&buff.eclipse_lunar.up|(buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)
 #### Use Wrath otherwise which is in Solar Eclipse, CA/Inc or to proc Lunar Eclipse
 actions.st+=/wrath
 #### Fallthru
