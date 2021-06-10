@@ -10,7 +10,8 @@ report_url = 'https://www.raidbots.com/simbot/report/'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('apikey', type=str, help='raidbots apikey')
-parser.add_argument('-t', '--targets', type=int, nargs='?', default=1, const=1, help='set desired sim targets')
+parser.add_argument('-t', '--targets', type=int, nargs='?',
+                    default=1, const=1, help='set desired sim targets')
 parser.add_argument('-d', '--dungeon', default=False, action='store_true')
 parser.add_argument('-m', '--move', default=False, action='store_true')
 parser.add_argument('-s', '--spread', default=False, action='store_true')
@@ -36,20 +37,20 @@ talents = [
     ['SOL', 'FOE', 'NM ']
 ]
 legendaries = {
-    'boat':'legs=,id=172318,bonus_id=7107/6716/6648/6649/1532',
-    'dream':'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
-    'oneth':'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
-    'pulsar':'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
-    #'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
-    'draught':'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
-    #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
-    'circle':'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
-    'kyrian:affinity':'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
-    'necrolord:swarm':'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-    'night_fae:spirits':'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
-    'venthyr:hysteria':'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
+    'boat': 'legs=,id=172318,bonus_id=7107/6716/6648/6649/1532',
+    'dream': 'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
+    'oneth': 'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
+    'pulsar': 'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
+    # 'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
+    'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
+    # 'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
+    'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
+    'kyrian:affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
+    'necrolord:swarm': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
+    'night_fae:spirits': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
+    'venthyr:hysteria': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
 }
-cov_legendary = {    
+cov_legendary = {
 }
 conduits = [
     'fury_of_the_skies:7',
@@ -58,78 +59,78 @@ conduits = [
     'stellar_inspiration:7'
 ]
 cov_conduit = {
-    'kyrian':'deep_allegiance:7',
-    'necrolord':'evolved_swarm:7',
-    'night_fae':'conflux_of_elements:7',
-    'venthyr':'endless_thirst:7'
+    'kyrian': 'deep_allegiance:7',
+    'necrolord': 'evolved_swarm:7',
+    'night_fae': 'conflux_of_elements:7',
+    'venthyr': 'endless_thirst:7'
 }
 covenants = {
-    'kyrian':{
-        'pelagos':{
-            #/newfound_resolve
-            'base':'combat_meditation/better_together',
-            'trait':[]
+    'kyrian': {
+        'pelagos': {
+            # /newfound_resolve
+            'base': 'combat_meditation/better_together',
+            'trait': []
         },
-        'kleia':{
-            #light_the_path
-            'base':'',
-            'trait':['pointed_courage']
+        'kleia': {
+            # light_the_path
+            'base': '',
+            'trait': ['pointed_courage']
         },
-        'mikanikos':{
-            #/effusive_anima_accelerator
-            'base':'brons_call_to_action/soulglow_spectrometer',
-            'trait':['hammer_of_genesis']
+        'mikanikos': {
+            # /effusive_anima_accelerator
+            'base': 'brons_call_to_action/soulglow_spectrometer',
+            'trait': ['hammer_of_genesis']
         }
     },
-    'necrolord':{
-        'marileth':{
-            #kevins_oozeling
-            'base':'',
-            'trait':['plagueys_preemptive_strike']
+    'necrolord': {
+        'marileth': {
+            # kevins_oozeling
+            'base': '',
+            'trait': ['plagueys_preemptive_strike']
         },
-        'emeni':{
-            #/pustule_eruption
-            'base':'lead_by_example',
-            'trait':['gnashing_chompers']
+        'emeni': {
+            # /pustule_eruption
+            'base': 'lead_by_example',
+            'trait': ['gnashing_chompers']
         },
-        'heirmir':{
-            #/mnemonic_equipment
-            'base':'forgeborne_reveries/carvers_eye',
-            'trait':['heirmirs_arsenal_marrowed_gemstone']
+        'heirmir': {
+            # /mnemonic_equipment
+            'base': 'forgeborne_reveries/carvers_eye',
+            'trait': ['heirmirs_arsenal_marrowed_gemstone']
         }
     },
-    'night_fae':{
-        'niya':{
-            #/bonded_hearts
-            'base':'grove_invigoration',
-            'trait':['niyas_tools_burrs']
+    'night_fae': {
+        'niya': {
+            # /bonded_hearts
+            'base': 'grove_invigoration',
+            'trait': ['niyas_tools_burrs']
         },
-        'dreamweaver':{
-            #/dream_delver
-            'base':'field_of_blossoms',
-            'trait':['social_butterfly']
+        'dreamweaver': {
+            # /dream_delver
+            'base': 'field_of_blossoms',
+            'trait': ['social_butterfly']
         },
-        'korayn':{
-            #/wild_hunt_strategem
-            'base':'wild_hunt_tactics',
-            'trait':['first_strike']
+        'korayn': {
+            # /wild_hunt_strategem
+            'base': 'wild_hunt_tactics',
+            'trait': ['first_strike']
         }
     },
-    'venthyr':{
-        'nadjia':{
-            #/fatal_flaw
-            'base':'thrill_seeker',
-            'trait':['exacting_preparation', 'dauntless_duelist']
+    'venthyr': {
+        'nadjia': {
+            # /fatal_flaw
+            'base': 'thrill_seeker',
+            'trait': ['exacting_preparation', 'dauntless_duelist']
         },
-        'theotar':{
-            #/party_favors
-            'base':'soothing_shade',
-            'trait':['refined_palate', 'wasteland_propriety']
+        'theotar': {
+            # /party_favors
+            'base': 'soothing_shade',
+            'trait': ['refined_palate', 'wasteland_propriety']
         },
-        'draven':{
-            #/battlefield_presence
-            'base':'',
-            'trait':['built_for_war']
+        'draven': {
+            # /battlefield_presence
+            'base': '',
+            'trait': ['built_for_war']
         }
     }
 }
@@ -149,10 +150,10 @@ buffer = []
 for leg, leg_str in legendaries.items():
 
     for cov, soulbinds in covenants.items():
-        leg=leg.split(":")
-        if len(leg)>1 and not leg[1]==cov:
+        leg = leg.split(":")
+        if len(leg) > 1 and not leg[1] == cov:
             break
-        leg=leg[0]
+        leg = leg[0]
         cov_str = 'covenant=' + cov
 
         name_str = 'name=' + '-'.join([cov, leg])
@@ -169,7 +170,7 @@ for leg, leg_str in legendaries.items():
 
             for combo in combinations(conduits_master, 3):
                 cond1, cond2, cond3 = combo
-                if all(set(traits['trait'])&set(subcombo) for subcombo in combinations([cond1,cond2,cond3],2)):
+                if all(set(traits['trait']) & set(subcombo) for subcombo in combinations([cond1, cond2, cond3], 2)):
                     continue
 
                 soulbind_list = soulbind_master.copy()
@@ -182,21 +183,28 @@ for leg, leg_str in legendaries.items():
                     for t40, talent40 in enumerate(talents[1], 1):
                         for t45, talent45 in enumerate(talents[2], 1):
                             for t50, talent50 in enumerate(talents[3], 1):
-                                talent = str(t15) + '000' + str(t40) + str(t45) + str(t50)
+                                talent = str(t15) + '000' + \
+                                    str(t40) + str(t45) + str(t50)
                                 talent_str = 'talents=' + talent
 
-                                profile_name = '\"' + '-'.join([soul, cond1, cond2,cond3, talent]) +'\"'
-                                sets_list.append('profileset.' + profile_name + '=' + talent_str)
-                                sets_list.append('profileset.' + profile_name + '+=' + soulbind_str)
+                                profile_name = '\"' + \
+                                    '-'.join([soul, cond1, cond2,
+                                              cond3, talent]) + '\"'
+                                sets_list.append(
+                                    'profileset.' + profile_name + '=' + talent_str)
+                                sets_list.append(
+                                    'profileset.' + profile_name + '+=' + soulbind_str)
 
         sets_str = '\n'.join(sets_list)
 
-        simc = '\n'.join([profile, apl, leg_str, cov_str, name_str, target_str, sets_str])
+        simc = '\n'.join([profile, apl, leg_str, cov_str,
+                          name_str, target_str, sets_str])
 
         while True:
             time.sleep(2)
             try:
-                post = requests.post(post_url, json={'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                post = requests.post(post_url, json={
+                                     'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
                 reply = post.json()
                 simID = reply['simId']
                 sim_url = report_url + simID
@@ -227,7 +235,8 @@ for leg, leg_str in legendaries.items():
             soul_key, cond1_key, cond2_key, tal_key = actor['name'].split('-')
             dps_key = actor['mean']
 
-            buffer.append({'cov':cov_key, 'leg':leg_key, 'soul':soul_key, 'cond1':cond1_key, 'cond2':cond2_key, 'tal':tal_key, 'dps':dps_key})
+            buffer.append({'cov': cov_key, 'leg': leg_key, 'soul': soul_key,
+                           'cond1': cond1_key, 'cond2': cond2_key, 'tal': tal_key, 'dps': dps_key})
 
 json_name = 'combo_ptr_'
 if args.dungeon:
