@@ -66,56 +66,68 @@ cov_conduit = {
 covenants = {
     'kyrian':{
         'pelagos':{
-            'base':'combat_meditation',
+            #/newfound_resolve
+            'base':'combat_meditation/better_together',
             'trait':[]
         },
         'kleia':{
+            #light_the_path
             'base':'',
             'trait':['pointed_courage']
         },
         'mikanikos':{
-            'base':'brons_call_to_action',
+            #/effusive_anima_accelerator
+            'base':'brons_call_to_action/soulglow_spectrometer',
             'trait':['hammer_of_genesis']
         }
     },
     'necrolord':{
         'marileth':{
+            #kevins_oozeling
             'base':'',
             'trait':['plagueys_preemptive_strike']
         },
         'emeni':{
+            #/pustule_eruption
             'base':'lead_by_example',
             'trait':['gnashing_chompers']
         },
         'heirmir':{
-            'base':'forgeborne_reveries',
+            #/mnemonic_equipment
+            'base':'forgeborne_reveries/carvers_eye',
             'trait':['heirmirs_arsenal_marrowed_gemstone']
         }
     },
     'night_fae':{
         'niya':{
+            #/bonded_hearts
             'base':'grove_invigoration',
             'trait':['niyas_tools_burrs']
         },
         'dreamweaver':{
+            #/dream_delver
             'base':'field_of_blossoms',
             'trait':['social_butterfly']
         },
         'korayn':{
+            #/wild_hunt_strategem
             'base':'wild_hunt_tactics',
             'trait':['first_strike']
         }
     },
     'venthyr':{
         'nadjia':{
+            #/fatal_flaw
             'base':'thrill_seeker',
             'trait':['exacting_preparation', 'dauntless_duelist']
         },
         'theotar':{
+            #/party_favors
             'base':'soothing_shade',
             'trait':['refined_palate', 'wasteland_propriety']
         },
         'draven':{
+            #/battlefield_presence
             'base':'',
             'trait':['built_for_war']
         }
@@ -138,7 +150,7 @@ for leg, leg_str in legendaries.items():
 
     for cov, soulbinds in covenants.items():
         leg=leg.split(":")
-        if leg[1] and not leg[1]==cov:
+        if len(leg)>1 and not leg[1]==cov:
             break
         leg=leg[0]
         cov_str = 'covenant=' + cov
@@ -155,14 +167,15 @@ for leg, leg_str in legendaries.items():
             for t in traits['trait']:
                 conduits_master.append(t)
 
-            for combo in combinations(conduits_master, 2):
-                cond1, cond2 = combo
-                if cond1 in traits['trait'] and cond2 in traits['trait']:
+            for combo in combinations(conduits_master, 3):
+                cond1, cond2, cond3 = combo
+                if all(set(traits['trait'])&set(subcombo) for subcombo in combinations([cond1,cond2,cond3],2)):
                     continue
 
                 soulbind_list = soulbind_master.copy()
                 soulbind_list.append(cond1)
                 soulbind_list.append(cond2)
+                soulbind_list.append(cond3)
                 soulbind_str = 'soulbind=' + '/'.join(soulbind_list)
 
                 for t15, talent15 in enumerate(talents[0], 1):
@@ -172,7 +185,7 @@ for leg, leg_str in legendaries.items():
                                 talent = str(t15) + '000' + str(t40) + str(t45) + str(t50)
                                 talent_str = 'talents=' + talent
 
-                                profile_name = '\"' + '-'.join([soul, cond1, cond2, talent]) +'\"'
+                                profile_name = '\"' + '-'.join([soul, cond1, cond2,cond3, talent]) +'\"'
                                 sets_list.append('profileset.' + profile_name + '=' + talent_str)
                                 sets_list.append('profileset.' + profile_name + '+=' + soulbind_str)
 
