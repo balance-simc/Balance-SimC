@@ -25,7 +25,7 @@ actions=variable,name=is_aoe,value=spell_targets.starfall>1&(!talent.starlord.en
 #### Sets cleave when Starfire can hit 2+ targets which is relevant for the Eclipse to be preferred and which filler to cast
 actions+=/variable,name=is_cleave,value=spell_targets.starfire>1
 #### Use Berserking with CA/Inc or after Convoke in CA/Inc
-actions+=/berserking,if=(!covenant.night_fae|!cooldown.convoke_the_spirits.up)&buff.ca_inc.remains>15&!covenant.venthyr|covenant.venthyr&buff.ca_inc.up&buff.ravenous_frenzy.up&(buff.ravenous_frenzy.remains<11-5*runeforge.sinful_hysteria|buff.ca_inc.remains<11|1%spell_haste<1.55)
+actions+=/berserking,if=(!covenant.night_fae|!cooldown.convoke_the_spirits.up)&buff.ca_inc.remains>15
 #### Pot with a CA/Inc that isn't a Pulsar proc or when the fight is about to end
 actions+=/potion,if=buff.ca_inc.remains>15&(!runeforge.sinful_hysteria|buff.ravenous_frenzy.remains<17&buff.ravenous_frenzy.up)|fight_remains<25
 #### Calculates whether using Convoke now will allow you to still cast the same amount of Convoke+CA/Inc casts
