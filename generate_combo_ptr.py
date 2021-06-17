@@ -18,9 +18,11 @@ parser.add_argument('-s', '--spread', default=False, action='store_true')
 args = parser.parse_args()
 targets = str(max(1, args.targets))
 
-profile = apl = dungeon = move = spread = ""
-with open('sandbag_ptr.txt', 'r') as fp:
-    profile = fp.read()
+profile_base = profile_nf = apl = dungeon = move = spread = ""
+with open('sandbag_ptr_base.txt', 'r') as fp:
+    profile_base = fp.read()
+with open('sandbag_ptr_nf.txt', 'r') as fp:
+    profile_nf = fp.read()
 with open('balance_ptr.txt', 'r') as fp:
     apl = fp.read()
 with open('composite.txt', 'r') as fp:
