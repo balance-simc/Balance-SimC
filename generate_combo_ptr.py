@@ -160,6 +160,9 @@ for leg, leg_str in legendaries.items():
 
         name_str = 'name=' + '-'.join([cov, leg])
         sets_list = []
+        profile = profile_base
+        if cov == 'night_fae':
+            profile=profile_nf
 
         for soul, traits in soulbinds.items():
             soulbind_master = []
