@@ -49,7 +49,7 @@ legendaries = {
     'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
     'kyrian:affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
     'necrolord:swarm': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-    'night_fae:spirits': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
+    #'night_fae:spirits': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
     'venthyr:hysteria': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
 }
 cov_legendary = {
