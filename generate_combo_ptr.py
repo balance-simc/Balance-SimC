@@ -237,11 +237,11 @@ for leg, leg_str in legendaries.items():
         cov_key, leg_key = results['sim']['players'][0]['name'].split('-')
 
         for actor in results['sim']['profilesets']['results']:
-            soul_key, cond1_key, cond2_key, tal_key = actor['name'].split('-')
+            soul_key, cond1_key, cond2_key, cond3_key, tal_key = actor['name'].split('-')
             dps_key = actor['mean']
 
             buffer.append({'cov': cov_key, 'leg': leg_key, 'soul': soul_key,
-                           'cond1': cond1_key, 'cond2': cond2_key, 'tal': tal_key, 'dps': dps_key})
+                           'cond1': cond1_key, 'cond2': cond2_key, 'cond3': cond3_key, 'tal': tal_key, 'dps': dps_key})
 
 json_name = 'combo_ptr_'
 if args.dungeon:
