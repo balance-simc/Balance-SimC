@@ -21,7 +21,7 @@ $(function() {
     var talentCode = {
         '15': { '1': "NB",   '2': "WOE", '3': "FON" },
         '40': { '1': "SOTF", '2': "SL",  '3': "INC" },
-        '45': { '1': "SD",   '2': "TM",  '3': "SF"  },
+        '45': { '1': "TM",   '2': "SD",  '3': "SF"  },
         '50': { '1': "SOL",  '2': "FOE", '3': "NM"  }
     }
     function getTalentNum(tier, tal) {
@@ -131,6 +131,7 @@ $(function() {
                         str += "<tr><td class=\"tip-right\">Talents:</td><td>" + r.Talents + "</td></tr>";
                         str += "<tr><td class=\"tip-right\">Conduit1:</td><td>" + r.Conduit1 + "</td></tr>";
                         str += "<tr><td class=\"tip-right\">Conduit2:</td><td>" + r.Conduit2 + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Conduit3:</td><td>" + r.Conduit3 + "</td></tr>";
                         str += "<tr><td class=\"tip-right\">Legendary:</td><td>" + stripHTML(r.Legendary) + "</td></tr>";
                         str += "<tr class=\"tip-dps\"><td class=\"tip-right\">DPS:</td><td>" + r.dps.toFixed(2) + "</td></tr>";
                         str += "</table>"
@@ -239,6 +240,7 @@ $(function() {
             'Soulbind':  r => { return toCap(r.soul); },
             'Conduit1':  r => { return toCap(r.cond1.replaceAll('_', ' ')); },
             'Conduit2':  r => { return toCap(r.cond2.replaceAll('_', ' ')); },
+            'Conduit3':  r => { return toCap(r.cond3.replaceAll('_', ' ')); },
             'Talents':   r => {
                 let str = [];
                 str.push(getT15(r));

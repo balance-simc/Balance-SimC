@@ -67,6 +67,7 @@
                                 str += "<tr><td class=\"tip-right\">Soulbind:</td><td>" + buf[0].Soulbind + "</td></tr>";
                                 str += "<tr><td class=\"tip-right\">Conduit1:</td><td>" + buf[0].Conduit1 + "</td></tr>";
                                 str += "<tr><td class=\"tip-right\">Conduit2:</td><td>" + buf[0].Conduit2 + "</td></tr>";
+                                str += "<tr><td class=\"tip-right\">Conduit3:</td><td>" + buf[0].Conduit3 + "</td></tr>";
                                 str += "<tr class=\"tip-dps\"><td class=\"tip-right\">DPS:</td><td>" + buf[0].dps.toFixed(2) + "</td></tr>";
                                 str += "</table>"
                                 let tmp = $(document.createElement('div')).append(str);
@@ -102,6 +103,7 @@
                     "Legendary": r => { return r.leg; },
                     "Conduit1": r => { return r.cond1.replaceAll('_', ' '); },
                     "Conduit2": r => { return r.cond2.replaceAll('_', ' '); },
+                    "Conduit3": r => { return r.cond3.replaceAll('_', ' '); },
                     "Talents": r => {
                         let t = r.tal;
                         let str = [];
@@ -118,8 +120,8 @@
                             default: break;
                         }
                         switch(t.charAt(5)) {
-                            case '1': str.push("SD"); break;
-                            case '2': str.push("TM"); break;
+                            case '1': str.push("TM"); break;
+                            case '2': str.push("SD"); break;
                             case '3': str.push("SF"); break;
                             default: break;
                         }
