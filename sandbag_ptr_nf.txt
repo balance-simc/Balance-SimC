@@ -1,8 +1,5 @@
 ptr=1
-override.spell_data=effect.823998.coefficient=2.87
-override.spell_data=effect.824015.coefficient=2.87
-override.spell_data=effect.823997.coefficient=2.87
-override.spell_data=effect.823999.coefficient=2.87
+
 druid="Sandbag"
 spec=balance
 level=60
