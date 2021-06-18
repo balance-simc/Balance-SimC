@@ -207,7 +207,7 @@ for leg, leg_str in legendaries.items():
             while True:
                 time.sleep(2)
                 post = requests.post(post_url, json={
-                                        'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartHighPrecision': 'false', 'advancedInput': simc})
+                                        'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartHighPrecision': False, 'advancedInput': simc})
                 if post.status_code==400:
                     sys.exit('Input Error')
                 if post.status_code==401:
