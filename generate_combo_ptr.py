@@ -226,19 +226,19 @@ for leg, leg_str in legendaries.items():
                 sys.exit('Unknown error: '.format(post.status_code))
             while True:
                 time.sleep(5)
-                try:
-                    get = requests.get(get_url + simID)
-                    status = get.json()
-                    if status['job']['state'] == 'complete':
-                        data = requests.get(sim_url + '/data.json')
+                get = requests.get(get_url + simID)
+                status = get.json()
+                if 'message' in status and status['message'] == 'No job found':
+                    sys.exit("The sim got lost :(")
+                if status['job']['state'] == 'complete':
+                    data = requests.get(sim_url + '/data.json')
+                    results = data.json()
+                    if 'error'in results:
+                        sys.exit('Sim failed with error {}'.format(results['error']['type']))
+                    if results['simbot']['hasFullJson']:
+                        data = requests.get(sim_url + '/data.full.json')
                         results = data.json()
-                        if results['simbot']['hasFullJson']:
-                            data = requests.get(sim_url + '/data.full.json')
-                            results = data.json()
-                        break
-                    continue
-                except:
-                    continue
+                    break
 
             cov_key, leg_key, soul_key = results['sim']['players'][0]['name'].split('-')
 
