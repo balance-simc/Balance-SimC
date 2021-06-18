@@ -206,18 +206,19 @@ for leg, leg_str in legendaries.items():
 
             while True:
                 time.sleep(2)
-                try:
-                    post = requests.post(post_url, json={
-                                            'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})                                            
-                except:
+                post = requests.post(post_url, json={
+                                        'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                if post.status_code==400:
+                    sys.exit('Input Error')
+                if post.status_code==401:
+                    sys.exit('Invalid API key')
+                if post.status_code>=500:
+                    sys.exit('something went horribly wrong')
+                if post.status_code==429:
+                    print('Rate limited')
                     continue
+
                 reply = post.json()
-                if 'error' in reply:
-                    print("Request returned error {}".format(reply['error']))
-                    sys.exit(reply['reason'])
-                if 'reason' in reply:
-                    print("Request returned error {}".format(reply['reason']))
-                    sys.exit(reply['reason'])
                 simID = reply['simId']
                 sim_url = report_url + simID
                 print(sim_url)
