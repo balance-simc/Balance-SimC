@@ -2,6 +2,7 @@ import requests
 import time
 import argparse
 import json
+import sys
 from itertools import combinations
 
 post_url = 'https://www.raidbots.com/sim'
@@ -44,7 +45,7 @@ legendaries = {
     'oneth': 'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
     'pulsar': 'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
     # 'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
-    'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
+    # 'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
     # 'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
     'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
     'kyrian:affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
@@ -55,16 +56,16 @@ legendaries = {
 cov_legendary = {
 }
 conduits = [
-    'fury_of_the_skies:7',
-    'umbral_intensity:7',
-    'precise_alignment:7',
-    'stellar_inspiration:7'
+    'fury_of_the_skies:9',
+    'umbral_intensity:9',
+    'precise_alignment:9',
+    'stellar_inspiration:9'
 ]
 cov_conduit = {
-    'kyrian': 'deep_allegiance:7',
-    'necrolord': 'evolved_swarm:7',
-    'night_fae': 'conflux_of_elements:7',
-    'venthyr': 'endless_thirst:7'
+    'kyrian': 'deep_allegiance:9',
+    'necrolord': 'evolved_swarm:9',
+    'night_fae': 'conflux_of_elements:9',
+    'venthyr': 'endless_thirst:9'
 }
 covenants = {
     'kyrian': {
@@ -148,7 +149,7 @@ if args.move:
     target_str += '\n' + move
 
 buffer = []
-
+profiles_total=0
 for leg, leg_str in legendaries.items():
 
     for cov, soulbinds in covenants.items():
@@ -158,13 +159,13 @@ for leg, leg_str in legendaries.items():
         leg = leg[0]
         cov_str = 'covenant=' + cov
 
-        name_str = 'name=' + '-'.join([cov, leg])
-        sets_list = []
         profile = profile_base
         if cov == 'night_fae':
             profile=profile_nf
 
         for soul, traits in soulbinds.items():
+            sets_list = []
+            name_str = 'name=' + '-'.join([cov, leg, soul])
             soulbind_master = []
             if traits['base']:
                 soulbind_master.append(traits['base'])
@@ -191,57 +192,59 @@ for leg, leg_str in legendaries.items():
                                 talent = str(t15) + '000' + \
                                     str(t40) + str(t45) + str(t50)
                                 talent_str = 'talents=' + talent
-
                                 profile_name = '\"' + \
-                                    '-'.join([soul, cond1, cond2,
+                                    '-'.join([cond1, cond2,
                                               cond3, talent]) + '\"'
                                 sets_list.append(
                                     'profileset.' + profile_name + '=' + talent_str)
                                 sets_list.append(
                                     'profileset.' + profile_name + '+=' + soulbind_str)
 
-        sets_str = '\n'.join(sets_list)
+            sets_str = '\n'.join(sets_list)
 
-        simc = '\n'.join([profile, apl, leg_str, cov_str,
-                          name_str, target_str, sets_str])
+            simc = '\n'.join([profile, apl, leg_str, cov_str,
+                                name_str, target_str, sets_str])
 
-        while True:
-            time.sleep(2)
-            try:
-                post = requests.post(post_url, json={
-                                     'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
-                reply = post.json()
-                simID = reply['simId']
-                sim_url = report_url + simID
-                print(sim_url)
-                break
-            except:
-                continue
-
-        while True:
-            time.sleep(5)
-            try:
-                get = requests.get(get_url + simID)
-                status = get.json()
-                if status['job']['state'] == 'complete':
-                    data = requests.get(sim_url + '/data.json')
-                    results = data.json()
-                    if results['simbot']['hasFullJson']:
-                        data = requests.get(sim_url + '/data.full.json')
-                        results = data.json()
+            while True:
+                time.sleep(2)
+                try:
+                    post = requests.post(post_url, json={
+                                            'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                    reply = post.json()
+                    if 'error' in reply:
+                        print("Request returned error {}".format(reply['error']))
+                        sys.exit(6)
+                    simID = reply['simId']
+                    sim_url = report_url + simID
+                    print(sim_url)
                     break
-                continue
-            except:
-                continue
+                except:
+                    continue
 
-        cov_key, leg_key = results['sim']['players'][0]['name'].split('-')
+            while True:
+                time.sleep(5)
+                try:
+                    get = requests.get(get_url + simID)
+                    status = get.json()
+                    if status['job']['state'] == 'complete':
+                        data = requests.get(sim_url + '/data.json')
+                        results = data.json()
+                        if results['simbot']['hasFullJson']:
+                            data = requests.get(sim_url + '/data.full.json')
+                            results = data.json()
+                        break
+                    continue
+                except:
+                    continue
 
-        for actor in results['sim']['profilesets']['results']:
-            soul_key, cond1_key, cond2_key, cond3_key, tal_key = actor['name'].split('-')
-            dps_key = actor['mean']
+            cov_key, leg_key, soul_key = results['sim']['players'][0]['name'].split('-')
 
-            buffer.append({'cov': cov_key, 'leg': leg_key, 'soul': soul_key,
-                           'cond1': cond1_key, 'cond2': cond2_key, 'cond3': cond3_key, 'tal': tal_key, 'dps': dps_key})
+            for actor in results['sim']['profilesets']['results']:
+                cond1_key, cond2_key, cond3_key, tal_key = actor['name'].split('-')
+                dps_key = actor['mean']
+
+                buffer.append({'cov': cov_key, 'leg': leg_key, 'soul': soul_key,
+                                'cond1': cond1_key, 'cond2': cond2_key, 'cond3': cond3_key, 'tal': tal_key, 'dps': dps_key})
 
 json_name = 'combo_ptr_'
 if args.dungeon:

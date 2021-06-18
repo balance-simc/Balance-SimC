@@ -30,4 +30,3 @@ chart_show_relative_difference=1
 report_details=0
 max_time=300
 vary_combat_length=0.1
-target_error=0.1
