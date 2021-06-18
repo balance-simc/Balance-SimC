@@ -149,7 +149,6 @@ if args.move:
     target_str += '\n' + move
 
 buffer = []
-profiles_total=0
 for leg, leg_str in legendaries.items():
 
     for cov, soulbinds in covenants.items():
@@ -209,18 +208,20 @@ for leg, leg_str in legendaries.items():
                 time.sleep(2)
                 try:
                     post = requests.post(post_url, json={
-                                            'type': 'advanced', 'apiKey': apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
-                    reply = post.json()
-                    if 'error' in reply:
-                        print("Request returned error {}".format(reply['error']))
-                        sys.exit(6)
-                    simID = reply['simId']
-                    sim_url = report_url + simID
-                    print(sim_url)
-                    break
+                                            'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})                                            
                 except:
                     continue
-
+                reply = post.json()
+                if 'error' in reply:
+                    print("Request returned error {}".format(reply['error']))
+                    sys.exit(reply['reason'])
+                if 'reason' in reply:
+                    print("Request returned error {}".format(reply['reason']))
+                    sys.exit(reply['reason'])
+                simID = reply['simId']
+                sim_url = report_url + simID
+                print(sim_url)
+                break
             while True:
                 time.sleep(5)
                 try:
