@@ -217,12 +217,13 @@ for leg, leg_str in legendaries.items():
                 if post.status_code==429:
                     print('Rate limited')
                     continue
-
-                reply = post.json()
-                simID = reply['simId']
-                sim_url = report_url + simID
-                print(sim_url)
-                break
+                if post.status_code==200:
+                    reply = post.json()
+                    simID = reply['simId']
+                    sim_url = report_url + simID
+                    print(sim_url)
+                    break
+                sys.exit('Unknown error: '.format(post.status_code))
             while True:
                 time.sleep(5)
                 try:
