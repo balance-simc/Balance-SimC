@@ -48,10 +48,10 @@ legendaries = {
     # 'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
     # 'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
     'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
-    'kyrian:affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
-    'necrolord:swarm': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-    #'night_fae:spirits': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
-    'venthyr:hysteria': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
+    'affinity:kyrian': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
+    'swarm:necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
+    #'spirits:night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
+    'hysteria:venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
 }
 cov_legendary = {
 }
@@ -207,7 +207,7 @@ for leg, leg_str in legendaries.items():
             while True:
                 time.sleep(2)
                 post = requests.post(post_url, json={
-                                        'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly', 'advancedInput': simc})
+                                        'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartHighPrecision': 'false', 'advancedInput': simc})
                 if post.status_code==400:
                     sys.exit('Input Error')
                 if post.status_code==401:
