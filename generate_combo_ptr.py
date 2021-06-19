@@ -227,7 +227,7 @@ for leg, leg_str in legendaries.items():
                     break
                 sys.exit('Unknown error: '.format(post.status_code))
             while True:
-                time.sleep(5)
+                time.sleep(2)
                 get = requests.get(get_url + simID)
                 status = get.json()
                 if 'message' in status and status['message'] == 'No job found':
