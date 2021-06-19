@@ -41,7 +41,7 @@ $(function() {
         'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
         'draught': "<a href=https://shadowlands.wowhead.com/spell=338658>Draught</a>",
         'lycaras': "<a href=https://shadowlands.wowhead.com/spell=340059>Lycaras</a>",
-        'hsyteria': "<a href=https://ptr.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
+        'hysteria': "<a href=https://ptr.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
         'swarm': "<a href=https://ptr.wowhead.com/spell=354123/unbridled-swarm>Swarm</a>",
         'affinity': "<a href=https://ptr.wowhead.com/spell=354115/kindred-affinity>Affinity</a>"
     }
