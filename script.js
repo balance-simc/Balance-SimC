@@ -191,7 +191,7 @@ $(function() {
                 items: ".pvtVal",
                 position: {
                     my: "left center-60",
-                    at: "right+7 center",
+                    at: "right+7 top-9 center",
                     collision: "none"
                 },
                 show: {
@@ -199,7 +199,7 @@ $(function() {
                     duration: 150
                 },
                 hide: false,
-                content: ""
+                content: " "
             });
 
             $("#loading").hide();
