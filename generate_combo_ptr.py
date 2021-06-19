@@ -208,8 +208,11 @@ for leg, leg_str in legendaries.items():
 
             while True:
                 time.sleep(2)
-                post = requests.post(post_url, json={
+                try:
+                    post = requests.post(post_url, json={
                                         'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartHighPrecision': False, 'advancedInput': simc})
+                except:
+                    continue
                 if post.status_code==400:
                     sys.exit('Input Error')
                 if post.status_code==401:
@@ -228,7 +231,10 @@ for leg, leg_str in legendaries.items():
                 sys.exit('Unknown error: '.format(post.status_code))
             while True:
                 time.sleep(2)
-                get = requests.get(get_url + simID)
+                try:
+                    get = requests.get(get_url + simID)
+                except:
+                    continue
                 status = get.json()
                 if 'message' in status and status['message'] == 'No job found':
                     sys.exit("The sim got lost :(")
