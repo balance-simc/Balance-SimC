@@ -2,3 +2,4 @@ simc*.exe
 test*
 apikey
 test_sim.py
+.vscode/*

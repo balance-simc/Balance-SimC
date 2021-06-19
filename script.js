@@ -240,9 +240,12 @@ $(function() {
             'Legendary': r => { return whLinks[r.leg]; },
             'Soulbind':  r => { return toCap(r.soul); },
             'Conduit1':  r => { return toCap(r.cond1.replaceAll('_', ' ')); },
-            'Conduit2':  r => { return toCap(r.cond2.replaceAll('_', ' ')); },
-            'Conduit3':  r => { return toCap(r.cond3.replaceAll('_', ' ')); },
-            'Talents':   r => {
+            'Conduit2': r => { return toCap(r.cond2.replaceAll('_', ' ')); },
+            'Conduit3': r => {
+                if (r.cond3) { return toCap(r.cond3.replaceAll('_', ' ')); }
+                else { return 0; }
+            },
+            'Talents': r => {
                 let str = [];
                 str.push(getT15(r));
                 str.push(getT40(r));

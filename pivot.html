@@ -103,7 +103,10 @@
                     "Legendary": r => { return r.leg; },
                     "Conduit1": r => { return r.cond1.replaceAll('_', ' '); },
                     "Conduit2": r => { return r.cond2.replaceAll('_', ' '); },
-                    "Conduit3": r => { return r.cond3.replaceAll('_', ' '); },
+                    'Conduit3': r => {
+                        if (r.cond3) { return toCap(r.cond3.replaceAll('_', ' ')); }
+                        else { return 0; }
+                    },
                     "Talents": r => {
                         let t = r.tal;
                         let str = [];
