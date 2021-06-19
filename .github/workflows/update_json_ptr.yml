@@ -80,7 +80,7 @@ jobs:
             *.json
   update_json_ptr3:
     name: Update JSON PTR 3
-    needs: [ update_json_ptr ]
+    needs: [ update_json_ptr2 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
