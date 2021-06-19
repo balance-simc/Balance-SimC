@@ -104,8 +104,8 @@ $(function() {
 
     var defaultOptions = {
         renderers: rend,
-        hiddenFromDragDrop: ["dps", "cov", "soul", "cond1", "cond2", "leg", "tal"],
-        hiddenFromAggregators: ["cov", "soul", "cond1", "cond2", "leg", "tal"],
+        hiddenFromDragDrop: ["dps", "cov", "soul", "cond1", "cond2", "cond3", "leg", "tal"],
+        hiddenFromAggregators: ["cov", "soul", "cond1", "cond2", "cond3", "leg", "tal"],
         aggregators: {
             "DPS": function() { return $.pivotUtilities.aggregatorTemplates.max()(["dps"]) }
         },
@@ -158,6 +158,7 @@ $(function() {
                             if (soulbinds[r.soul] !== "") { cond.push(soulbinds[r.soul]) };
                             if (r.cond1 !== "none") { cond.push(r.cond1); }
                             if (r.cond2 !== "none") { cond.push(r.cond2); }
+                            if (r.cond3 !== "none") { cond.push(r.cond3); }
                             buf.push("soulbind=" + cond.join("/"));
 
                             el.value = buf.join("\n");
