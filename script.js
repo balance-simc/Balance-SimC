@@ -198,7 +198,8 @@ $(function() {
                     delay: 450,
                     duration: 150
                 },
-                hide: false
+                hide: false,
+                content: ""
             });
 
             $("#loading").hide();
