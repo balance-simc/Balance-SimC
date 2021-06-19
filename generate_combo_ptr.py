@@ -154,11 +154,9 @@ for leg, leg_str in legendaries.items():
     leg = leg.split(";")
     for cov, soulbinds in covenants.items():
         # check if the legi belongs to the covenant
-        if isinstance(leg, list):
-            if len(leg)>1:
-                if not leg[1] == cov:
-                    continue
-            leg = leg[0]
+        if len(leg)>1:
+            if not leg[1] == cov:
+                continue
         
         cov_str = 'covenant=' + cov
 
@@ -168,7 +166,7 @@ for leg, leg_str in legendaries.items():
 
         for soul, traits in soulbinds.items():
             sets_list = []
-            name_str = 'name=' + '-'.join([cov, leg, soul])
+            name_str = 'name=' + '-'.join([cov, leg[0], soul])
             soulbind_master = []
             if traits['base']:
                 soulbind_master.append(traits['base'])
