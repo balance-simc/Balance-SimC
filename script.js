@@ -198,8 +198,7 @@ $(function() {
                     delay: 450,
                     duration: 150
                 },
-                hide: false,
-                content: "Something went wrong... Please submit a bug."
+                hide: false
             });
 
             $("#loading").hide();
