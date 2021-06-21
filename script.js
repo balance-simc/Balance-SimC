@@ -144,21 +144,22 @@ $(function() {
                         $(".ui-tooltip-content").html(str);
                     }
                 },
-                clickCallback: function(e, value, filters, pivotData) {
+                clickCallback: function (e, value, filters, pivotData) {
                     let $tar = $(e.target);
                     if ($tar.hasClass("pvtVal")) {
                         const el = document.createElement('textarea');
                         let prof = isPtr() ? "sandbag_ptr_base.txt" : "sandbag.txt";
+                        let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {
-                        //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
+                            //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let r = getRecord(filters, pivotData);
-                            let bonus = isPtr() ? "1532" : "1532";
+                            // let bonus = isPtr() ? "1532" : "1532";
                             let buf = [];
 
                             buf.push(d);
                             buf.push("covenant=" + r.cov);
                             buf.push("talents=" + r.tal);
-                            buf.push(legendaries[r.leg] + bonus);
+                            buf.push(legendaries[r.leg]);
 
                             let cond = [];
                             if (soulbinds[r.soul] !== "") { cond.push(soulbinds[r.soul]) };
@@ -167,17 +168,20 @@ $(function() {
                             if (r.cond3 !== "none") { cond.push(r.cond3); }
                             buf.push("soulbind=" + cond.join("/"));
 
-                            el.value = buf.join("\n");
-                            document.body.appendChild(el);
-                            el.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(el);
 
                             let pos = $(e.target).offset();
                             $("#copied").css({
                                 top: pos.top,
                                 left: pos.left - $("#copied").width() - 18
                             }).show().delay(1000).fadeOut();
+                            $.get(apl, (e) => {
+                                buf.push(e);
+                                el.value = buf.join("\n");
+                                document.body.appendChild(el);
+                                el.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(el);
+                            });
                         });
                     }
                 }
