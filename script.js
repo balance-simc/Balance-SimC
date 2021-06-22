@@ -153,13 +153,13 @@ $(function() {
                         $.get(prof, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let r = getRecord(filters, pivotData);
-                            // let bonus = isPtr() ? "1532" : "1532";
+                            let legiilvl = isPtr() ? "235" : "235";
                             let buf = [];
 
                             buf.push(d);
                             buf.push("covenant=" + r.cov);
                             buf.push("talents=" + r.tal);
-                            buf.push(legendaries[r.leg]);
+                            buf.push(legendaries[r.leg]+",ilevel="+legiilvl);
 
                             let cond = [];
                             if (soulbinds[r.soul] !== "") { cond.push(soulbinds[r.soul]) };
