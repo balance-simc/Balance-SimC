@@ -148,11 +148,17 @@ $(function() {
                     let $tar = $(e.target);
                     if ($tar.hasClass("pvtVal")) {
                         const el = document.createElement('textarea');
-                        let prof = isPtr() ? "sandbag_ptr_base.txt" : "sandbag.txt";
+                        let r = getRecord(filters, pivotData);
+                        let prof = "";
+                        if (isPtr()) {
+                            prof = r.cov == "night_fae" ? "sandbag_ptr_nf.txt" : "sandbag_ptr_base.txt";
+                        }
+                        else {
+                            prof = sandbag.txt;
+                        }
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
-                            let r = getRecord(filters, pivotData);
                             let legiilvl = isPtr() ? "235" : "235";
                             let buf = [];
 
