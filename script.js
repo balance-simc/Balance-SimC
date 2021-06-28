@@ -109,6 +109,9 @@ $(function() {
     function isPtr() {
         return $("#fightstyle").val().includes("combo_ptr");
     }
+    function isH() {
+        return $("#fightstyle").val().includes("combo_h");
+    }
 
     function toCap(s) { return s.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); }
     function stripHTML(s) { return s.replace(/<[^>]*>?/gm, ''); }
@@ -173,13 +176,16 @@ $(function() {
                         if (isPtr()) {
                             prof = r.cov == "night_fae" ? "sandbag_ptr_nf.txt" : "sandbag_ptr_base.txt";
                         }
+                        else if(isH()){
+                            prof = r.cov == "night_fae" ? "sandbag_h_nf.txt" : "sandbag_h_base.txt";
+                        }
                         else {
-                            prof = sandbag.txt;
+                            prof = r.cov == "night_fae" ? "sandbag_nf.txt" : "sandbag_base.txt";
                         }
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
-                            let legiilvl = isPtr() ? "249" : "262";
+                            let legiilvl = isPtr() ? "249" : isH() ? "249": "262";
                             let buf = [];
 
                             buf.push(d);
