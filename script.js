@@ -41,9 +41,11 @@ $(function() {
         'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
         'draught': "<a href=https://shadowlands.wowhead.com/spell=338658>Draught</a>",
         'lycaras': "<a href=https://shadowlands.wowhead.com/spell=340059>Lycaras</a>",
-        'hysteria': "<a href=https://ptr.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
-        'swarm': "<a href=https://ptr.wowhead.com/spell=354123/unbridled-swarm>Swarm</a>",
-        'affinity': "<a href=https://ptr.wowhead.com/spell=354115/kindred-affinity>Affinity</a>"
+        'venthyr': "<a href=https://ptr.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
+        'necrolord': "<a href=https://ptr.wowhead.com/spell=354123/unbridled-swarm>Swarm</a>",
+        'kyrian': "<a href=https://ptr.wowhead.com/spell=354115/kindred-affinity>Affinity</a>",
+        'night_fae': "<https://ptr.wowhead.com/spell=354118/celestial-spirits>Celestial</a>",
+        'covenant': "<a href=https://www.wowhead.com/guides/covenant-specific-legendaries-in-shadowlands-9-1>Covenant</a>"
     }
 
     var legendaries = {
@@ -52,12 +54,12 @@ $(function() {
         'oneth':"feet=,id=172315,bonus_id=7087/6716/6648/6649/",
         'pulsar':"hands=,id=172316,bonus_id=7088/6716/6648/6649/",
         'lycaras':"feet=,id=172315,bonus_id=7110/6716/6648/6649/",
-        // 'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
-        //'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
-        'affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
-        'swarm': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-        // 'spirits:night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
-        'hysteria': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
+        'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
+        'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
+        'kyrian': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
+        'necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
+        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
+        'venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
     }
 
     var soulbinds = {
@@ -100,6 +102,14 @@ $(function() {
 
     function toCap(s) { return s.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase()))); }
     function stripHTML(s) { return s.replace(/<[^>]*>?/gm, ''); }
+    function getLegendary(leg, cov) {
+        if (leg == "covenant") { return stripHTML(whLinks[cov]); }
+        return stripHTML(whLinks[leg]);
+    }
+    function getLegendaryString(leg, cov) {
+        if (leg == "covenant") { return legendaries[cov]; }
+        return legendaries[leg];
+    }
 
     function getRecord(filters, pivotData) {
         let buf = [];
@@ -138,7 +148,7 @@ $(function() {
                         str += "<tr><td class=\"tip-right\">Conduit1:</td><td>" + r.Conduit1 + "</td></tr>";
                         str += "<tr><td class=\"tip-right\">Conduit2:</td><td>" + r.Conduit2 + "</td></tr>";
                         str += "<tr><td class=\"tip-right\">Conduit3:</td><td>" + r.Conduit3 + "</td></tr>";
-                        str += "<tr><td class=\"tip-right\">Legendary:</td><td>" + stripHTML(r.Legendary) + "</td></tr>";
+                        str += "<tr><td class=\"tip-right\">Legendary:</td><td>" + getLegendary(r.leg, r.cov) + "</td></tr>";
                         str += "<tr class=\"tip-dps\"><td class=\"tip-right\">DPS:</td><td>" + r.dps.toFixed(2) + "</td></tr>";
                         str += "</table>"
                         $(".ui-tooltip-content").html(str);
@@ -165,7 +175,7 @@ $(function() {
                             buf.push(d);
                             buf.push("covenant=" + r.cov);
                             buf.push("talents=" + r.tal);
-                            buf.push(legendaries[r.leg]+",ilevel="+legiilvl);
+                            buf.push(getLegendaryString(r.leg, r.cov)+",ilevel="+legiilvl);
 
                             let cond = [];
                             if (soulbinds[r.soul] !== "") { cond.push(soulbinds[r.soul]) };

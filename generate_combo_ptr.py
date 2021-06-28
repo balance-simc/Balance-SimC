@@ -44,16 +44,16 @@ legendaries = {
     'dream': 'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
     'oneth': 'feet=,id=172315,bonus_id=7087/6716/6648/6649/1532',
     'pulsar': 'hands=,id=172316,bonus_id=7088/6716/6648/6649/1532',
-    # 'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
-    # 'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
-    # 'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
+    'lycaras':'feet=,id=172315,bonus_id=7110/6716/6648/6649/1532',
+    'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1532,gems=16mastery',
+    'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1532,gems=16mastery',
     'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1532,gems=16mastery,enchant=tenet_of_haste',
-    'affinity;kyrian': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
-    'swarm;necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-    #'spirits:night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
-    'hysteria;venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
-}
-cov_legendary = {
+    'covenant': {
+        'kyrian': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
+        'necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
+        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
+        'venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
+    }
 }
 conduits = [
     'fury_of_the_skies:9',
@@ -151,12 +151,10 @@ if args.move:
 buffer = []
 for leg, leg_str in legendaries.items():
     # split for covenant legis
-    leg = leg.split(";")
+    if leg == 'covenant':
+        leg_str = leg_str[cov]
+
     for cov, soulbinds in covenants.items():
-        # check if the legi belongs to the covenant
-        if len(leg)>1:
-            if not leg[1] == cov:
-                continue
         
         cov_str = 'covenant=' + cov
 
@@ -166,7 +164,7 @@ for leg, leg_str in legendaries.items():
 
         for soul, traits in soulbinds.items():
             sets_list = []
-            name_str = 'name=' + '-'.join([cov, leg[0], soul])
+            name_str = 'name=' + '-'.join([cov, leg, soul])
             soulbind_master = []
             if traits['base']:
                 soulbind_master.append(traits['base'])
@@ -243,7 +241,7 @@ for leg, leg_str in legendaries.items():
                     results = data.json()
                     if 'error'in results:
                         sys.exit('Sim failed with error {}'.format(results['error']['type']))
-                    if results['simbot']['hasFullJson']:
+                    if 'hasFullJson' in results['simbot'] and results['simbot']['hasFullJson']:
                         data = requests.get(sim_url + '/data.full.json')
                         results = data.json()
                     break
