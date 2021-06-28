@@ -179,7 +179,7 @@ $(function() {
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
-                            let legiilvl = isPtr() ? "235" : "235";
+                            let legiilvl = isPtr() ? "249" : "262";
                             let buf = [];
 
                             buf.push(d);
