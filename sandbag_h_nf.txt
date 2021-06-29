@@ -6,11 +6,11 @@ role=spell
 position=back
 talents=0000000
 
-head=,id=186330,ilevel=239
+head=,id=186330,ilevel=239,gem_id=187290
 neck=,id=178448,gem_id=173130,ilevel=239
-shoulder=,id=186298,ilevel=239
+shoulder=,id=186298,ilevel=239,gem_id=187291
 back=,id=179349,ilevel=239
-chest=,id=186296,enchant_id=6230,ilevel=239
+chest=,id=186296,enchant_id=6230,ilevel=239,gem_id=187284
 wrist=,id=178934,enchant_id=6220,gem_id=173130,ilevel=239
 hands=,id=186333,ilevel=239
 waist=,id=186294,gem_id=173130,ilevel=239

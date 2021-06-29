@@ -6,16 +6,16 @@ role=spell
 position=back
 talents=0000000
 
-head=,id=186330,ilevel=252
+head=,id=186330,ilevel=252,gem_id=187318
 neck=,id=178827,gem_id=173130,ilevel=252
-shoulder=,id=186298,ilevel=252
+shoulder=,id=186298,ilevel=252,gem_id=187319
 back=,id=179349,ilevel=252
-chest=,id=186296,enchant_id=6230,ilevel=252
+chest=,id=186296,enchant_id=6230,ilevel=252,gem_id=187320
 wrist=,id=178934,enchant_id=6220,gem_id=173130,ilevel=252
-hands=,id=186333,ilevel=252
+hands=,id=186333,ilevel=252,gem_id=187312
 waist=,id=186294,gem_id=173130,ilevel=252
 legs=,id=186331,ilevel=259
-feet=,id=186337,ilevel=252
+feet=,id=186337,ilevel=252,gem_id=187315
 finger1=,id=179355,enchant_id=6168,gem_id=173130,ilevel=252
 finger2=,id=178824,enchant_id=6168,gem_id=173130,ilevel=252
 trinket1=titanic_ocular_gland,id=186423,ilevel=252
