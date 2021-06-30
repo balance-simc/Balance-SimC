@@ -47,10 +47,46 @@ jobs:
           name: update_json
           path: |
             *.json
-
   update_json2:
     name: Update JSON 2
     needs: [ update_json ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests      
+      - name: five targets
+        run: python generate_combo.py -t 5 ${{ secrets.RAIDBOTSAPI }}
+      - name: spread
+        run: python generate_combo.py -s ${{ secrets.RAIDBOTSAPI }}
+      - name: one target move
+        run: python generate_combo.py -t 1 -m ${{ secrets.RAIDBOTSAPI }}
+      - name: commit
+        run: |
+          git config user.name Balance-SimC
+          git config user.email Balance-SimC@github.com
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "no updates to JSON"
+          else
+            git pull --rebase --autostash
+            git add .
+            git commit -m "update JSON"
+            git push
+          fi
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: update_json2
+          path: |
+            *.json
+            
+  update_json3:
+    name: Update JSON 3
+    needs: [ update_json2 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -77,13 +113,13 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: update_json2
+          name: update_json3
           path: |
             *.json
-
+            
   update_talents:
     name: Update Talent Sims
-    needs: [ update_json2 ]
+    needs: [ update_json3 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
