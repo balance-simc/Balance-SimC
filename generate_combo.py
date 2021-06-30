@@ -44,9 +44,9 @@ legendaries = {
     'dream': 'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1546,gems=16mastery,enchant=tenet_of_haste',
     'oneth': 'back=,id=173242,bonus_id=6716/7087/6649/6648/1546',
     'pulsar': 'finger2=,id=178926,bonus_id=7088/6716/7193/6648/6649,gems=16mastery,enchant=tenet_of_haste',
-    'lycaras':'waist=,id=172320,bonus_id=6716/7110/6649/6648/1546/,gems=16mastery',
-    'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1546,gems=16mastery',
-    'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1546,gems=16mastery',
+    #'lycaras':'waist=,id=172320,bonus_id=6716/7110/6649/6648/1546/,gems=16mastery',
+    #'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1546,gems=16mastery',
+    #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1546,gems=16mastery',
     'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1546,gems=16mastery,enchant=tenet_of_haste',
     'covenant': {
         'kyrian': 'neck=,id=178927,bonus_id=7477/6716/7193/6648/6649,gems=16mastery',
@@ -148,6 +148,11 @@ else:
 if args.move:
     target_str += '\n' + move
 
+if args.dungeon:
+    stages = [1.0, 0.5, 0.2]
+else:
+    stages = [1.0, 0.3, 0.1]
+
 buffer = []
 for leg, leg_str in legendaries.items():
     # split for covenant legis
@@ -204,11 +209,12 @@ for leg, leg_str in legendaries.items():
             simc = '\n'.join([profile, apl, leg_str, cov_str,
                                 name_str, target_str, sets_str])
 
+            payload = {'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartStages': stages, 'advancedInput': simc}
+
             while True:
-                time.sleep(2)
+                time.sleep(3)
                 try:
-                    post = requests.post(post_url, json={
-                                        'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartHighPrecision': False, 'advancedInput': simc})
+                    post = requests.post(post_url, json=payload)
                 except:
                     continue
                 if post.status_code==400:
@@ -228,7 +234,7 @@ for leg, leg_str in legendaries.items():
                     break
                 sys.exit('Unknown error: '.format(post.status_code))
             while True:
-                time.sleep(2)
+                time.sleep(3)
                 try:
                     get = requests.get(get_url + simID)
                 except:
