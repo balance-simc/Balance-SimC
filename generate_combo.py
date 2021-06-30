@@ -218,13 +218,14 @@ for leg, leg_str in legendaries.items():
                 except:
                     continue
                 if post.status_code==400:
-                    sys.exit('Input Error')
+                    sys.exit('Input Error. Return code {}'.format(post.status_code))
                 if post.status_code==401:
-                    sys.exit('Invalid API key')
+                    sys.exit('Invalid API key. Return code {}'.format(post.status_code))
                 if post.status_code>=500:
-                    sys.exit('something went horribly wrong')
+                    print('something went horribly wrong (or not). Return code {}'.format(post.status_code))
+                    continue
                 if post.status_code==429:
-                    print('Rate limited')
+                    print('Rate limited. Return code {}'.format(post.status_code))
                     continue
                 if post.status_code==200:
                     reply = post.json()
@@ -232,7 +233,8 @@ for leg, leg_str in legendaries.items():
                     sim_url = report_url + simID
                     print(sim_url)
                     break
-                sys.exit('Unknown error: '.format(post.status_code))
+                print('Unknown status code. Return code {}'.format(post.status_code))
+                continue
             while True:
                 time.sleep(3)
                 try:
