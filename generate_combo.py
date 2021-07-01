@@ -239,9 +239,10 @@ for leg, leg_str in legendaries.items():
                 time.sleep(3)
                 try:
                     get = requests.get(get_url + simID)
+                    status = get.json()
                 except:
                     continue
-                status = get.json()
+
                 if 'message' in status and status['message'] == 'No job found':
                     sys.exit("The sim got lost :(")
                 if status['job']['state'] == 'complete':
