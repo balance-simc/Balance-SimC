@@ -43,13 +43,13 @@ legendaries = {
     'boat': 'legs=,id=172318,bonus_id=7107/6716/6648/6649/1559',
     'dream': 'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1559,gems=16mastery,enchant=tenet_of_haste',
     'oneth': 'back=,id=173242,bonus_id=6716/7087/6649/6648/1559',
-    'pulsar': 'finger2=,id=178926,bonus_id=7088/6716/7193/6648/6649,gems=16mastery,enchant=tenet_of_haste',
+    'pulsar': 'finger2=,id=178926,bonus_id=7088/6716/7193/6648/6649/1559,gems=16mastery,enchant=tenet_of_haste',
     'lycaras':'waist=,id=172320,bonus_id=6716/7110/6649/6648/1559/,gems=16mastery',
     'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1559,gems=16mastery',
     'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1559,gems=16mastery',
     'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1559,gems=16mastery,enchant=tenet_of_haste',
     'covenant': {
-        'kyrian': 'neck=,id=178927,bonus_id=7477/6716/7193/6648/6649,gems=16mastery',
+        'kyrian': 'neck=,id=178927,bonus_id=7477/6716/7193/6648/6649/1559,gems=16mastery',
         'necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1559,gems=16mastery',
         'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1559',
         'venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1559,gems=16mastery'
