@@ -87,6 +87,21 @@ $(function() {
         'draven': ""
     }
 
+    var soulbinds_m = {
+        'pelagos': "combat_meditation/better_together/newfound_resolve",
+        'kleia': "spear_of_the_archon/light_the_path",
+        'mikanikos': "brons_call_to_action/soulglow_spectrometer/effusive_anima_accelerator",
+        'marileth': "kevins_oozeling",
+        'emeni': "lead_by_example/pustule_eruption",
+        'heirmir': "forgeborne_reveries/carvers_eye/mnemonic_equipment",
+        'niya': "grove_invigoration/bonded_hearts",
+        'dreamweaver': "field_of_blossoms/dream_delver",
+        'korayn': "wild_hunt_tactics/wild_hunt_strategem",
+        'nadjia': "thrill_seeker/fatal_flaw",
+        'theotar': "soothing_shade/party_favors",
+        'draven': "battlefield_presence"
+    }
+
     var jobmap = {
         'combo_1.json': 0,
         'combo_2.json': 0,
@@ -194,7 +209,7 @@ $(function() {
                             buf.push(getLegendaryString(r.leg, r.cov)+",ilevel="+legiilvl);
 
                             let cond = [];
-                            if (soulbinds[r.soul] !== "") { cond.push(soulbinds[r.soul]) };
+                            if (soulbinds[r.soul] !== "") { isH() ? cond.push(soulbinds[r.soul]) : cond.push(soulbinds_m[r.soul]) };
                             if (r.cond1 !== "none") { cond.push(r.cond1); }
                             if (r.cond2 !== "none") { cond.push(r.cond2); }
                             if (r.cond3 !== "none") { cond.push(r.cond3); }

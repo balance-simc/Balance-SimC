@@ -92,7 +92,7 @@ covenants = {
             'trait': ['gnashing_chompers']
         },
         'heirmir': {
-            'base': 'forgeborne_reveries/carvers_eye/carvers_eye/mnemonic_equipment',
+            'base': 'forgeborne_reveries/carvers_eye/mnemonic_equipment',
             'trait': ['heirmirs_arsenal_marrowed_gemstone']
         }
     },
