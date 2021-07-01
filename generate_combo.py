@@ -70,69 +70,57 @@ cov_conduit = {
 covenants = {
     'kyrian': {
         'pelagos': {
-            # /newfound_resolve
-            'base': 'combat_meditation/better_together',
+            'base': 'combat_meditation/better_together/better_together/newfound_resolve',
             'trait': []
         },
         'kleia': {
-            # light_the_path
-            'base': '',
+            'base': 'spear_of_the_archon/light_the_path',
             'trait': ['pointed_courage']
         },
         'mikanikos': {
-            # /effusive_anima_accelerator
-            'base': 'brons_call_to_action/soulglow_spectrometer',
+            'base': 'brons_call_to_action/soulglow_spectrometer/effusive_anima_accelerator',
             'trait': ['hammer_of_genesis']
         }
     },
     'necrolord': {
         'marileth': {
-            # kevins_oozeling
-            'base': '',
+            'base': 'kevins_oozeling',
             'trait': ['plagueys_preemptive_strike']
         },
         'emeni': {
-            # /pustule_eruption
-            'base': 'lead_by_example',
+            'base': 'lead_by_example/pustule_eruption',
             'trait': ['gnashing_chompers']
         },
         'heirmir': {
-            # /mnemonic_equipment
-            'base': 'forgeborne_reveries/carvers_eye',
+            'base': 'forgeborne_reveries/carvers_eye/carvers_eye/mnemonic_equipment',
             'trait': ['heirmirs_arsenal_marrowed_gemstone']
         }
     },
     'night_fae': {
         'niya': {
-            # /bonded_hearts
-            'base': 'grove_invigoration',
+            'base': 'grove_invigoration/bonded_hearts',
             'trait': ['niyas_tools_burrs']
         },
         'dreamweaver': {
-            # /dream_delver
-            'base': 'field_of_blossoms',
+            'base': 'field_of_blossoms/dream_delver',
             'trait': ['social_butterfly']
         },
         'korayn': {
-            # /wild_hunt_strategem
-            'base': 'wild_hunt_tactics',
+            'base': 'wild_hunt_tactics/wild_hunt_strategem',
             'trait': ['first_strike']
         }
     },
     'venthyr': {
         'nadjia': {
-            # /fatal_flaw
-            'base': 'thrill_seeker',
+            'base': 'thrill_seeker/fatal_flaw',
             'trait': ['exacting_preparation', 'dauntless_duelist']
         },
         'theotar': {
-            # /party_favors
-            'base': 'soothing_shade',
+            'base': 'soothing_shade/party_favors',
             'trait': ['refined_palate', 'wasteland_propriety']
         },
         'draven': {
-            # /battlefield_presence
-            'base': '',
+            'base': 'battlefield_presence',
             'trait': ['built_for_war']
         }
     }
