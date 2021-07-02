@@ -16,7 +16,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: one target
-        run: python generate_combo_h.py -t 1 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 1 -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -49,7 +49,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: two targets
-        run: python generate_combo_h.py -t 2 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 2 -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -82,7 +82,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: three targets
-        run: python generate_combo_h.py -t 3 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 3 -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -115,7 +115,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: four targets
-        run: python generate_combo_h.py -t 4 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 4 -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -148,7 +148,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: four targets
-        run: python generate_combo_h.py -t 5 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 5 -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -181,7 +181,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: four targets
-        run: python generate_combo_h.py -t 10 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 10 -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -214,7 +214,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests      
       - name: one target move
-        run: python generate_combo_h.py -t 1 -m -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 1 -m -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -247,7 +247,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests      
       - name: one target move
-        run: python generate_combo_h.py -t 1 -m -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 1 -m -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
@@ -280,7 +280,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: dungeon
-        run: python generate_combo_h.py -d -m -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -d -m -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
         run: |
           git config user.name Balance-SimC
