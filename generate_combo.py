@@ -16,13 +16,34 @@ parser.add_argument('-t', '--targets', type=int, nargs='?',
 parser.add_argument('-d', '--dungeon', default=False, action='store_true')
 parser.add_argument('-m', '--move', default=False, action='store_true')
 parser.add_argument('-s', '--spread', default=False, action='store_true')
+parser.add_argument('-r', '--raid', type=str, nargs='?', default='mythic', const='mythic', choices=['mythic', 'heroic', 'ptr'])
 args = parser.parse_args()
 targets = str(max(1, args.targets))
 
+def is_H():
+    return args.raid == 'heroic'
+
+def is_M():
+    return args.raid == 'mythic'
+
+def is_PTR():
+    return args.raid == 'PTR'
+
 profile_base = profile_nf = apl = dungeon = move = spread = ""
-with open('sandbag_base.txt', 'r') as fp:
+
+if is_PTR():
+    profile_txt = 'sandbag_ptr_base.txt'
+    nf_profile_txt = 'sandbag_ptr_nf.txt'
+elif is_H():
+    profile_txt = 'sandbag_h_base.txt'
+    nf_profile_txt = 'sandbag_h_nf.txt'
+else:
+    profile_txt = 'sandbag_base.txt'
+    nf_profile_txt = 'sandbag_nf.txt'
+
+with open(profile_txt, 'r') as fp:
     profile_base = fp.read()
-with open('sandbag_nf.txt', 'r') as fp:
+with open(nf_profile_txt, 'r') as fp:
     profile_nf = fp.read()
 with open('balance.txt', 'r') as fp:
     apl = fp.read()
@@ -39,88 +60,115 @@ talents = [
     ['TM', 'SD', 'SF'],
     ['SOL', 'FOE', 'NM ']
 ]
+
 legendaries = {
-    'boat': 'legs=,id=172318,bonus_id=7107/6716/6648/6649/1559',
-    'dream': 'finger2=,id=178926,bonus_id=7108/6716/7193/6648/6649/1559,gems=16mastery,enchant=tenet_of_haste',
-    'oneth': 'back=,id=173242,bonus_id=6716/7087/6649/6648/1559',
-    'pulsar': 'finger2=,id=178926,bonus_id=7088/6716/7193/6648/6649/1559,gems=16mastery,enchant=tenet_of_haste',
-    #'lycaras':'waist=,id=172320,bonus_id=6716/7110/6649/6648/1559/,gems=16mastery',
-    #'draught': 'neck=,id=178927,bonus_id=7086/6716/7193/6648/6649/1559,gems=16mastery',
-    #'eonar':'waist=,id=172320,bonus_id=7100/6716/7194/6648/6649/1559,gems=16mastery',
-    'circle': 'finger2=,id=178926,bonus_id=7085/6716/7193/6648/6649/1559,gems=16mastery,enchant=tenet_of_haste',
+    'boat': 'legs=,id=172318,bonus_id=7107/6716/6648/6649/',
+    'dream': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/',
+    'oneth': 'back=,id=173242,bonus_id=6716/7087/6649/6648/',
+    'pulsar': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7088/6716/7193/6648/6649/',
+    #'lycaras':'waist=,id=172320,gems=16mastery,bonus_id=6716/7110/6649/6648/',
+    #'draught': 'neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/',
+    #'eonar':'waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/',
+    'circle': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/',
     'covenant': {
-        'kyrian': 'neck=,id=178927,bonus_id=7477/6716/7193/6648/6649/1559,gems=16mastery',
-        'necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1559,gems=16mastery',
-        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1559',
-        'venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1559,gems=16mastery'
+        'kyrian': 'neck=,id=178927,gems=16mastery,bonus_id=7477/6716/7193/6648/6649/',
+        'necrolord': 'wrist=,id=172321,gems=16mastery,bonus_id=7472/6716/6648/6649/',
+        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/',
+        'venthyr': 'waist=,id=172320,gems=16mastery,bonus_id=7474/6716/7194/6648/6649/'
     }
 }
+
+def legendaries_suffix():
+    if is_H():
+        return '1546'
+    else:
+        return '1559'
+
 conduits = [
-    'fury_of_the_skies:11',
-    'umbral_intensity:11',
-    'precise_alignment:11',
-    'stellar_inspiration:11'
+    'fury_of_the_skies:',
+    'umbral_intensity:',
+    'precise_alignment:',
+    'stellar_inspiration:'
 ]
 cov_conduit = {
-    'kyrian': 'deep_allegiance:11',
-    'necrolord': 'evolved_swarm:11',
-    'night_fae': 'conflux_of_elements:11',
-    'venthyr': 'endless_thirst:11'
+    'kyrian': 'deep_allegiance:',
+    'necrolord': 'evolved_swarm:',
+    'night_fae': 'conflux_of_elements:',
+    'venthyr': 'endless_thirst:'
 }
+
+def conduit_suffix():
+    if is_H():
+        return '9'
+    else:
+        return '11'
+
 covenants = {
     'kyrian': {
         'pelagos': {
-            'base': 'combat_meditation/better_together/better_together/newfound_resolve',
+            'base': 'combat_meditation/better_together',
+            'add': 'newfound_resolve',
             'trait': []
         },
         'kleia': {
-            'base': 'spear_of_the_archon/light_the_path',
+            'base': 'spear_of_the_archon',
+            'add': 'light_the_path',
             'trait': ['pointed_courage']
         },
         'mikanikos': {
-            'base': 'brons_call_to_action/soulglow_spectrometer/effusive_anima_accelerator',
+            'base': 'brons_call_to_action/soulglow_spectrometer',
+            'add': 'effusive_anima_accelerator',
             'trait': ['hammer_of_genesis']
         }
     },
     'necrolord': {
         'marileth': {
-            'base': 'kevins_oozeling',
+            'base': '',
+            'add': 'kevins_oozeling',
             'trait': ['plagueys_preemptive_strike']
         },
         'emeni': {
-            'base': 'lead_by_example/pustule_eruption',
+            'base': 'lead_by_example',
+            'add': 'pustule_eruption',
             'trait': ['gnashing_chompers']
         },
         'heirmir': {
-            'base': 'forgeborne_reveries/carvers_eye/mnemonic_equipment',
+            'base': 'forgeborne_reveries/carvers_eye',
+            'add': 'mnemonic_equipment',
             'trait': ['heirmirs_arsenal_marrowed_gemstone']
         }
     },
     'night_fae': {
         'niya': {
-            'base': 'grove_invigoration/bonded_hearts',
+            'base': 'grove_invigoration',
+            'add': 'bonded_hearts',
             'trait': ['niyas_tools_burrs']
         },
         'dreamweaver': {
-            'base': 'field_of_blossoms/dream_delver',
+            'base': 'field_of_blossoms',
+            'add': 'dream_delver',
             'trait': ['social_butterfly']
         },
         'korayn': {
-            'base': 'wild_hunt_tactics/wild_hunt_strategem',
+            'base': 'wild_hunt_tactics',
+            'add': 'wild_hunt_strategem',
             'trait': ['first_strike']
         }
     },
     'venthyr': {
         'nadjia': {
-            'base': 'thrill_seeker/fatal_flaw',
+            'base': 'thrill_seeker',
+            'add': 'fatal_flaw',
             'trait': ['exacting_preparation', 'dauntless_duelist']
         },
         'theotar': {
-            'base': 'soothing_shade/party_favors',
+            'base': 'soothing_shade',
+            'add': 'party_favors',
             'trait': ['refined_palate', 'wasteland_propriety']
         },
         'draven': {
-            'base': 'battlefield_presence',
+            'base': '',
+            'add': 'battlefield_persence',
             'trait': ['built_for_war']
         }
     }
@@ -147,22 +195,30 @@ for leg, leg_str in legendaries.items():
     if leg == 'covenant':
         leg_str = leg_str[cov]
 
+    leg_str += legendaries_suffix()
+
     for cov, soulbinds in covenants.items():
         
         cov_str = 'covenant=' + cov
 
         profile = profile_base
         if cov == 'night_fae':
-            profile=profile_nf
+            profile = profile_nf
 
         for soul, traits in soulbinds.items():
             sets_list = []
             name_str = 'name=' + '-'.join([cov, leg, soul])
+
             soulbind_master = []
             if traits['base']:
                 soulbind_master.append(traits['base'])
+            if not is_H() and traits['add']:
+                soulbind_master.append(traits['add'])
+
             conduits_master = conduits.copy()
             conduits_master.append(cov_conduit[cov])
+            conduits_master = [c + conduit_suffix() for c in conduits_master]
+
             for t in traits['trait']:
                 conduits_master.append(t)
 
@@ -205,17 +261,17 @@ for leg, leg_str in legendaries.items():
                     post = requests.post(post_url, json=payload)
                 except:
                     continue
-                if post.status_code==400:
+                if post.status_code == 400:
                     sys.exit('Input Error. Return code {}'.format(post.status_code))
-                if post.status_code==401:
+                if post.status_code == 401:
                     sys.exit('Invalid API key. Return code {}'.format(post.status_code))
-                if post.status_code>=500:
+                if post.status_code >= 500:
                     print('something went horribly wrong (or not). Return code {}'.format(post.status_code))
                     continue
-                if post.status_code==429:
+                if post.status_code == 429:
                     print('Rate limited. Return code {}'.format(post.status_code))
                     continue
-                if post.status_code==200:
+                if post.status_code == 200:
                     reply = post.json()
                     simID = reply['simId']
                     sim_url = report_url + simID
@@ -253,6 +309,11 @@ for leg, leg_str in legendaries.items():
                                 'cond1': cond1_key, 'cond2': cond2_key, 'cond3': cond3_key, 'tal': tal_key, 'dps': dps_key})
 
 json_name = 'combo_'
+if is_H():
+    json_name += 'h_'
+elif is_PTR():
+    json_name += 'ptr_'
+
 if args.dungeon:
     json_name += 'd'
 elif args.spread:
