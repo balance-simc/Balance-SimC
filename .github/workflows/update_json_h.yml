@@ -1,4 +1,4 @@
-name: Update JSON
+name: Update JSON Heroic
 
 on:
   workflow_dispatch:
