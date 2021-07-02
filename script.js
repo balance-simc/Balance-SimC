@@ -56,20 +56,20 @@ $(function() {
     var legendaries = {
         'boat':"legs=,id=172318,bonus_id=7107/6716/6648/6649/",
         'dream':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/",
-        'oneth':"back=,id=173242,bonus_id=6716/7087/6649/6648/1532/",
+        'oneth':"back=,id=173242,bonus_id=6716/7087/6649/6648/",
         'pulsar':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7088/6716/7193/6648/6649",
-        'lycaras':"waist=,id=172320,bonus_id=6716/7110/6649/6648/1532/,gems=16mastery",
+        'lycaras':"waist=,id=172320,bonus_id=6716/7110/6649/6648/,gems=16mastery",
         'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
         'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
         'kyrian': 'neck=,id=178927,gems=16mastery,bonus_id=7477/6716/7193/6648/6649/',
-        'necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
-        'venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery',
+        'necrolord': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/,gems=16mastery',
+        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/',
+        'venthyr': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/,gems=16mastery',
         // remove these after 9.1 is live
-        'affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/1532',
-        'swarm': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/1532,gems=16mastery',
-        'celestial': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/1532',
-        'hysteria': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/1532,gems=16mastery'
+        'affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/',
+        'swarm': 'wrist=,id=172321,bonus_id=7472/6716/6648/6649/,gems=16mastery',
+        'celestial': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/',
+        'hysteria': 'waist=,id=172320,bonus_id=7474/6716/7194/6648/6649/,gems=16mastery'
     }
 
     var soulbinds = {
@@ -200,13 +200,13 @@ $(function() {
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
-                            let legiilvl = isPtr() ? "249" : isH() ? "249": "262";
+                            let leg_bonus = isPtr() ? "1546" : isH() ? "1546": "1559";
                             let buf = [];
 
                             buf.push(d);
                             buf.push("covenant=" + r.cov);
                             buf.push("talents=" + r.tal);
-                            buf.push(getLegendaryString(r.leg, r.cov)+",ilevel="+legiilvl);
+                            buf.push(getLegendaryString(r.leg, r.cov) + leg_bonus);
 
                             let cond = [];
                             if (soulbinds[r.soul] !== "") { isH() ? cond.push(soulbinds[r.soul]) : cond.push(soulbinds_m[r.soul]) };
