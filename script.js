@@ -191,7 +191,7 @@ $(function() {
                         if (isPtr()) {
                             prof = r.cov == "night_fae" ? "sandbag_ptr_nf.txt" : "sandbag_ptr_base.txt";
                         }
-                        else if(isH()){
+                        else if (isH()) {
                             prof = r.cov == "night_fae" ? "sandbag_h_nf.txt" : "sandbag_h_base.txt";
                         }
                         else {
@@ -259,7 +259,7 @@ $(function() {
 
             (async () => {
                 let file = $("#fightstyle").val();
-                const action = isPtr() ? "update_json_ptr.yml" : "update_json.yml";
+                const action = isPtr() ? "update_json_ptr.yml" : isH() ?  "update_json_h.yml" : "update_json.yml";
                 const runs = await fetch("https://api.github.com/repos/balance-simc/Balance-SimC/actions/workflows/" + action + "/runs");
                 const r_json = await runs.json();
                 const this_run = r_json["workflow_runs"][0];
