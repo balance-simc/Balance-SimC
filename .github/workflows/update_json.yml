@@ -170,7 +170,7 @@ jobs:
 
   update_json_10t:
     name: Update JSON 10T
-    needs: [ update_json_4t ]
+    needs: [ update_json_5t ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
