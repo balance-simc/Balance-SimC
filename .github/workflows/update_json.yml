@@ -299,38 +299,3 @@ jobs:
           name: update_json3
           path: |
             *.json
-            
-  update_talents:
-    name: Update Talent Sims
-    needs: [ update_json_dungeon ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-      - name: update python
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
-      - name: talent sims
-        run: python generate_by_talent.py -r mythic ${{ secrets.RAIDBOTSAPI }}
-      - name: commit
-        run: |
-          git config user.name Balance-SimC
-          git config user.email Balance-SimC@github.com
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "no updates to talent sims"
-          else
-            git pull --rebase --autostash
-            git add .
-            git commit -m "update talent sims"
-            git push
-          fi
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: update_talents
-          path: |
-            by_talent.html
-            jso.js
