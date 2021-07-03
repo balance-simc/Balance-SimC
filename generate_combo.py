@@ -168,7 +168,7 @@ covenants = {
         },
         'draven': {
             'base': '',
-            'add': 'battlefield_persence',
+            'add': 'battlefield_presence',
             'trait': ['built_for_war']
         }
     }
