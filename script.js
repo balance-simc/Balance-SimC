@@ -108,17 +108,19 @@ $(function() {
         'combo_3.json': 2,
         'combo_4.json': 3,
         'combo_5.json': 4,
-        'combo_s.json': 5,
-        'combo_1m.json': 6,
-        'combo_d.json': 7,
+        'combo_10.json': 5,
+        'combo_s.json': 6,
+        'combo_1m.json': 7,
+        'combo_d.json': 8,
         'combo_h_1.json': 0,
         'combo_h_2.json': 1,
         'combo_h_3.json': 2,
         'combo_h_4.json': 3,
         'combo_h_5.json': 4,
-        'combo_h_s.json': 5,
-        'combo_h_1m.json': 6,
-        'combo_h_d.json': 7
+        'combo_h_10.json': 5,
+        'combo_h_s.json': 6,
+        'combo_h_1m.json': 7,
+        'combo_h_d.json': 8
     }
 
     function isPtr() {
