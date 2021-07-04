@@ -185,7 +185,7 @@ if args.move:
     target_str += '\n' + move
 
 if args.dungeon:
-    stages = [1.0, 0.5, 0.25]
+    stages = [1.2, 0.5, 0.2]
 else:
     stages = [1.0, 0.3, 0.1]
 
