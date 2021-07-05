@@ -57,12 +57,13 @@ button[type=button] {
 .header {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 }
 
 .title {
     font-size: 1.5em;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
 }
 
 .buttons {
@@ -117,7 +118,7 @@ button[type=button] {
 #main {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 #fightstyle {
