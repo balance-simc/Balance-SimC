@@ -90,6 +90,7 @@ conduits = [
     'precise_alignment:',
     'stellar_inspiration:'
 ]
+
 cov_conduit = {
     'kyrian': 'deep_allegiance:',
     'necrolord': 'evolved_swarm:',
@@ -237,21 +238,16 @@ for leg, leg_str in legendaries.items():
                     for t40, talent40 in enumerate(talents[1], 1):
                         for t45, talent45 in enumerate(talents[2], 1):
                             for t50, talent50 in enumerate(talents[3], 1):
-                                talent = str(t15) + '000' + \
-                                    str(t40) + str(t45) + str(t50)
+                                talent = str(t15) + '000' + str(t40) + str(t45) + str(t50)
                                 talent_str = 'talents=' + talent
-                                profile_name = '\"' + \
-                                    '-'.join([cond1, cond2,
-                                              cond3, talent]) + '\"'
-                                sets_list.append(
-                                    'profileset.' + profile_name + '=' + talent_str)
-                                sets_list.append(
-                                    'profileset.' + profile_name + '+=' + soulbind_str)
+
+                                profile_name = '\"' + '-'.join([cond1, cond2, cond3, talent]) + '\"'
+                                sets_list.append('profileset.' + profile_name + '=' + talent_str)
+                                sets_list.append('profileset.' + profile_name + '+=' + soulbind_str)
 
             sets_str = '\n'.join(sets_list)
 
-            simc = '\n'.join([profile, apl, leg_str, cov_str,
-                                name_str, target_str, sets_str])
+            simc = '\n'.join([profile, apl, leg_str, cov_str, name_str, target_str, sets_str])
 
             payload = {'type': 'advanced', 'apiKey': args.apikey, 'simcVersion': 'nightly','smartStages': stages, 'advancedInput': simc}
 
@@ -279,6 +275,7 @@ for leg, leg_str in legendaries.items():
                     break
                 print('Unknown status code. Return code {}'.format(post.status_code))
                 continue
+
             while True:
                 time.sleep(3)
                 try:
@@ -289,6 +286,7 @@ for leg, leg_str in legendaries.items():
 
                 if 'message' in status and status['message'] == 'No job found':
                     sys.exit("The sim got lost :(")
+
                 if status['job']['state'] == 'complete':
                     data = requests.get(sim_url + '/data.json')
                     results = data.json()
@@ -305,8 +303,7 @@ for leg, leg_str in legendaries.items():
                 cond1_key, cond2_key, cond3_key, tal_key = actor['name'].split('-')
                 dps_key = actor['mean']
 
-                buffer.append({'cov': cov_key, 'leg': leg_key, 'soul': soul_key,
-                                'cond1': cond1_key, 'cond2': cond2_key, 'cond3': cond3_key, 'tal': tal_key, 'dps': dps_key})
+                buffer.append({'cov': cov_key, 'leg': leg_key, 'soul': soul_key, 'cond1': cond1_key, 'cond2': cond2_key, 'cond3': cond3_key, 'tal': tal_key, 'dps': dps_key})
 
 json_name = 'combo_'
 if is_H():
