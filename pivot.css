@@ -57,6 +57,7 @@ button[type=button] {
 .header {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .title {
