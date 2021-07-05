@@ -46,11 +46,6 @@ $(function() {
         'kyrian': "<a href=https://ptr.wowhead.com/spell=354115/kindred-affinity>Affinity</a>",
         'night_fae': "<https://ptr.wowhead.com/spell=354118/celestial-spirits>Celestial</a>",
         'covenant': "<a href=https://www.wowhead.com/guides/covenant-specific-legendaries-in-shadowlands-9-1>Covenant</a>",
-        // remove these after 9.1 is live
-        'hysteria': "<a href=https://ptr.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
-        'swarm': "<a href=https://ptr.wowhead.com/spell=354123/unbridled-swarm>Swarm</a>",
-        'affinity': "<a href=https://ptr.wowhead.com/spell=354115/kindred-affinity>Affinity</a>",
-        'celestial': "<https://ptr.wowhead.com/spell=354118/celestial-spirits>Celestial</a>",
     }
 
     var legendaries = {
@@ -66,11 +61,6 @@ $(function() {
         'necrolord': 'wrist=,id=172321,gems=16mastery,bonus_id=7472/6716/6648/6649/',
         'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/',
         'venthyr': 'waist=,id=172320,gems=16mastery,bonus_id=7474/6716/7194/6648/6649/',
-        // remove these after 9.1 is live
-        'affinity': 'shoulder=,id=172319,bonus_id=7477/6716/6648/6649/',
-        'swarm': 'wrist=,id=172321,gems=16mastery,bonus_id=7472/6716/6648/6649/',
-        'celestial': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/',
-        'hysteria': 'waist=,id=172320,gems=16mastery,bonus_id=7474/6716/7194/6648/6649/'
     }
 
     var soulbinds = {
