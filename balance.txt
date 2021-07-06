@@ -141,7 +141,7 @@ actions.aoe+=/kindred_spirits,if=interpolated_fight_remains<15|(buff.primordial_
 #### Refresh flare on up to 3 targets without CA/Inc being about to expire and not overcapping
 actions.aoe+=/stellar_flare,target_if=refreshable&time_to_die>15,if=spell_targets.starfire<4&ap_check&(buff.ca_inc.remains>10|!buff.ca_inc.up)
 #### Use FoE if inside an Eclipse and line it up with a Pulsar proc and Adaptive Swarm
-actions.aoe+=/fury_of_elune,if=eclipse.in_any&ap_check&buff.primordial_arcanic_pulsar.value<250&(dot.adaptive_swarm_damage.ticking|!covenant.necrolord|spell_targets>2)&(buff.ravenous_frenzy.remains<9-(5*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!cooldown.ca_inc.up|buff.thrill_seeker.stack<15&fight_remains<200&fight_remains>100|!soulbind.fatal_flaw.enabled)
+actions.aoe+=/fury_of_elune,if=eclipse.in_any&ap_check&buff.primordial_arcanic_pulsar.value<250&(dot.adaptive_swarm_damage.ticking|!covenant.necrolord|spell_targets>2)&(buff.ravenous_frenzy.remains<9-(5*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!cooldown.ca_inc.up|buff.thrill_seeker.stack<15&fight_remains<200&fight_remains>100|!soulbind.thrill_seeker.enabled)
 #### Use a Starfall Oneth proc unless Starfall is already up or you are about to overcap AsP
 actions.aoe+=/starfall,if=buff.oneths_perception.up&(buff.starfall.refreshable|astral_power>90)
 #### Dump AsP before Convoke with Starfall and then Starsurge
@@ -158,7 +158,7 @@ actions.aoe+=/warrior_of_elune
 #### Calculates whether to use Starfire in Solar which is at 5 targets+1 for every 20% mastery or 4 Starsurge Empowerment stacks
 actions.aoe+=/variable,name=starfire_in_solar,value=spell_targets.starfire>4+floor(mastery_value*100%20)+floor(buff.starsurge_empowerment_solar.stack%4)
 #### Calculates whether to Wrath during Frenzy
-actions.aoe+=/variable,name=wrath_in_frenzy,value=1%spell_haste<2.5-(0.2*spell_targets.starfire*(1+talent.soul_of_the_forest.enabled*1.5))+0.15*buff.ravenous_frenzy.remains
+actions.aoe+=/variable,name=wrath_in_frenzy,value=1%spell_haste<2-(0.2*(spell_targets.starfire-1)*(1+talent.soul_of_the_forest.enabled*1.5))+0.15*buff.ravenous_frenzy.remains
 #### Use Wrath in Solar Eclipse or if no Starfire will fit into CA/Inc anymore
 actions.aoe+=/wrath,if=(eclipse.lunar_next|eclipse.any_next&variable.is_cleave)&(target.time_to_die>4|eclipse.lunar_in_2|fight_remains<10)|buff.eclipse_solar.remains<action.starfire.execute_time&buff.eclipse_solar.up|eclipse.in_solar&!variable.starfire_in_solar|buff.ca_inc.remains<action.starfire.execute_time&!variable.is_cleave&buff.ca_inc.remains<execute_time&buff.ca_inc.up|buff.ravenous_frenzy.up&variable.wrath_in_frenzy|!variable.is_cleave&buff.ca_inc.remains>execute_time
 #### Use Starfire if in Lunar Eclipse, in Solar Eclipse on 4+ targets or to proc Solar Eclipse
