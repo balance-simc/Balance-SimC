@@ -285,7 +285,7 @@ for leg, leg_str in legendaries.items():
                     continue
 
                 if 'message' in status and status['message'] == 'No job found':
-                    sys.exit("The sim got lost :(")
+                    sys.exit("The sim got lost :( {}".format(simID))
 
                 if status['job']['state'] == 'complete':
                     data = requests.get(sim_url + '/data.json')
