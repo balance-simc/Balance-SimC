@@ -368,4 +368,8 @@ T.KnownSpells = {
 		{type="nuke", target=1, damageATK=120},
 		{type="aura", target=1, duration=3, modDamageTaken=20},
 	},
+	[348]={
+		{type="nuke", target=1, damageATK=120},
+		{type="aura", target=1, duration=3, modDamageTaken=20},
+	},
 }
