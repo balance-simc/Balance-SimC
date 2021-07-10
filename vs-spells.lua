@@ -369,7 +369,11 @@ T.KnownSpells = {
 		{type="nuke", target=1, damageATK=120},
 		{type="aura", target=1, duration=3, modDamageTaken=20},
 	},
-	[347]=={type="nuke", target="cone", damageATK=100},
+	[343]={
+		{type="nuke", target="enemy-front", damageATK=80},
+		{type="aura", target=4,druation=1, modDamageDealt=20},
+	}
+	[347]={type="nuke", target="cone", damageATK=100},
 	[348]={
 		{type="nuke", target=1, damageATK=120},
 		{type="aura", target=1, duration=3, modDamageTaken=20},
