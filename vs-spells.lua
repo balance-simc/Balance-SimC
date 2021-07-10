@@ -350,8 +350,9 @@ T.KnownSpells = {
 	[57]={type="aura", target=0, duration=4, damageATK=100, noFirstTick=true},
 	[192]={type="nuke", target=1, damageATK=160},
 	[303]={type="nuke", target="enemy-back", damageATK=25},
+	[325]={type="aura", target="friend-surround", duration=2, modDamageDealt=60}
 	[326]={type="nuke", target="cleave", damageATK=25},
-	[327]={type="aura", target="all-allies", duration=3, plusDamageDealtATK=47},
+	[327]={type="aura", target="all-other-allies", duration=3, plusDamageDealtATK=20},
 	[328]={type="nuke", target=0, damageATK=30},
 	[329]={type="aura", target=4, duration=3, modDamageTaken=-50},
 	[330]={type="aura", target=4, duration=2, plusDamageDealtATK=20},
