@@ -1,5 +1,6 @@
 1. What's new? <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
     * All sims are updated for Patch 9.1 including new covenant specific legendaries, new soulbind traits, and domination gems.
+    * Kindred Affinity and Celestials Spirit hotfixes are included.
     * Both heroic-raid levels of gearing and mythic-raid levels of gearing are included.
 
 1. How do I use the new charts?
@@ -12,7 +13,7 @@
         * Heroic:
             - Legendary items are set with Haste & Mastery at ilevel 249
             - Conduits are Rank 9
-            - Rank 2 Unholy Domination gems are socketted for the set bonus
+            - Rank 2 Shard of Dyz is equipped
         * Mythic:
             - Legendary items are set with Haste & Mastery at ilevel 262
             - Conduits are Rank 9 + 2 (enhanced)
@@ -55,9 +56,8 @@
         - 20% of the pool is lost from taking damage
         - The additional damage done by you AND your partner are attributed to you
     
-1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
-    * The following bugs are present in the game but NOT in SimC
-        - Adaptive Swarm will not jump onto an ally that already has a Swarm and will fizzle if there are no other friendly targets.
+1. Are there any bugs in the sims?
+    * The Necrolord legendary power Locust Swarm does not sim correctly in multi-target sims.
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
