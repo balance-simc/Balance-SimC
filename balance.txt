@@ -8,8 +8,8 @@ actions.precombat+=/snapshot_stats
 actions.precombat+=/variable,name=on_use_trinket,value=0
 actions.precombat+=/variable,name=on_use_trinket,op=add,value=trinket.1.has_proc.any&trinket.1.cooldown.duration
 actions.precombat+=/variable,name=on_use_trinket,op=add,value=(trinket.2.has_proc.any&trinket.2.cooldown.duration)*2
-#### These trinkets are not autmatically detected as on use stat trinkets. Set variable to 4 as they also need special handling.
-actions.precombat+=/variable,name=on_use_trinket,op=set,value=(equipped.inscrutable_quantum_device|equipped.empyreal_ordnance|equipped.soulletting_ruby)*4
+#### These trinkets are not autmatically detected as on use stat trinkets. Add 4 to signal that special handling is active.
+actions.precombat+=/variable,name=on_use_trinket,op=add,value=(equipped.inscrutable_quantum_device|equipped.empyreal_ordnance|equipped.soulletting_ruby)*4
 actions.precombat+=/moonkin_form
 #### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT or Starfire otherwise
 actions.precombat+=/wrath
