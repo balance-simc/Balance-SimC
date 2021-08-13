@@ -73,8 +73,8 @@ actions.st+=/kindred_spirits,if=((buff.eclipse_solar.remains>10|buff.eclipse_lun
 #### Use CA/Inc with Convoke/Kindred Spirits and don't overwrite Pulsar or when Bloodlust would expire before CA/Inc expires
 actions.st+=/variable,name=cd_condition_st,value=!druid.no_cds&variable.cd_condition&((cooldown.empyreal_ordnance.remains<167+(11*runeforge.sinful_hysteria)&equipped.empyreal_ordnance)|astral_power>=90&(!talent.fury_of_elune.enabled|buff.ca_inc.duration>cooldown.fury_of_elune.remains+8)&dot.sunfire.remains>12&dot.moonfire.remains>8&(dot.stellar_flare.remains>8|!talent.stellar_flare.enabled)&variable.thrill_seeker_wait&(buff.kindred_empowerment_energize.up|!covenant.kyrian)&target.time_to_die>buff.ca_inc.duration*0.7|fight_remains<buff.ca_inc.duration|covenant.night_fae|buff.bloodlust.up&buff.bloodlust.remains<buff.ca_inc.duration+(9*runeforge.primordial_arcanic_pulsar.equipped))&!buff.ca_inc.up&(!covenant.night_fae|cooldown.convoke_the_spirits.up|fight_remains<cooldown.convoke_the_spirits.remains+6|fight_remains%%180<buff.ca_inc.duration)
 #### Use the Venthyr with a CA/Inc that isn't from Pulsar
-actions.st+=/ravenous_frenzy,if=buff.ca_inc.remains>15|buff.ca_inc.duration<30&variable.cd_condition_st
-actions.st+=/celestial_alignment,if=variable.cd_condition_st&(!buff.ca_inc.duration>30|!covenant.venthyr)|buff.ravenous_frenzy.up&buff.ravenous_frenzy.remains<9+conduit.precise_alignment.time_value+(!buff.bloodlust.up&!talent.starlord.enabled)
+actions.st+=/ravenous_frenzy,if=buff.ca_inc.remains>15|buff.ca_inc.duration<32&variable.cd_condition_st
+actions.st+=/celestial_alignment,if=variable.cd_condition_st&(buff.ca_inc.duration>=32|!covenant.venthyr)|buff.ravenous_frenzy.up&buff.ravenous_frenzy.remains<9+conduit.precise_alignment.time_value+(!buff.bloodlust.up&!talent.starlord.enabled)
 actions.st+=/incarnation,if=variable.cd_condition_st
 #### Variable used on abilities that want to be saved for CA/Inc so that they arent wasted just before them
 actions.st+=/variable,name=save_for_ca_inc,value=!cooldown.ca_inc.ready|!variable.convoke_desync&covenant.night_fae|druid.no_cds
@@ -102,7 +102,7 @@ actions.st+=/full_moon,if=(buff.eclipse_lunar.remains>execute_time&!covenant.kyr
 #### Use WoE on cd
 actions.st+=/warrior_of_elune
 #### Use Starfire to proc Solar Eclipse, CA/Inc has less time than a Wrath execute left or only Lunar Eclipse is up
-actions.st+=/starfire,if=eclipse.in_lunar|eclipse.solar_next|eclipse.any_next|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)&buff.eclipse_lunar.up|(buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)
+actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|eclipse.any_next|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)&buff.eclipse_lunar.up|(buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)
 #### Use Wrath otherwise which is in Solar Eclipse, CA/Inc or to proc Lunar Eclipse
 actions.st+=/wrath
 #### Fallthru
