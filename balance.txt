@@ -22,7 +22,7 @@ actions=variable,name=is_aoe,value=spell_targets.starfall>1&(!talent.starlord.en
 #### Sets cleave when Starfire can hit 2+ targets which is relevant for the Eclipse to be preferred and which filler to cast
 actions+=/variable,name=is_cleave,value=spell_targets.starfire>1
 #### Variable that checks if you are in a gcd to avoid the situation where a trinket etc is used in between casts
-actions+=/variable,name=in_gcd,value=prev.moonfire|prev.sunfire|prev.starsurge|prev.starfall|prev.fury_of_elune|buff.ca_inc.remains=buff.ca_inc.duration|prev.ravenous_frenzy
+actions+=/variable,name=in_gcd,value=prev.moonfire|prev.sunfire|prev.starsurge|prev.starfall|prev.fury_of_elune|buff.ca_inc.remains=buff.ca_inc.duration|prev.ravenous_frenzy|variable.is_aoe
 #### Use Berserking with CA/Inc or after Convoke in CA/Inc
 actions+=/berserking,if=((!covenant.night_fae|!cooldown.convoke_the_spirits.up)&buff.ca_inc.remains>15&buff.ravenous_frenzy.remains<4&!covenant.venthyr|covenant.venthyr&buff.ca_inc.up&buff.ravenous_frenzy.up&(buff.ravenous_frenzy.remains<11-5*runeforge.sinful_hysteria|buff.ca_inc.remains<11|1%spell_haste<1.55))&variable.in_gcd
 #### Pot with a CA/Inc that isn't a Pulsar proc or when the fight is about to end
