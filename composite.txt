@@ -11,3 +11,5 @@ raid_events+=/adds,name=MiniBoss,count=1,first=156,cooldown=900,duration=35,dura
 raid_events+=/adds,name=Trash,count=4,count_range=3,first=205,cooldown=42,duration=30,duration_stddev=6,same_duration=1
 
 shadowlands.thrill_seeker_killing_blow_chance=0.25
+shadowlands.enable_rune_words=0
+
