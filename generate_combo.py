@@ -27,7 +27,7 @@ def is_M():
     return args.raid == 'mythic'
 
 def is_PTR():
-    return args.raid == 'PTR'
+    return args.raid == 'ptr'
 
 profile_base = profile_nf = apl = dungeon = move = spread = ""
 

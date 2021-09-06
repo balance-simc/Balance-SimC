@@ -41,10 +41,10 @@ $(function() {
         'oneth': "<a href=https://shadowlands.wowhead.com/spell=338661>Oneth</a>",
         'draught': "<a href=https://shadowlands.wowhead.com/spell=338658>Draught</a>",
         'lycaras': "<a href=https://shadowlands.wowhead.com/spell=340059>Lycaras</a>",
-        'venthyr': "<a href=https://ptr.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
-        'necrolord': "<a href=https://ptr.wowhead.com/spell=354123/unbridled-swarm>Swarm</a>",
-        'kyrian': "<a href=https://ptr.wowhead.com/spell=354115/kindred-affinity>Affinity</a>",
-        'night_fae': "<https://ptr.wowhead.com/spell=354118/celestial-spirits>Celestial</a>",
+        'venthyr': "<a href=https://shadowlands.wowhead.com/spell=354109/sinful-hysteria>Hysteria</a>",
+        'necrolord': "<a href=https://shadowlands.wowhead.com/spell=354123/unbridled-swarm>Swarm</a>",
+        'kyrian': "<a href=https://shadowlands.wowhead.com/spell=354115/kindred-affinity>Affinity</a>",
+        'night_fae': "<https://shadowlands.wowhead.com/spell=354118/celestial-spirits>Celestial</a>",
         'covenant': "<a href=https://www.wowhead.com/guides/covenant-specific-legendaries-in-shadowlands-9-1>Covenant</a>",
     }
 
@@ -111,7 +111,16 @@ $(function() {
         'combo_h_10.json': 5,
         'combo_h_s.json': 6,
         'combo_h_1m.json': 7,
-        'combo_h_d.json': 8
+        'combo_h_d.json': 8,
+        'combo_ptr_1.json': 0,
+        'combo_ptr_2.json': 1,
+        'combo_ptr_3.json': 2,
+        'combo_ptr_4.json': 3,
+        'combo_ptr_5.json': 4,
+        'combo_ptr_10.json': 5,
+        'combo_ptr_s.json': 6,
+        'combo_ptr_1m.json': 7,
+        'combo_ptr_d.json': 8
     }
 
     function isPtr() {
@@ -193,7 +202,7 @@ $(function() {
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
-                            let leg_bonus = isPtr() ? "1546" : isH() ? "1546": "1559";
+                            let leg_bonus = isH() ? "1546": "1559";
                             let buf = [];
 
                             buf.push(d);
