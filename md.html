@@ -21,7 +21,7 @@
                     const new4_ = '\n___\n###';
                     text2 = text.replace(old4_, new4_).replace(old_, new_).replace(old2_, new2_).replace(old3_, new3_);
                 }
-                document.getElementById('content').innerHTML = marked(text2);
+                document.getElementById('content').innerHTML = marked.parse(text2);
             });
         </script>
     </body>
