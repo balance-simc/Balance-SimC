@@ -275,6 +275,8 @@ for cov, soulbinds in covenants.items():
                 print('Unknown status code. Return code {}'.format(post.status_code))
                 continue
 
+            counter = 0
+
             while True:
                 time.sleep(3)
                 try:
@@ -284,7 +286,10 @@ for cov, soulbinds in covenants.items():
                     continue
 
                 if 'message' in status and status['message'] == 'No job found':
-                    sys.exit("The sim got lost :( {}".format(simID))
+                    counter += 1
+                    if counter >= 3:
+                        sys.exit("The sim got lost :( {}".format(simID))
+                    continue
 
                 if status['job']['state'] == 'complete':
                     time.sleep(3)
