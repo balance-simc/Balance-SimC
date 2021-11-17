@@ -287,6 +287,7 @@ for cov, soulbinds in covenants.items():
                     sys.exit("The sim got lost :( {}".format(simID))
 
                 if status['job']['state'] == 'complete':
+                    time.sleep(3)
                     data = requests.get(sim_url + '/data.json')
                     results = data.json()
                     if 'error'in results:
