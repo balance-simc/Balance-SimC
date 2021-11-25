@@ -30,10 +30,12 @@ def is_PTR():
     return args.raid == 'ptr'
 
 profile_base = profile_nf = apl = dungeon = move = spread = ""
+apl_txt = 'balance.txt'
 
 if is_PTR():
     profile_txt = 'sandbag_ptr_base.txt'
     nf_profile_txt = 'sandbag_ptr_nf.txt'
+    apl_txt = 'balance_ptr.txt'
 elif is_H():
     profile_txt = 'sandbag_h_base.txt'
     nf_profile_txt = 'sandbag_h_nf.txt'
@@ -45,7 +47,7 @@ with open(profile_txt, 'r') as fp:
     profile_base = fp.read()
 with open(nf_profile_txt, 'r') as fp:
     profile_nf = fp.read()
-with open('balance.txt', 'r') as fp:
+with open(apl_txt, 'r') as fp:
     apl = fp.read()
 with open('composite.txt', 'r') as fp:
     dungeon = fp.read()
@@ -66,7 +68,7 @@ legendaries = {
     'dream': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/',
     'oneth': 'back=,id=173242,bonus_id=6716/7087/6649/6648/',
     'pulsar': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7088/6716/7193/6648/6649/',
-    #'lycaras':'waist=,id=172320,gems=16mastery,bonus_id=6716/7110/6649/6648/',
+    'lycaras':'waist=,id=172320,gems=16mastery,bonus_id=6716/7110/6649/6648/',
     #'draught': 'neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/',
     #'eonar':'waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/',
     'circle': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/',
@@ -197,9 +199,14 @@ for cov, soulbinds in covenants.items():
     for leg, leg_str in legendaries.items():
         # split for covenant legis
         if leg == 'covenant':
+            if is_PTR():
+                continue
+
             leg_str = leg_str[cov]
 
         leg_str += legendaries_suffix()
+        if is_PTR():
+            leg_str += '\n' + legendaries['covenant'][cov] + legendaries_suffix()
 
         profile = profile_base
         if cov == 'night_fae':

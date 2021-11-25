@@ -209,6 +209,9 @@ $(function() {
                             buf.push("covenant=" + r.cov);
                             buf.push("talents=" + r.tal);
                             buf.push(getLegendaryString(r.leg, r.cov) + leg_bonus);
+                            if (isPtr()) {
+                                buf.push(getLegendaryString("covenant", r.cov) + leg_bonus);
+                            }
 
                             let cond = [];
                             if (soulbinds[r.soul] !== "") { isH() ? cond.push(soulbinds[r.soul]) : cond.push(soulbinds_m[r.soul]) };
