@@ -9,7 +9,7 @@ position=back
 talents=0000000
 
 head=,id=186330,ilevel=252,gem_id=173130
-neck=,id=178448,gem_id=173130,ilevel=252
+neck=,id=178827,gem_id=173130,ilevel=252
 shoulder=,id=186298,ilevel=252
 back=,id=179349,ilevel=252
 chest=,id=186296,enchant_id=6230,ilevel=252
