@@ -24,6 +24,9 @@ trinket1=titanic_ocular_gland,id=186423,ilevel=252
 trinket2=,id=179350,ilevel=252
 main_hand=,id=186406,enchant_id=6229,ilevel=259
 
+set_bonus=tier28_2pc=1
+set_bonus=tier28_4pc=1
+
 shadowlands.disable_iqd_execute=1
 shadowlands.unbound_changeling_stat_type=mastery
 
