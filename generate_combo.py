@@ -126,7 +126,7 @@ covenants = {
     },
     'necrolord': {
         'marileth': {
-            'base': '',
+            'base': 'volatile_solvent',
             'add': 'kevins_oozeling',
             'trait': ['plagueys_preemptive_strike']
         },

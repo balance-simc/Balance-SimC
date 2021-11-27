@@ -82,7 +82,7 @@ $(function() {
         'pelagos': "combat_meditation/better_together/newfound_resolve",
         'kleia': "spear_of_the_archon/light_the_path",
         'mikanikos': "brons_call_to_action/soulglow_spectrometer/effusive_anima_accelerator",
-        'marileth': "kevins_oozeling",
+        'marileth': "volatile_solvent/kevins_oozeling",
         'emeni': "lead_by_example/pustule_eruption",
         'heirmir': "forgeborne_reveries/carvers_eye/mnemonic_equipment",
         'niya': "grove_invigoration/bonded_hearts",
