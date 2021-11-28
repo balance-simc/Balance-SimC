@@ -191,13 +191,16 @@ $(function() {
                         let r = getRecord(filters, pivotData);
                         let prof = "";
                         if (isPtr()) {
-                            prof = r.cov == "night_fae" ? "sandbag_ptr_nf.txt" : "sandbag_ptr_base.txt";
+                            //prof = r.cov == "night_fae" ? "sandbag_ptr_nf.txt" : "sandbag_ptr_base.txt";
+                            prof = "sandbag_ptr_base.txt";
                         }
                         else if (isH()) {
-                            prof = r.cov == "night_fae" ? "sandbag_h_nf.txt" : "sandbag_h_base.txt";
+                            //prof = r.cov == "night_fae" ? "sandbag_h_nf.txt" : "sandbag_h_base.txt";
+                            prof = "sandbag_h_base.txt";
                         }
                         else {
-                            prof = r.cov == "night_fae" ? "sandbag_nf.txt" : "sandbag_base.txt";
+                            //prof = r.cov == "night_fae" ? "sandbag_nf.txt" : "sandbag_base.txt";
+                            prof = "sandbag_base.txt";
                         }
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(prof, (d) => {

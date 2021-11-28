@@ -209,8 +209,8 @@ for cov, soulbinds in covenants.items():
             leg_str += '\n' + legendaries['covenant'][cov] + legendaries_suffix()
 
         profile = profile_base
-        if cov == 'night_fae':
-            profile = profile_nf
+        #if cov == 'night_fae':
+        #    profile = profile_nf
 
         for soul, traits in soulbinds.items():
             sets_list = []
