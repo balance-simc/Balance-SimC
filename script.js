@@ -57,10 +57,10 @@ $(function() {
         'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
         'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
         'circle': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/',
-        'kyrian': 'neck=,id=178927,gems=16mastery,bonus_id=7477/6716/7193/6648/6649/',
-        'necrolord': 'wrist=,id=172321,gems=16mastery,bonus_id=7472/6716/6648/6649/',
-        'night_fae': 'legs=,id=172318,bonus_id=7571/6716/6648/6649/',
-        'venthyr': 'waist=,id=172320,gems=16mastery,bonus_id=7474/6716/7194/6648/6649/',
+        'kyrian': 'waist=,id=172320,gems=16mastery,bonus_id=7477/6716/7194/6648/6649/',
+        'necrolord': 'waist=,id=172320,gems=16mastery,bonus_id=7472/6716/7194/6648/6649/',
+        'night_fae': 'waist=,id=172320,gems=16mastery,bonus_id=7571/6716/7194/6648/6649/',
+        'venthyr': 'waist=,id=172320,gems=16mastery,bonus_id=7474/6716/7194/6648/6649/'
     }
 
     var soulbinds = {
