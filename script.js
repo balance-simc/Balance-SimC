@@ -123,31 +123,6 @@ $(function() {
         'combo_ptr_d.json': 8
     }
 
-    function getFightProperties() {
-        let rx = /.+(.)\.json/g;
-        let fight_style = rx.exec($("#fightstyle").val())[1];
-        let fightProperties;
-
-        if (fight_style == "d") {
-            //something
-        }
-        else if (fight_style == "m") {
-            //something
-        }
-        else if (fight_style == "s") {
-            //something
-        }
-        else if (fight_style == "0") {
-            return "desired_targets=10";
-        }
-        else if (!isNaN(fight_style)) {
-            return "desired_targets=" + fight_style;
-        }
-        else {
-            console.log("invalid json name");
-        }
-        return fightProperties;
-    }
     function isPtr() {
         return $("#fightstyle").val().includes("combo_ptr");
     }
@@ -165,6 +140,9 @@ $(function() {
         if (leg == "covenant") { return legendaries[cov]; }
         return legendaries[leg];
     }
+    function getFightStyle() {
+        return $("#fightstyle").val().split('.').shift().split('_').pop()
+    }
 
     function getRecord(filters, pivotData) {
         let buf = [];
@@ -173,6 +151,7 @@ $(function() {
         return buf[0];
     }
 
+    var fightStyleTxt = "";
     var defaultOptions = {
         renderers: rend,
         hiddenFromDragDrop: ["dps", "cov", "soul", "cond1", "cond2", "cond3", "leg", "tal"],
@@ -247,7 +226,7 @@ $(function() {
                             if (r.cond2 !== "none") { cond.push(r.cond2); }
                             if (r.cond3 !== "none") { cond.push(r.cond3); }
                             buf.push("soulbind=" + cond.join("/"));
-                            buf.push(getFightProperties());
+                            buf.push(fightStyleTxt);
                             buf.push("report_details=1");
                             buf.push("buff_uptime_timeline=1");
                             buf.push("buff_stack_uptime_timeline=1");
@@ -322,6 +301,23 @@ $(function() {
                 const d_json = await commit.json();
                 let date = new Date(d_json[0]['commit']['committer']['date']);
                 $("#update").html(date.toLocaleString());
+
+                let fs = getFightStyle();
+                fightStyleTxt = "";
+                if (fs === 'd') {
+                    const f = await fetch('composite.txt');
+                    fightStyleTxt = await f.text();
+                } else if (fs === '1m') {
+                    const f = await fetch('move.txt');
+                    fightStyleTxt = await f.text();
+                } else if (fs === 's') {
+                    const f = await fetch('spread.txt');
+                    fightStyleTxt = await f.text();
+                } else if (!isNaN(fs)) {
+                    fightStyleTxt = "desired_targets=" + fs;
+                } else {
+                    console.log("Invalid JSON Name");
+                }
             })()
         },
         derivedAttributes: {
