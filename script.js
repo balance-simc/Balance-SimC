@@ -123,6 +123,31 @@ $(function() {
         'combo_ptr_d.json': 8
     }
 
+    function getFightProperties() {
+        let rx = /.+(.)\.json/g;
+        let fight_style = rx.exec($("#fightstyle").val())[1];
+        let fightProperties;
+
+        if (fight_style == "d") {
+            //something
+        }
+        else if (fight_style == "m") {
+            //something
+        }
+        else if (fight_style == "s") {
+            //something
+        }
+        else if (fight_style == "0") {
+            return "desired_targets=10";
+        }
+        else if (!isNaN(fight_style)) {
+            return "desired_targets=" + fight_style;
+        }
+        else {
+            console.log("invalid json name");
+        }
+        return fightProperties;
+    }
     function isPtr() {
         return $("#fightstyle").val().includes("combo_ptr");
     }
@@ -189,21 +214,21 @@ $(function() {
                     if ($tar.hasClass("pvtVal")) {
                         const el = document.createElement('textarea');
                         let r = getRecord(filters, pivotData);
-                        let prof = "";
+                        let profile = "";
                         if (isPtr()) {
                             //prof = r.cov == "night_fae" ? "sandbag_ptr_nf.txt" : "sandbag_ptr_base.txt";
-                            prof = "sandbag_ptr_base.txt";
+                            profile = "sandbag_ptr_base.txt";
                         }
                         else if (isH()) {
                             //prof = r.cov == "night_fae" ? "sandbag_h_nf.txt" : "sandbag_h_base.txt";
-                            prof = "sandbag_h_base.txt";
+                            profile = "sandbag_h_base.txt";
                         }
                         else {
                             //prof = r.cov == "night_fae" ? "sandbag_nf.txt" : "sandbag_base.txt";
-                            prof = "sandbag_base.txt";
+                            profile = "sandbag_base.txt";
                         }
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
-                        $.get(prof, (d) => {
+                        $.get(profile, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
                             let leg_bonus = isH() ? "1546": "1559";
                             let buf = [];
@@ -222,6 +247,7 @@ $(function() {
                             if (r.cond2 !== "none") { cond.push(r.cond2); }
                             if (r.cond3 !== "none") { cond.push(r.cond3); }
                             buf.push("soulbind=" + cond.join("/"));
+                            buf.push(getFightProperties());
                             buf.push("report_details=1");
                             buf.push("buff_uptime_timeline=1");
                             buf.push("buff_stack_uptime_timeline=1");
