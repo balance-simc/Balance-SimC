@@ -16,8 +16,8 @@ actions.precombat+=/moonkin_form
 #### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT or Starfire otherwise
 actions.precombat+=/wrath
 actions.precombat+=/wrath
-actions.precombat+=/starfire,if=!runeforge.balance_of_all_things|!covenant.night_fae|!spell_targets.starfall=1|!talent.natures_balance.enabled
-actions.precombat+=/starsurge,if=runeforge.balance_of_all_things&covenant.night_fae&spell_targets.starfall=1
+actions.precombat+=/starfire,if=(!runeforge.balance_of_all_things|!covenant.night_fae|!spell_targets.starfall=1|!talent.natures_balance.enabled)&!set_bonus.tier28_2pc
+actions.precombat+=/starsurge,if=(runeforge.balance_of_all_things&covenant.night_fae&spell_targets.starfall=1)&!set_bonus.tier28_2pc
 
 #### Sets AoE on 3+ without drift and with Starlord and 2+ otherwise
 actions=variable,name=is_aoe,value=spell_targets.starfall>1&(!talent.starlord.enabled|talent.stellar_drift.enabled)|spell_targets.starfall>2
@@ -74,7 +74,7 @@ actions.st+=/force_of_nature,if=ap_check
 #### Use Kindred Spirits with any long enough lasting Eclipse and try to line it up with Pulsar and CA/Inc
 actions.st+=/kindred_spirits,if=((buff.eclipse_solar.remains>10|buff.eclipse_lunar.remains>10)&cooldown.ca_inc.remains>30&(buff.primordial_arcanic_pulsar.value<240|!runeforge.primordial_arcanic_pulsar))|buff.primordial_arcanic_pulsar.value>=270-20*talent.stellar_drift.enabled|buff.ca_inc.remains>10
 #### Use CA/Inc with Convoke/Kindred Spirits and don't overwrite Pulsar or when Bloodlust would expire before CA/Inc expires. 
-actions.st+=/variable,name=cd_condition_st,value=!druid.no_cds&(variable.cd_condition&!buff.ca_inc.up&(!set_bonus.tier28_4pc|eclipse.in_lunar|eclipse.solar_next)&(covenant.night_fae|(cooldown.empyreal_ordnance.remains<167+(11*runeforge.sinful_hysteria)&equipped.empyreal_ordnance)|(astral_power>=90|runeforge.timeworn_dreambinder)&(!talent.fury_of_elune.enabled|cooldown.fury_of_elune.remains<20)&dot.sunfire.remains>8&dot.moonfire.remains>9&(dot.stellar_flare.remains>10|!talent.stellar_flare.enabled)&variable.thrill_seeker_wait&(cooldown.empower_bond.up|!covenant.kyrian)&target.time_to_die>buff.ca_inc.duration*0.7|buff.bloodlust.up&buff.bloodlust.remains<buff.ca_inc.duration+(12*runeforge.primordial_arcanic_pulsar))&(!covenant.night_fae|(cooldown.convoke_the_spirits.remains<buff.ca_inc.duration%2&!runeforge.balance_of_all_things|cooldown.convoke_the_spirits.ready&astral_power<50)|fight_remains<cooldown.convoke_the_spirits.remains)|fight_remains<buff.ca_inc.duration+12*runeforge.primordial_arcanic_pulsar)
+actions.st+=/variable,name=cd_condition_st,value=!druid.no_cds&(variable.cd_condition&!buff.ca_inc.up&(!set_bonus.tier28_2pc|eclipse.in_lunar|eclipse.solar_next)&(covenant.night_fae|(cooldown.empyreal_ordnance.remains<167+(11*runeforge.sinful_hysteria)&equipped.empyreal_ordnance)|(astral_power>=90|runeforge.timeworn_dreambinder)&(!talent.fury_of_elune.enabled|cooldown.fury_of_elune.remains<20)&dot.sunfire.remains>8&dot.moonfire.remains>9&(dot.stellar_flare.remains>10|!talent.stellar_flare.enabled)&variable.thrill_seeker_wait&(cooldown.empower_bond.up|!covenant.kyrian)&target.time_to_die>buff.ca_inc.duration*0.7|buff.bloodlust.up&buff.bloodlust.remains<buff.ca_inc.duration+(12*runeforge.primordial_arcanic_pulsar))&(!covenant.night_fae|(cooldown.convoke_the_spirits.remains<buff.ca_inc.duration%2&!runeforge.balance_of_all_things|cooldown.convoke_the_spirits.ready&astral_power<50)|fight_remains<cooldown.convoke_the_spirits.remains)|fight_remains<buff.ca_inc.duration+12*runeforge.primordial_arcanic_pulsar)
 actions.st+=/ravenous_frenzy,if=buff.ca_inc.remains>15|buff.ca_inc.duration<32&variable.cd_condition_st
 actions.st+=/celestial_alignment,if=variable.cd_condition_st&(buff.ca_inc.duration>=32|!covenant.venthyr)|buff.ravenous_frenzy.up&buff.ravenous_frenzy.remains<9+conduit.precise_alignment.time_value+(!buff.bloodlust.up&!talent.starlord.enabled)
 actions.st+=/incarnation,if=variable.cd_condition_st
@@ -110,7 +110,7 @@ actions.st+=/full_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.
 #### Use WoE on cd
 actions.st+=/warrior_of_elune
 #### Use Starfire to proc Solar Eclipse, CA/Inc has less time than a Wrath execute left or only Lunar Eclipse is up
-actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|(eclipse.any_next|buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)&(!set_bonus.tier28_4pc|talent.soul_of_the_forest.enabled|runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value<210&cooldown.ca_inc.remains>17&(!race.troll|cooldown.berserking.remains>17))|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)
+actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|(eclipse.any_next|buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)&(!set_bonus.tier28_2pc|talent.soul_of_the_forest.enabled|runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value<210&cooldown.ca_inc.remains>17&(!race.troll|cooldown.berserking.remains>17))|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)
 #### Use Wrath otherwise which is in Solar Eclipse, CA/Inc or to proc Lunar Eclipse
 actions.st+=/wrath
 #### Fallthru
