@@ -88,7 +88,7 @@ actions.st+=/cancel_buff,name=starlord,if=buff.starlord.remains<5&(buff.eclipse_
 #### Cancel the pulsar buff if the proc wouldn't line up with the next time Convoke comes off cd
 actions.st+=/cancel_buff,name=primordial_arcanic_pulsar,if=@((300-astral_power+60)%((4+set_bonus.tier28_2pc)%spell_haste)-cooldown.convoke_the_spirits.remains)<@((300-astral_power-buff.primordial_arcanic_pulsar.value+60)%((4+set_bonus.tier28_2pc)%spell_haste)-cooldown.convoke_the_spirits.remains)&cooldown.ca_inc.remains>30&buff.primordial_arcanic_pulsar.value<210&buff.primordial_arcanic_pulsar.value>30&cooldown.convoke_the_spirits.remains<40&fight_remains>cooldown.convoke_the_spirits.remains+6&(runeforge.celestial_spirits|variable.convoke_desync)
 #### Sets when Pulsar should be procced early to be able to use Convoke on cooldown
-actions.st+=/variable,name=proc_pulsar_early,value=covenant.night_fae&variable.convoke_desync&cooldown.convoke_the_spirits.remains<5&!druid.no_cds&(eclipse.in_lunar|buff.eclipse_solar.remains>10)&astral_power>variable.convoke_asp&cooldown.ca_inc.remains>5&!runeforge.timeworn_dreambinder
+actions.st+=/variable,name=proc_pulsar_early,value=covenant.night_fae&runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value+astral_power+3>=300&variable.convoke_desync&cooldown.convoke_the_spirits.remains<astral_power%30*gcd.max&!druid.no_cds&eclipse.in_any&astral_power>variable.convoke_asp&cooldown.ca_inc.remains>5
 #### Sets when AsP should be dumped to not overcap
 actions.st+=/variable,name=asp_dump,value=astral_power>(90-2.5*buff.fury_of_elune.stack-2*eclipse.in_lunar)
 #### Use Starfall with Stellar Drift and no Starlord, when no Starfall is up, you are in Lunar Eclipse for 8+secs or to proc Pulsar when above 90 AsP or adpative swarm has 8+secs remaining or is in flight. Note that under the same conditions it's dps neutral to Starfall during Ravenous Frenzy, when you'd still end up with 90+asp for the last globals.
@@ -110,7 +110,7 @@ actions.st+=/full_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.
 #### Use WoE on cd
 actions.st+=/warrior_of_elune
 #### Use Starfire to proc Solar Eclipse, CA/Inc has less time than a Wrath execute left or only Lunar Eclipse is up
-actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|(eclipse.any_next|buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)&(!set_bonus.tier28_2pc|talent.soul_of_the_forest.enabled|runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value<210&cooldown.ca_inc.remains>17&(!race.troll|cooldown.berserking.remains>17))|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)
+actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|(eclipse.any_next|buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)&(!set_bonus.tier28_2pc|talent.soul_of_the_forest.enabled|runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value<210&cooldown.convoke_the_spirits.remains>17&cooldown.ca_inc.remains>17&(!race.troll|cooldown.berserking.remains>17))|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)
 #### Use Wrath otherwise which is in Solar Eclipse, CA/Inc or to proc Lunar Eclipse
 actions.st+=/wrath
 #### Fallthru
