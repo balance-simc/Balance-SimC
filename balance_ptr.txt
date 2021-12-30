@@ -81,7 +81,7 @@ actions.st+=/incarnation,if=variable.cd_condition_st
 #### Variable used on abilities that want to be saved for CA/Inc so that they arent wasted just before them
 actions.st+=/variable,name=save_for_ca_inc,value=cooldown.ca_inc.remains>10|!variable.convoke_desync&covenant.night_fae|druid.no_cds
 #### Uses FoE if in an Eclipse and tries to line it up with Pulsar, CA/Inc and Adaptive Swarm
-actions.st+=/fury_of_elune,if=eclipse.in_any&astral_power<92-buff.fury_of_elune.stack*5&(buff.primordial_arcanic_pulsar.value<240|buff.ca_inc.remains>8)&(dot.adaptive_swarm_damage.ticking|!covenant.necrolord)&variable.save_for_ca_inc&(!covenant.venthyr|buff.ravenous_frenzy.remains<9-(4*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!covenant.kyrian|cooldown.empower_bond.remains>20)
+actions.st+=/fury_of_elune,if=eclipse.in_any&(astral_power<92-buff.fury_of_elune.stack*5|buff.ravenous_frenzy.up)&(buff.primordial_arcanic_pulsar.value<240|buff.ca_inc.remains>8)&(dot.adaptive_swarm_damage.ticking|!covenant.necrolord)&variable.save_for_ca_inc&(!covenant.venthyr|buff.ravenous_frenzy.remains<9-(4*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!covenant.kyrian|cooldown.empower_bond.remains>20)
 #### Use Oneth Starfall procs if Starfall isn't up
 actions.st+=/starfall,if=buff.oneths_perception.up&buff.starfall.refreshable
 actions.st+=/cancel_buff,name=starlord,if=buff.starlord.remains<5&(buff.eclipse_solar.remains>5|buff.eclipse_lunar.remains>5)&astral_power>90
