@@ -113,7 +113,7 @@ actions.st+=/full_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.
 #### Use WoE on cd
 actions.st+=/warrior_of_elune
 #### Use Starfire to proc Solar Eclipse, CA/Inc has less time than a Wrath execute left or only Lunar Eclipse is up
-actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|(eclipse.any_next|buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)&(!set_bonus.tier28_2pc|talent.soul_of_the_forest.enabled|runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value<210&cooldown.convoke_the_spirits.remains>17&cooldown.ca_inc.remains>17&(!race.troll|cooldown.berserking.remains>17))|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)
+actions.st+=/starfire,if=eclipse.in_lunar&!buff.ravenous_frenzy.up|eclipse.solar_next|(eclipse.any_next|buff.ca_inc.remains<action.wrath.execute_time&buff.ca_inc.up)&(!set_bonus.tier28_2pc|talent.soul_of_the_forest.enabled|runeforge.primordial_arcanic_pulsar&buff.primordial_arcanic_pulsar.value<210&cooldown.ca_inc.remains>17&(!covenant.night_fae|cooldown.convoke_the_spirits.remains>17)&(!race.troll|cooldown.berserking.remains>17))|(buff.warrior_of_elune.up|spell_haste<0.45&!covenant.venthyr|spell_haste<0.4&covenant.venthyr)
 #### Use Wrath otherwise which is in Solar Eclipse, CA/Inc or to proc Lunar Eclipse
 actions.st+=/wrath
 #### Fallthru
