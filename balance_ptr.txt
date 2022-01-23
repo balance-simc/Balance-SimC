@@ -69,6 +69,9 @@ actions.st+=/variable,name=dot_outside_eclipse,value=(!buff.eclipse_solar.up&!bu
 actions.st+=/moonfire,target_if=(buff.eclipse_solar.remains>remains|buff.eclipse_lunar.remains>remains|variable.dot_outside_eclipse)&refreshable&target.time_to_die>12,if=ap_check&variable.dot_requirements
 actions.st+=/sunfire,target_if=(buff.eclipse_solar.remains>remains|buff.eclipse_lunar.remains>remains|variable.dot_outside_eclipse)&refreshable&target.time_to_die>12,if=ap_check&variable.dot_requirements
 actions.st+=/stellar_flare,target_if=(buff.eclipse_solar.remains>remains|buff.eclipse_lunar.remains>remains|variable.dot_outside_eclipse)&refreshable&target.time_to_die>16,if=ap_check&variable.dot_requirements
+actions.st+=/variable,name=no_hysteria_early_dot,value=covenant.venthyr&!runeforge.sinful_hysteria&cooldown.berserking.ready&cooldown.ravenous_frenzy.ready&!buff.ca_inc.up&(astral_power>87|buff.bloodlust.up)
+actions.st+=/moonfire,if=variable.no_hysteria_early_dot&remains<20
+actions.st+=/sunfire,if=variable.no_hysteria_early_dot&remains<19
 #### Use FoN on cd without capping
 actions.st+=/force_of_nature,if=ap_check
 #### Use Kindred Spirits with any long enough lasting Eclipse and try to line it up with Pulsar and CA/Inc
@@ -96,8 +99,8 @@ actions.st+=/starfall,if=(talent.stellar_drift.enabled|set_bonus.tier28_4pc)&!ta
 #### Dumps AsP before Convoke using the Convoke condition to check if Convoke is actually about to be cast
 actions.st+=/starsurge,if=variable.proc_pulsar_early
 actions.st+=/new_moon,if=ap_check&(charges=2&recharge_time<5|charges=3)
-actions.st+=/half_moon,if=ap_check&(charges=2&recharge_time<5|charges=3)
-actions.st+=/full_moon,if=ap_check&(charges=2&recharge_time<5|charges=3)
+actions.st+=/half_moon,if=ap_check&(charges=2&recharge_time<5|charges=3)&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
+actions.st+=/full_moon,if=ap_check&(charges=2&recharge_time<5|charges=3)&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
 #### Use Starsurge Oneth procs and dump AsP when CA/Inc or the Venthyr buff is about to fall off or you'd cap AsP
 actions.st+=/starsurge,if=eclipse.in_any&(buff.oneths_clear_vision.up|buff.kindred_empowerment_energize.up|buff.ca_inc.up&(!covenant.kyrian|cooldown.empower_bond.remains>5|buff.ca_inc.remains<gcd.max*floor(astral_power%variable.ss_cost))&(!covenant.venthyr|buff.ravenous_frenzy.remains<gcd.max*ceil(astral_power%variable.ss_cost)+3*talent.new_moon.enabled&!runeforge.sinful_hysteria&buff.ravenous_frenzy.up|buff.ravenous_frenzy_sinful_hysteria.up|(buff.ravenous_frenzy.remains<action.starfire.execute_time&spell_haste<0.4|buff.ravenous_frenzy.remains<action.wrath.execute_time|variable.iqd_condition&cooldown.inscrutable_quantum_device.ready&equipped.inscrutable_quantum_device)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up&!cooldown.ravenous_frenzy.ready)|variable.asp_dump|fight_remains<gcd.max*ceil(astral_power%variable.ss_cost))
 #### Try to make the best of Starlord by stacking it up quickly in any Eclipse but Pulsar isnt about to be procced
@@ -108,8 +111,8 @@ actions.st+=/variable,name=aspPerSec,value=eclipse.in_lunar*8%action.starfire.ex
 actions.st+=/starsurge,if=!runeforge.timeworn_dreambinder&(buff.primordial_arcanic_pulsar.value<270|buff.primordial_arcanic_pulsar.value<250&talent.stellar_drift.enabled)&(eclipse.in_solar&astral_power+variable.aspPerSec*buff.eclipse_solar.remains+dot.fury_of_elune.ticks_remain*2.5>80|eclipse.in_lunar&astral_power+variable.aspPerSec*buff.eclipse_lunar.remains+dot.fury_of_elune.ticks_remain*2.5>90)&!buff.oneths_perception.up&!talent.starlord.enabled&(cooldown.ca_inc.remains>7|soulbind.thrill_seeker.enabled&buff.thrill_seeker.stack<33-(runeforge.sinful_hysteria*2)&fight_remains>100&fight_remains<200|druid.no_cds)&(!covenant.kyrian|cooldown.empower_bond.remains>2)
 #### Use Moons in Lunar Eclipse and save Half+Full Moon for CA/Inc and Kindred Empowerment
 actions.st+=/new_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
-actions.st+=/half_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)&(charges=2&recharge_time<5|charges=3|buff.ca_inc.up|buff.primordial_arcanic_pulsar.value<=210)&(!covenant.venthyr|buff.ravenous_frenzy.remains<(5-2*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!runeforge.timeworn_dreambinder|execute_time<buff.timeworn_dreambinder.remains|!buff.timeworn_dreambinder.up)
-actions.st+=/full_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)&(charges=2&recharge_time<5|charges=3|buff.ca_inc.up|buff.primordial_arcanic_pulsar.value<=210)&(!covenant.kyrian|buff.kindred_empowerment_energize.up)&(!covenant.venthyr|buff.ravenous_frenzy.remains<5&buff.ravenous_frenzy.up&!runeforge.sinful_hysteria|!buff.ravenous_frenzy.up)&(!runeforge.timeworn_dreambinder|execute_time<buff.timeworn_dreambinder.remains|!buff.timeworn_dreambinder.up)
+actions.st+=/half_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)&(buff.ca_inc.up|buff.primordial_arcanic_pulsar.value<=210)&(!covenant.venthyr|buff.ravenous_frenzy.remains<(5-2*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!runeforge.timeworn_dreambinder|execute_time<buff.timeworn_dreambinder.remains|!buff.timeworn_dreambinder.up)
+actions.st+=/full_moon,if=ap_check&variable.save_for_ca_inc&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)&(buff.ca_inc.up|buff.primordial_arcanic_pulsar.value<=210)&(!covenant.kyrian|buff.kindred_empowerment_energize.up)&(!covenant.venthyr|buff.ravenous_frenzy.remains<5&buff.ravenous_frenzy.up&!runeforge.sinful_hysteria|!buff.ravenous_frenzy.up)&(!runeforge.timeworn_dreambinder|execute_time<buff.timeworn_dreambinder.remains|!buff.timeworn_dreambinder.up)
 #### Use WoE on cd
 actions.st+=/warrior_of_elune
 #### Use Starfire to proc Solar Eclipse, CA/Inc has less time than a Wrath execute left or only Lunar Eclipse is up
