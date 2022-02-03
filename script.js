@@ -7,7 +7,7 @@ $(function() {
         colOrder: "value_z_to_a",
         rendererName: "Heatmap",
         inclusions: {},
-        exclusions: {}
+        exclusions:{["T45"]:["SF"]},
     }
 
     let rend = $.pivotUtilities.renderers;
