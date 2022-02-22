@@ -212,7 +212,7 @@ jobs:
           python-version: '3.8'
       - run: |
           python -m pip install --upgrade pip
-          pip install requests      
+          pip install requests
       - name: one target spread
         run: python generate_combo.py -s -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
@@ -233,7 +233,7 @@ jobs:
           name: update_json2
           path: |
             *.json
-            
+
   update_json_move:
     name: Update JSON Move
     needs: [ update_json_spread ]
@@ -245,7 +245,7 @@ jobs:
           python-version: '3.8'
       - run: |
           python -m pip install --upgrade pip
-          pip install requests      
+          pip install requests
       - name: one target move
         run: python generate_combo.py -t 1 -m -r heroic ${{ secrets.RAIDBOTSAPI }}
       - name: commit
@@ -266,7 +266,7 @@ jobs:
           name: update_json2
           path: |
             *.json
-            
+
   update_json_dungeon:
     name: Update JSON Dungeon
     needs: [ update_json_move ]
