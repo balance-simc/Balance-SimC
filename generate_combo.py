@@ -39,24 +39,19 @@ def getJSON(url):
             continue
         return status
 
-profile_base = profile_nf = apl = dungeon = move = spread = ""
+profile_base = apl = dungeon = move = spread = ""
 apl_txt = 'balance.txt'
 
 if is_PTR():
     profile_txt = 'sandbag_ptr_base.txt'
-    nf_profile_txt = 'sandbag_ptr_nf.txt'
     apl_txt = 'balance_ptr.txt'
 elif is_H():
     profile_txt = 'sandbag_h_base.txt'
-    nf_profile_txt = 'sandbag_h_nf.txt'
 else:
     profile_txt = 'sandbag_base.txt'
-    nf_profile_txt = 'sandbag_nf.txt'
 
 with open(profile_txt, 'r') as fp:
     profile_base = fp.read()
-with open(nf_profile_txt, 'r') as fp:
-    profile_nf = fp.read()
 with open(apl_txt, 'r') as fp:
     apl = fp.read()
 with open('composite.txt', 'r') as fp:
@@ -219,8 +214,6 @@ for cov, soulbinds in covenants.items():
             leg_str += '\n' + legendaries['covenant'][cov] + legendaries_suffix()
 
         profile = profile_base
-        #if cov == 'night_fae':
-        #    profile = profile_nf
 
         for soul, traits in soulbinds.items():
             sets_list = []
