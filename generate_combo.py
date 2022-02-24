@@ -69,7 +69,7 @@ talents = [
 ]
 
 legendaries = {
-    'boat': 'legs=,id=172318,bonus_id=7107/6716/6648/6649/',
+    'boat': 'feet=,id=172315,bonus_id=7107/6648/6649/6758/',
     'dream': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/',
     'oneth': 'back=,id=173242,bonus_id=6716/7087/6649/6648/',
     'pulsar': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7088/6716/7193/6648/6649/',
