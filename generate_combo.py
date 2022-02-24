@@ -107,9 +107,9 @@ cov_conduit = {
 
 def conduit_suffix():
     if is_H():
-        return '9'
-    else:
         return '11'
+    else:
+        return '13'
 
 covenants = {
     'kyrian': {
