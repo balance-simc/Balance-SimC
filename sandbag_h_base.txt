@@ -14,12 +14,12 @@ chest=chestguard_of_the_fixed_stars,id=188849,ilevel=272,enchant=eternal_insight
 wrists=wrists_of_the_wicked_star,id=189836,bonus_id=1524/7187,gem_id=173130,enchant=eternal_intellect
 hands=handwraps_of_the_fixed_stars,id=188853,ilevel=272
 waist=runecarvers_twisted_ward,id=189856,ilevel=272,gem_id=173130
-legs=,id=179324,ilevel=278
+legs=,id=179324,ilevel=265
 feet=treads_of_titanic_curiosity,id=189848,,ilevel=265
-finger1=death_gods_signet,id=179355,gem_id=173130,enchant_id=6168,ilevel=278
+finger1=death_gods_signet,id=179355,gem_id=173130,enchant_id=6168,ilevel=265
 finger2=signet_of_the_false_accuser,id=178824,,ilevel=265,gem_id=173130,enchant=tenet_of_haste
 trinket1=inscrutable_quantum_device,id=179350,,ilevel=265
-trinket2=soleahs_secret_technique,id=185818,,ilevel=265
+trinket2=soleahs_secret_technique,id=190958,,ilevel=265
 main_hand=antumbra_shadow_of_the_cosmos,id=189852,ilevel=272,enchant=sinful_revelation
 off_hand=forbidden_truth,id=189860,ilevel=272
 
