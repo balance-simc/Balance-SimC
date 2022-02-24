@@ -16,7 +16,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - name: one target
-        run: python generate_combo.py -t 1 -r heroic ${{ secrets.RAIDBOTSAPI }}
+        run: python generate_combo.py -t 1 -r heroic ${{ secrets.RAIDBOTSAPI2 }}
       - name: commit
         run: |
           git config user.name Balance-SimC
