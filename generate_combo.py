@@ -87,9 +87,9 @@ legendaries = {
 
 def legendaries_suffix():
     if is_H():
-        return '1546'
-    else:
         return '1559'
+    else:
+        return '1588'
 
 conduits = [
     'fury_of_the_skies:',
@@ -204,14 +204,12 @@ for cov, soulbinds in covenants.items():
     for leg, leg_str in legendaries.items():
         # split for covenant legis
         if leg == 'covenant':
-            if is_PTR():
+            if is_M():
                 continue
 
             leg_str = leg_str[cov]
 
         leg_str += legendaries_suffix()
-        if is_PTR():
-            leg_str += '\n' + legendaries['covenant'][cov] + legendaries_suffix()
 
         profile = profile_base
 

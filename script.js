@@ -209,7 +209,7 @@ $(function() {
                         let apl = isPtr() ? "balance_ptr.txt" : "balance.txt";
                         $.get(profile, (d) => {
                             //$.get("http://raw.githubusercontent.com/balance-simc/Balance-SimC/master/" + prof, (d) => {
-                            let leg_bonus = isH() ? "1546": "1559";
+                            let leg_bonus = isH() ? "1559": "1588";
                             let buf = [];
 
                             buf.push(d);
