@@ -20,8 +20,9 @@ finger1=death_gods_signet,id=179355,gem_id=173130,enchant_id=6168,ilevel=265
 finger2=signet_of_the_false_accuser,id=178824,,ilevel=265,gem_id=173130,enchant=tenet_of_haste
 trinket1=inscrutable_quantum_device,id=179350,,ilevel=265
 trinket2=elegy_of_the_eternals,id=188270,ilevel=265
-main_hand=antumbra_shadow_of_the_cosmos,id=189852,ilevel=272,enchant=sinful_revelation
-off_hand=forbidden_truth,id=189860,ilevel=272
+main_hand=guardstaff_of_the_great_cycle,id=189834,ilevel=265,enchant=celestial_guidance
+#main_hand=antumbra_shadow_of_the_cosmos,id=189852,ilevel=272,enchant=sinful_revelation
+#off_hand=forbidden_truth,id=189860,ilevel=272
 
 shadowlands.disable_iqd_execute=1
 shadowlands.unbound_changeling_stat_type=mastery
