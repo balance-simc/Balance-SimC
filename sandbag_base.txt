@@ -1,4 +1,11 @@
 druid="Sandbag"
+spec=balance
+level=60
+race=troll
+role=spell
+position=back
+talents=0000000
+
 head=headpiece_of_the_fixed_stars,id=188847,bonus_id=7187/1498/6935,gem_id=173130
 neck=worldkiller_iris,id=189859,bonus_id=7187/1524/6935,gem_id=173130
 shoulders=shoulderpads_of_the_fixed_stars,id=188851,bonus_id=7187/1505
