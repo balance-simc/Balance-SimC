@@ -7,8 +7,8 @@ max_time=550
 ignore_invulnerable_targets=1
 raid_events+=/invulnerable,cooldown=900,duration=900,retarget=1
 raid_events+=/adds,name=Boss,count=1,cooldown=900,duration=130,duration_stddev=13
-raid_events+=/adds,name=MiniBoss,count=1,first=156,cooldown=900,duration=35,duration_stddev=7
-raid_events+=/adds,name=Trash,count=4,count_range=3,first=205,cooldown=42,duration=30,duration_stddev=6,same_duration=1
+#raid_events+=/adds,name=MiniBoss,count=1,first=156,cooldown=900,duration=35,duration_stddev=7
+raid_events+=/adds,name=Trash,count=4,count_range=3,first=156,cooldown=42,duration=30,duration_stddev=6,same_duration=1
 
 shadowlands.thrill_seeker_killing_blow_chance=0.25
 shadowlands.enable_rune_words=0
