@@ -50,13 +50,13 @@ $(function() {
 
     var legendaries = {
         'boat':"feet=,id=172315,bonus_id=7107/6648/6649/6758/",
-        'dream':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/",
+        'dream':"finger1=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7108/6716/7193/6648/6649/",
         'oneth':"back=,id=173242,bonus_id=6716/7087/6649/6648/",
-        'pulsar':"finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7088/6716/7193/6648/6649/",
+        'pulsar':"finger1=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7088/6716/7193/6648/6649/",
         'lycaras':"waist=,id=172320,gems=16mastery,bonus_id=6716/7110/6649/6648/",
         'draught':"neck=,id=178927,gems=16mastery,bonus_id=7086/6716/7193/6648/6649/",
         'eonar':"waist=,id=172320,gems=16mastery,bonus_id=7100/6716/7194/6648/6649/",
-        'circle': 'finger2=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/',
+        'circle': 'finger1=,id=178926,gems=16mastery,enchant=tenet_of_haste,bonus_id=7085/6716/7193/6648/6649/',
         'kyrian': 'waist=,id=172320,gems=16mastery,bonus_id=7477/6716/7194/6648/6649/',
         'necrolord': 'waist=,id=172320,gems=16mastery,bonus_id=7472/6716/7194/6648/6649/',
         'night_fae': 'waist=,id=172320,gems=16mastery,bonus_id=7571/6716/7194/6648/6649/',
