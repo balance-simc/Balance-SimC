@@ -27,6 +27,8 @@ main_hand=guardstaff_of_the_great_cycle,id=189834,ilevel=265,enchant=celestial_g
 shadowlands.disable_iqd_execute=1
 shadowlands.unbound_changeling_stat_type=mastery
 
+set_bonus=tier28_4pc=0
+
 chart_show_relative_difference=1
 report_details=0
 max_time=300
