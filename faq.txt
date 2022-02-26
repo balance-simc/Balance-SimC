@@ -1,7 +1,5 @@
 1. What's new? <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
-    * All sims are updated for Patch 9.1 including new covenant specific legendaries, new soulbind traits, and domination gems.
-    * Kindred Affinity and Celestials Spirit hotfixes are included.
-    * Both heroic-raid levels of gearing and mythic-raid levels of gearing are included.
+    * All sims are updated for Patch 9.2.
 
 1. How do I use the new charts?
     * The main sims page on [Dreamgrove](https://dreamgrove.gg/sims) has brief instructions on how to use various parts of the chart to look at the information you want.
@@ -11,14 +9,14 @@
     * 'Smart Sim' setting is used for each set of talents with a fixed soublind & legendary. This means that for each soulbind & legendary combo, the talents that sim highest will be more precise than the talents that sim the lowest.
     * The base character can be found in [sandbag_h_base.txt](sandbag_h_base.txt) for heroic level and [sandbag_base.txt](sandbag_base.txt) for mythic level.
         * Heroic:
-            - Legendary items are set with Haste & Mastery at ilevel 249
-            - Conduits are Rank 9
-            - Rank 2 Shard of Dyz is equipped
+            - Legendary items are set with Haste & Mastery at ilevel 265
+            - Conduits are Rank 11 + 2 (enhanced)
+            - T28 2-set is equipped
         * Mythic:
-            - Legendary items are set with Haste & Mastery at ilevel 262
-            - Conduits are Rank 9 + 2 (enhanced)
-            - Maximum rank Unholy Domination gems are socketted for the set bonus and maximum rank Blood and Frost DPS gems are socketted
-        * Night Fae has an adjusted profile at [sandbag_h_nf.txt](sandbag_h_nf.txt) for heroic and [sandbag_nf.txt](sandbag_nf.txt) for mythic
+            - Legendary items are set with Haste & Mastery at ilevel 291
+            - Conduits are Rank 13 + 2 (enhanced)
+            - T28 2+4-set are equipped
+            - The Unity legendary is being used for all profiles at ilevel 291
 
 1. What is the '1T Move' selection in the target dropdown?
     * This is an approximation of a light movement encounter. The simc raid_events can be found in [move.txt](move.txt). It consists of:
