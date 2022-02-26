@@ -7,6 +7,7 @@
 1. What are the base profiles used in the sims?
     * All raid buffs and consumables are used.
     * 'Smart Sim' setting is used for each set of talents with a fixed soublind & legendary. This means that for each soulbind & legendary combo, the talents that sim highest will be more precise than the talents that sim the lowest.
+    * Stellar Flare talent is filtered out by default. It can be re-filtered in by clicking the down arrow on the T45 filter.
     * The base character can be found in [sandbag_h_base.txt](sandbag_h_base.txt) for heroic level and [sandbag_base.txt](sandbag_base.txt) for mythic level.
         * Heroic:
             - Legendary items are set with Haste & Mastery at ilevel 265
