@@ -12,6 +12,7 @@
             - Legendary items are set with Haste & Mastery at ilevel 265
             - Conduits are Rank 11 + 2 (enhanced)
             - T28 2-set is equipped
+            - Only one legendary is equipped at a time
         * Mythic:
             - Legendary items are set with Haste & Mastery at ilevel 291
             - Conduits are Rank 13 + 2 (enhanced)
@@ -36,7 +37,6 @@
         * Random light movement as per the '1T Move' script
         * ~550s total fight time
         * ~115s to ~160s fighting one boss mob
-        * ~25s to ~45s fighting one mini-boss mob
         * ~20s to ~40s fighting waves of 1 to 7 mobs, each wave random and repeating until the end of the fight
         * Random ~5s to ~25s wait after each fight
 
@@ -51,11 +51,8 @@
 1. How does SimC handle Kindred Spirits (Kyrian)?
     * SimC makes the following assumptions:
         - You are bonding with someone who does the exact same damage as you
-        - 20% of the pool is lost from taking damage
+        - 27.75% of the pool is discounted to approximate loss due to absorb/healing/desync of damage patterns between the two players
         - The additional damage done by you AND your partner are attributed to you
-    
-1. Are there any bugs in the sims?
-    * The Necrolord legendary power Locust Swarm does not sim correctly in multi-target sims.
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
