@@ -50,10 +50,12 @@
         - Chance to cast Moonfire on an un-dotted target
 
 1. How does SimC handle Kindred Spirits (Kyrian)?
-    * SimC makes the following assumptions:
-        - You are bonding with someone who does the exact same damage as you
+    * It is possible to sim two characters at once to get a more accurate sim of the additional dps from bonding (inlcuding Kindred Affinity)
+    * These sims are only run as solo, and such several assumptions are made:
+        - You are bonding with someone who does the exact same damage as you at the exact same time as you
         - 27.75% of the pool is discounted to approximate loss due to absorb/healing/desync of damage patterns between the two players
-        - The additional damage done by you AND your partner are attributed to you
+        - The additional bond damage done by you AND your partner are attributed to you
+        - Kindred Affinity buff will be applied to you, but any benefit your partner gets cannot be ascertained in a single actor sim
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
