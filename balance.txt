@@ -184,6 +184,8 @@ actions.aoe+=/full_moon,if=(buff.eclipse_solar.remains>execute_time&(cooldown.ca
 actions.aoe+=/warrior_of_elune
 #### Calculates whether to use Starfire in Solar which is at 5 targets+1 for every 20% mastery or 4 Starsurge Empowerment stacks
 actions.aoe+=/variable,name=starfire_in_solar,value=spell_targets.starfire>4+floor(mastery_value*100%20)+floor(buff.starsurge_empowerment_solar.stack%4)
+#### On 2 targets without Soul of the Forest you should fill with Wrath during Inc
+actions.aoe+=/wrath,if=!buff.ravenous_frenzy.up&!buff.ravenous_frenzy_sinful_hysteria.up&!talent.soul_of_the_forest.enabled&spell_targets.starfire<3&buff.eclipse_solar.remains>execute_time&fight_remains>buff.ca_inc.remains+12*runeforge.primordial_arcanic_pulsar
 #### Calculates whether to Wrath during Frenzy
 actions.aoe+=/variable,name=wrath_in_frenzy,value=1%spell_haste<2-(0.2*(spell_targets.starfire-1)*(1+talent.soul_of_the_forest.enabled*1.5))+0.15*buff.ravenous_frenzy.remains
 #### Use Wrath in Solar Eclipse or if no Starfire will fit into CA/Inc anymore
