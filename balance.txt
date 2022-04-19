@@ -94,6 +94,8 @@ actions.st+=/incarnation,if=variable.cd_condition_st
 actions.st+=/variable,name=save_for_ca_inc,value=cooldown.ca_inc.remains>10|!variable.convoke_desync&covenant.night_fae|druid.no_cds
 #### Uses FoE if in an Eclipse and tries to line it up with Pulsar, CA/Inc, Empower Bond and Adaptive Swarm
 actions.st+=/fury_of_elune,if=eclipse.in_any&(astral_power<92-buff.fury_of_elune.stack*5|buff.ravenous_frenzy.up)&(buff.primordial_arcanic_pulsar.value<240|buff.ca_inc.remains>8)&variable.save_for_ca_inc&(!covenant.necrolord|dot.adaptive_swarm_damage.ticking)&(!covenant.venthyr|buff.ravenous_frenzy.remains<9-(4*runeforge.sinful_hysteria)&buff.ravenous_frenzy.up|!buff.ravenous_frenzy.up)&(!covenant.kyrian|cooldown.empower_bond.remains>20)&target.time_to_die>5|fight_remains<10
+#### Wait a small moment after Frenzy if you are about to cast a spender
+actions.st+=/wait,sec=0.15,if=buff.ravenous_frenzy.remains=buff.ravenous_frenzy.duration&variable.asp_dump
 #### Use Oneth Starfall procs if Starfall isn't up
 actions.st+=/starfall,if=buff.oneths_perception.up&buff.starfall.refreshable
 #### Cancel Starlord if it has less than 5s remaining, you are at 90+ AsP and the current Eclipse has 5+s remaining
@@ -140,6 +142,8 @@ actions.aoe+=/convoke_the_spirits,if=!druid.no_cds&((variable.convoke_desync&!co
 actions.aoe+=/sunfire,target_if=(refreshable|buff.eclipse_solar.remains<3&eclipse.in_solar&remains<14&talent.soul_of_the_forest.enabled)&target.time_to_die>14-spell_targets+remains&(eclipse.in_any|remains<gcd.max)
 #### Use Sunfire to have a global to use IQD
 actions.aoe+=/sunfire,if=variable.iqd_condition&cooldown.inscrutable_quantum_device.ready&equipped.inscrutable_quantum_device&ap_check
+#### Wait a small moment after Frenzy when about to use an instant
+actions.aoe+=/wait,sec=0.15,if=covenant.venthyr&buff.ravenous_frenzy.remains=buff.ravenous_frenzy.duration&(!starfire.ap_check|talent.stellar_drift.enabled&cooldown.starfall.ready|buff.starfall.refreshable)
 #### Keep up Starfall at all times unless using Lycaras and it is about to proc or let the special action line below handle Dreambinder on 2 targets
 actions.aoe+=/starfall,if=!talent.stellar_drift.enabled&(!set_bonus.tier28_4pc|eclipse.in_any|spell_targets.starfall>3)&(buff.starfall.refreshable&(spell_targets.starfall<3|!runeforge.timeworn_dreambinder)|talent.soul_of_the_forest.enabled&buff.eclipse_solar.remains<3&eclipse.in_solar&buff.starfall.remains<7&spell_targets.starfall>=4)&(!runeforge.lycaras_fleeting_glimpse|time%%45>buff.starfall.remains+2)&target.time_to_die>5
 #### With Stellar Drift use on cd when refreshable but still wait for Lycaras proc and don't use before CDs. Still use before Convoke since that will proc another Starfall
