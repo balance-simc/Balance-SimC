@@ -3,12 +3,13 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('simcpath', type=str, help='path to SimC root (include \\simc)')
+parser.add_argument('-f', '--file', type=str, help='apl txt file')
 args = parser.parse_args()
 simc_path = args.simcpath
 
 apl_lists = {}
 
-with open('balance.txt', 'r') as apl_file:
+with open(args.file, 'r') as apl_file:
     temp_comment=""
     for line in apl_file:
         if line.startswith('####'):
