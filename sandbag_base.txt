@@ -6,27 +6,24 @@ role=spell
 position=back
 talents=0000000
 
-head=headpiece_of_the_fixed_stars,id=188847,bonus_id=7187/1498/6935,gem_id=173130
-neck=worldkiller_iris,id=189859,bonus_id=7187/1524/6935,gem_id=173130
-shoulders=shoulderpads_of_the_fixed_stars,id=188851,bonus_id=7187/1505
-back=lurking_predators_camouflage,id=189815,bonus_id=1524/7187
-chest=chestguard_of_the_fixed_stars,id=188849,bonus_id=7187/1505,enchant=eternal_insight
-wrists=wrists_of_the_wicked_star,id=189836,bonus_id=1524/7187,gem_id=173130,enchant=eternal_intellect
-hands=handwraps_of_the_fixed_stars,id=188853,bonus_id=7187/1505
-waist=runecarvers_twisted_ward,id=189856,bonus_id=7187/1524/6935,gem_id=173130
-legs=umbrahide_leggings,id=172318,bonus_id=6716/8121/6648/6649/1588
-feet=treads_of_titanic_curiosity,id=189848,bonus_id=1522/6807
-finger1=death_gods_signet,id=179355,gem_id=173130,enchant_id=6168,ilevel=278
-finger2=signet_of_the_false_accuser,id=178824,bonus_id=1592/6536/6646,gem_id=173130,enchant=tenet_of_haste
-trinket1=inscrutable_quantum_device,id=179350,bonus_id=1592/6536/6646
-trinket2=elegy_of_the_eternals,id=188270,ilevel=278
-#main_hand=guardstaff_of_the_great_cycle,id=189834,ilevel=278,enchant=celestial_guidance
-main_hand=antumbra_shadow_of_the_cosmos,id=189852,bonus_id=1524/7187,enchant=celestial_guidance
-off_hand=forbidden_truth,id=189860,bonus_id=1524/7187
+head=headpiece_of_the_fixed_stars,id=188847,ilevel=311,gem_id=173130
+neck=periapt_of_pristine_preservation,id=186291,ilevel=304,gem_id=173130
+shoulders=shoulderpads_of_the_fixed_stars,id=188851,ilevel=311
+back=wrap_of_the_fixed_stars,id=188871,bonus_id=1531,ilevel=311
+chest=chestguard_of_the_fixed_stars,id=188849,ilevel=311,enchant_id=6230
+wrists=umbrahide_armguards,id=172321,bonus_id=6716/8121/6649/6648/1808/1588,gem_id=173128,enchant_id=6220
+hands=handwraps_of_the_fixed_stars,id=188853,bonus_id=1531,ilevel=311
+waist=windrunners_baldric,id=186332,bonus_id=1808,ilevel=311,gem_id=173130
+legs=elite_aranakk_breeches,id=186331,ilevel=311
+feet=treads_of_titanic_curiosity,id=189848,ilevel=311
+finger1=ring_of_collapsing_futures,id=142173,gem_id=173130,enchant_id=6168,ilevel=304
+finger2=rygelons_heraldric_ring,id=189854,ilevel=311,gem_id=173130,enchant_id=6168
+trinket1=shadowed_orb_of_torment,id=186428,ilevel=304
+trinket2=cabalists_hymnal,id=184028,ilevel=311
+main_hand=antumbra_shadow_of_the_cosmos,id=189852,ilevel=311,enchant_id=6229
+off_hand=forbidden_truth,id=189860,ilevel=311
 
-
-shadowlands.disable_iqd_execute=1
-shadowlands.unbound_changeling_stat_type=mastery
+shadowlands.crimson_choir_in_party=4
 
 chart_show_relative_difference=1
 report_details=0
