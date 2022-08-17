@@ -17,6 +17,7 @@ actions.precombat+=/variable,name=sf_cost,value=50*(1-0.15*set_bonus.tier28_4pc)
 actions.precombat+=/variable,name=convoke_asp,value=30+10*runeforge.celestial_spirits
 actions.precombat+=/moonkin_form
 #### Precast 2 Wrath and a Starsurge on ST with Night Fae and BoAT, Starfire without T28 2pc and only 2 Wrath with
+actions.precombat+=/use_item,name=shadowed_orb_of_torment
 actions.precombat+=/wrath
 actions.precombat+=/wrath
 actions.precombat+=/starfire,if=(!runeforge.balance_of_all_things|!covenant.night_fae|!spell_targets.starfall=1|!talent.natures_balance.enabled)&!set_bonus.tier28_2pc
