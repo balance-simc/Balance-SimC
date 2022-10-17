@@ -33,9 +33,9 @@ actions.st+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(!talent.primordial_ar
 actions.st+=/warrior_of_elune
 actions.st+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
 actions.st+=/astral_communion,if=astral_power.deficit>variable.passive_asp+75
-actions.st+=/variable,name=enter_lunar,value=eclipse.any_next|buff.eclipse_solar.remains<action.wrath.execute_time
-actions.st+=/starsurge,if=talent.rattle_the_stars&buff.rattled_stars.up&variable.enter_lunar&buff.rattled_stars.remains<action.starfire.execute_time
-actions.st+=/starfire,if=variable.enter_lunar
+actions.st+=/variable,name=enter_solar,value=eclipse.any_next|buff.eclipse_solar.remains<action.wrath.execute_time
+actions.st+=/starsurge,if=talent.rattle_the_stars&buff.rattled_stars.up&variable.enter_solar&buff.rattled_stars.remains<action.starfire.execute_time
+actions.st+=/starfire,if=variable.enter_solar
 actions.st+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.st+=/new_moon,if=astral_power.deficit>variable.passive_asp+10&(charges=2&recharge_time<5|charges=3)
 actions.st+=/half_moon,if=astral_power.deficit>variable.passive_asp+20
