@@ -55,10 +55,10 @@ actions.aoe+=/celestial_alignment,if=!buff.ca_inc.up&(target.time_to_die>15|figh
 actions.aoe+=/incarnation,if=!buff.ca_inc.up&(target.time_to_die>15|fight_remains<35)
 actions.aoe+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(!talent.primordial_arcanic_pulsar&cooldown.ca_inc.remains>30|variable.no_cd_talent)&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.aoe+=/warrior_of_elune
-actions.aoe+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.aoe+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
 actions.aoe+=/astral_communion,if=astral_power.deficit>variable.passive_asp+75
 actions.aoe+=/wrath,if=eclipse.any_next|buff.eclipse_lunar.remains<action.wrath.execute_time
+actions.aoe+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.aoe+=/new_moon,if=astral_power.deficit>variable.passive_asp+10&(charges=2&recharge_time<5|charges=3)
 actions.aoe+=/half_moon,if=astral_power.deficit>variable.passive_asp+20&(charges=2&recharge_time<5|charges=3)
 actions.aoe+=/full_moon,if=astral_power.deficit>variable.passive_asp+40
