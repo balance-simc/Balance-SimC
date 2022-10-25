@@ -26,12 +26,15 @@ actions.st=starfall,if=talent.rattle_the_stars&variable.4pc_starfall_st&buff.tou
 actions.st+=/starsurge,if=talent.rattle_the_stars&buff.rattled_stars.up&buff.rattled_stars.remains<gcd.max
 actions.st+=/sunfire,target_if=refreshable&astral_power.deficit>variable.passive_asp+3
 actions.st+=/moonfire,target_if=refreshable&astral_power.deficit>variable.passive_asp+3
+actions.st+=/adaptive_swarm,target_if=!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>5)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3&dot.adaptive_swarm_damage.ticking
 actions.st+=/stellar_flare,target_if=refreshable&astral_power.deficit>variable.passive_asp+8
 actions.st+=/variable,name=cd_condition_st,value=cooldown.ca_inc.remains<15&!buff.ca_inc.up&(target.1.time_to_die>15|fight_remains<25+10*talent.incarnation_chosen_of_elune)
 actions.st+=/wrath,if=variable.cd_condition_st&set_bonus.tier29_4pc&eclipse.any_next
 actions.st+=/starfall,if=variable.cd_condition_st&buff.touch_the_cosmos.up
 actions.st+=/celestial_alignment,if=variable.cd_condition_st
 actions.st+=/incarnation,if=variable.cd_condition_st
+actions.st+=/ravenous_frenzy,if=buff.ca_inc.remains>15
+actions.st+=/empower_bond,if=
 actions.st+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(!talent.primordial_arcanic_pulsar&cooldown.ca_inc.remains>30|variable.no_cd_talent)&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.st+=/warrior_of_elune
 actions.st+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
@@ -54,11 +57,14 @@ actions.st+=/run_action_list,name=fallthru
 
 actions.aoe=sunfire,target_if=refreshable&(target.time_to_die-remains)>8&astral_power.deficit>variable.passive_asp+3
 actions.aoe+=/moonfire,target_if=refreshable&(target.time_to_die-remains)>8&astral_power.deficit>variable.passive_asp+3
+actions.aoe+=/adaptive_swarm,target_if=!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>5)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3&dot.adaptive_swarm_damage.ticking
 actions.aoe+=/variable,name=cd_condition_aoe,value=!buff.ca_inc.up&(target.1.time_to_die>10-5*talent.orbital_strike|fight_remains<25+10*talent.incarnation_chosen_of_elune)
 actions.aoe+=/wrath,if=variable.cd_condition_aoe&set_bonus.tier29_4pc&eclipse.any_next
 actions.aoe+=/starfall,if=variable.cd_condition_aoe&talent.orbital_strike&astral_power.deficit<variable.passive_asp+8*spell_targets|buff.touch_the_cosmos.up
 actions.aoe+=/celestial_alignment,if=variable.cd_condition_aoe
 actions.aoe+=/incarnation,if=variable.cd_condition_aoe
+actions.aoe+=/empower_bond,if=
+actions.aoe+=/ravenous_frenzy,if=buff.ca_inc.remains>15
 actions.aoe+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(!talent.primordial_arcanic_pulsar&cooldown.ca_inc.remains>30|variable.no_cd_talent)&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.aoe+=/warrior_of_elune
 actions.aoe+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
