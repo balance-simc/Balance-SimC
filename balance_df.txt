@@ -42,8 +42,8 @@ actions.st+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(cooldown.ca_inc.remai
 actions.st+=/astral_communion,if=astral_power.deficit>variable.passive_asp+75
 actions.st+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.st+=/new_moon,if=astral_power.deficit>variable.passive_asp+10&(charges=2&recharge_time<5|charges=3)
-actions.st+=/half_moon,if=astral_power.deficit>variable.passive_asp+20
-actions.st+=/full_moon,if=astral_power.deficit>variable.passive_asp+40
+actions.st+=/half_moon,if=astral_power.deficit>variable.passive_asp+20&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
+actions.st+=/full_moon,if=astral_power.deficit>variable.passive_asp+40&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
 actions.st+=/starfall,if=buff.starweavers_warp.up|variable.4pc_starfall_st&buff.touch_the_cosmos.up
 actions.st+=/starfire,if=buff.gathering_starstuff.stack=3&astral_power.deficit>variable.passive_asp+8&buff.eclipse_lunar.up
 actions.st+=/starfall,if=buff.primordial_arcanic_pulsar.value>=550&astral_power.deficit<variable.passive_asp
