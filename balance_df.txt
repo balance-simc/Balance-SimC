@@ -35,11 +35,11 @@ actions.st+=/incarnation,if=variable.cd_condition_st
 actions.st+=/ravenous_frenzy,if=buff.ca_inc.remains>15
 actions.st+=/empower_bond,if=
 actions.st+=/warrior_of_elune
-actions.st+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
 actions.st+=/variable,name=enter_lunar,value=eclipse.any_next|buff.eclipse_lunar.up&buff.eclipse_lunar.remains<action.wrath.execute_time
 actions.st+=/wrath,if=variable.enter_lunar
 actions.st+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(cooldown.ca_inc.remains>30|variable.no_cd_talent)&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.st+=/astral_communion,if=astral_power.deficit>variable.passive_asp+55
+actions.st+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
 actions.st+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.st+=/new_moon,if=astral_power.deficit>variable.passive_asp+10&(charges=2&recharge_time<5|charges=3)
 actions.st+=/half_moon,if=astral_power.deficit>variable.passive_asp+20&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
@@ -66,9 +66,9 @@ actions.aoe+=/empower_bond,if=
 actions.aoe+=/ravenous_frenzy,if=buff.ca_inc.remains>15
 actions.aoe+=/convoke_the_spirits,if=buff.ca_inc.remains>4|(!talent.primordial_arcanic_pulsar&cooldown.ca_inc.remains>30|variable.no_cd_talent)&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.aoe+=/warrior_of_elune
-actions.aoe+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
 actions.aoe+=/wrath,if=eclipse.any_next|buff.eclipse_lunar.remains<action.wrath.execute_time
 actions.aoe+=/astral_communion,if=astral_power.deficit>variable.passive_asp+55
+actions.aoe+=/force_of_nature,if=astral_power.deficit>variable.passive_asp+20
 actions.aoe+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.aoe+=/new_moon,if=astral_power.deficit>variable.passive_asp+10&(charges=2&recharge_time<5|charges=3)
 actions.aoe+=/half_moon,if=astral_power.deficit>variable.passive_asp+20&(charges=2&recharge_time<5|charges=3)
