@@ -57,9 +57,9 @@ actions.st+=/run_action_list,name=fallthru
 actions.aoe=sunfire,target_if=refreshable&(target.time_to_die-remains)>8&astral_power.deficit>variable.passive_asp+3
 actions.aoe+=/moonfire,target_if=refreshable&(target.time_to_die-remains)>8&astral_power.deficit>variable.passive_asp+3
 actions.aoe+=/adaptive_swarm,target_if=!dot.adaptive_swarm_damage.ticking&!action.adaptive_swarm_damage.in_flight&(!dot.adaptive_swarm_heal.ticking|dot.adaptive_swarm_heal.remains>5)|dot.adaptive_swarm_damage.stack<3&dot.adaptive_swarm_damage.remains<3&dot.adaptive_swarm_damage.ticking
-actions.aoe+=/variable,name=cd_condition_aoe,value=!buff.ca_inc.up&(target.1.time_to_die>10-5*talent.orbital_strike|fight_remains<25+10*talent.incarnation_chosen_of_elune)
+actions.aoe+=/variable,name=cd_condition_aoe,value=cooldown.ca_inc.remains<5&!buff.ca_inc.up&(target.1.time_to_die>10-5*talent.orbital_strike|fight_remains<25+10*talent.incarnation_chosen_of_elune)
 actions.aoe+=/wrath,if=variable.cd_condition_aoe&set_bonus.tier29_4pc&eclipse.any_next
-actions.aoe+=/starfall,if=variable.cd_condition_aoe&talent.orbital_strike&astral_power.deficit<variable.passive_asp+8*spell_targets|buff.touch_the_cosmos.up
+actions.aoe+=/starfall,if=variable.cd_condition_aoe&talent.orbital_strike&astral_power.deficit<variable.passive_asp+8*spell_targets|astral_power.deficit<(variable.passive_asp+8+12*(buff.eclipse_lunar.remains<4|buff.eclipse_solar.remains<4))
 actions.aoe+=/celestial_alignment,if=variable.cd_condition_aoe
 actions.aoe+=/incarnation,if=variable.cd_condition_aoe
 actions.aoe+=/empower_bond,if=
@@ -74,7 +74,7 @@ actions.aoe+=/wild_mushroom,if=astral_power.deficit>variable.passive_asp+20&(!ta
 actions.aoe+=/starfire,if=(buff.gathering_starstuff.stack=3|buff.umbral_embrace.up)&astral_power.deficit>variable.passive_asp+(8*(1+0.4*buff.warrior_of_elune.up))
 actions.aoe+=/astral_communion,if=astral_power.deficit>variable.passive_asp+55
 actions.aoe+=/stellar_flare,target_if=refreshable&(target.time_to_die-remains-spell_targets.starfire)>8,if=astral_power.deficit>variable.passive_asp+8
-actions.aoe+=/starfall,if=target.time_to_die>4&(buff.ca_inc.remains<12&buff.ca_inc.up|astral_power.deficit<(variable.passive_asp+8+12*(buff.eclipse_lunar.remains<4|buff.eclipse_solar.remains<4))|buff.starweavers_warp.up|talent.starlord&buff.starlord.stack<3)
+actions.aoe+=/starfall,if=target.time_to_die>4&(buff.ca_inc.remains<12&buff.ca_inc.up|buff.starweavers_warp.up|talent.starlord&buff.starlord.stack<3)
 actions.aoe+=/convoke_the_spirits,if=astral_power<50&spell_targets.starfall<3+talent.elunes_guidance&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.aoe+=/new_moon,if=astral_power.deficit>variable.passive_asp+10
 actions.aoe+=/half_moon,if=astral_power.deficit>variable.passive_asp+20
