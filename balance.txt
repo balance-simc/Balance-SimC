@@ -69,7 +69,7 @@ actions.aoe+=/fury_of_elune,if=astral_power.deficit>variable.passive_asp+8
 actions.aoe+=/full_moon,if=astral_power.deficit>variable.passive_asp+40&(buff.eclipse_lunar.remains>execute_time|buff.eclipse_solar.remains>execute_time)
 actions.aoe+=/starfire,if=(buff.gathering_starstuff.stack=3|buff.umbral_embrace.up)&astral_power.deficit>variable.passive_asp+(8*(1+0.4*buff.warrior_of_elune.up))
 actions.aoe+=/astral_communion,if=astral_power.deficit>variable.passive_asp+55
-actions.aoe+=/stellar_flare,target_if=refreshable&(target.time_to_die-remains-spell_targets.starfire)>8,if=astral_power.deficit>variable.passive_asp+8&spell_targets.starfire<8
+actions.aoe+=/stellar_flare,target_if=refreshable&(target.time_to_die-remains-spell_targets.starfire)>8,if=astral_power.deficit>variable.passive_asp+8&spell_targets.starfire<(11-talent.umbral_intensity.rank-talent.astral_smolder.rank)
 actions.aoe+=/starfall,if=target.time_to_die>4&(buff.ca_inc.remains<12&buff.ca_inc.up|buff.starweavers_warp.up|talent.starlord&buff.starlord.stack<3)
 actions.aoe+=/convoke_the_spirits,if=astral_power<50&spell_targets.starfall<3+talent.elunes_guidance&(buff.eclipse_lunar.remains>4|buff.eclipse_solar.remains>4)
 actions.aoe+=/new_moon,if=astral_power.deficit>variable.passive_asp+10
