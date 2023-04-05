@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.API_TOKEN_GITHUB }}
           path: './simc'
       - name: generate APL
-        run: python generate_apl.py -f balance.txt -o balance_apl.inc "./simc" ""
+        run: python generate_apl.py -f balance.txt -o balance_apl.inc "./simc"
       - name: commit APL
         run: |
           git log -1 --pretty=format:"%B%nbalance-simc/Balance-SimC@%h" > commit_msg
