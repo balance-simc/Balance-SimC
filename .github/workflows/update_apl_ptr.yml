@@ -1,9 +1,9 @@
-name: Update APL DF
+name: Update APL PTR
 
 on:
   push:
     paths:
-      - 'balance_df.txt'
+      - 'balance_ptr.txt'
 
 jobs:
   update:
@@ -19,9 +19,8 @@ jobs:
           repository: simulationcraft/simc
           token: ${{ secrets.API_TOKEN_GITHUB }}
           path: './simc'
-          ref: dragonflight
       - name: generate APL
-        run: python generate_apl.py -f balance_df.txt "./simc"
+        run: python generate_apl.py -f balance_ptr.txt -o balance_apl_ptr.inc "./simc"
       - name: commit APL
         run: |
           git log -1 --pretty=format:"%B%nbalance-simc/Balance-SimC@%h" > commit_msg

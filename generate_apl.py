@@ -3,6 +3,7 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('simcpath', type=str, help='path to SimC root (include \\simc)')
+parser.add_argument('-o', '--output', type=str, help='output file name')
 parser.add_argument('-f', '--file', type=str, help='apl txt file')
 args = parser.parse_args()
 simc_path = args.simcpath
@@ -33,7 +34,7 @@ with open(args.file, 'r') as apl_file:
             apl_lists[apl].append((suf,temp_comment))
             temp_comment=""
 
-with open(os.path.join(simc_path, 'engine', 'class_modules', 'apl', 'balance_apl.inc'), 'w') as inc:
+with open(os.path.join(simc_path, 'engine', 'class_modules', 'apl', args.output), 'w') as inc:
     for apl in apl_lists.keys():
         apl_var = apl
         if apl_var == 'default':
