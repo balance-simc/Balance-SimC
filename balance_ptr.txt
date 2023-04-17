@@ -13,7 +13,7 @@ actions.precombat+=/moonkin_form
 actions.precombat+=/wrath
 actions.precombat+=/wrath
 actions.precombat+=/stellar_flare
-actions.precombat+=/starfire
+actions.precombat+=/starfire,if=!talent.stellar_flare
 
 actions=variable,name=is_aoe,value=spell_targets.starfall>1
 actions+=/variable,name=passive_asp,value=6%spell_haste+talent.natures_balance+talent.orbit_breaker*dot.moonfire.ticking*(buff.orbit_breaker.stack>(27-2*buff.solstice.up))*40
