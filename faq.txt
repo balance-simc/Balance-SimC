@@ -1,5 +1,5 @@
 1. What's new? <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
-    * All sims are updated for Patch 9.2.
+    * All sims are updated for Patch 9.2
 
 1. How do I use the new charts?
     * The main sims page on [Dreamgrove](https://dreamgrove.gg/sims) has brief instructions on how to use various parts of the chart to look at the information you want.
