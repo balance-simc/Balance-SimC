@@ -1,5 +1,3 @@
-## Shadowland Balance Druid APL <a href="https://github.com/balance-simc/Balance-SimC/commits/master/balance.txt" target="_top">(changelog)</a>
-
 actions.precombat=flask
 actions.precombat+=/food
 actions.precombat+=/augmentation
